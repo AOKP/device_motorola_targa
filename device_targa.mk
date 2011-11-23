@@ -15,7 +15,8 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
     device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
     device/motorola/targa/root/ueventd.mapphone_cdma.rc:system/etc/rootfs/ueventd.mapphone_cdma.rc \
-    device/motorola/targa/root/ueventd.mapphone_umts.rc:system/etc/rootfs/ueventd.mapphone_umts.rc
+    device/motorola/targa/root/ueventd.mapphone_umts.rc:system/etc/rootfs/ueventd.mapphone_umts.rc \
+    device/motorola/targa/recovery/postrecoveryboot.sh:/recovery/root/sbin/postrecoveryboot.sh
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
@@ -287,7 +288,7 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
 
 # stuff common to all Motorola phones -- disabled for Sandbox
-#$(call inherit-product, device/motorola/common/common_hijack.mk)
+$(call inherit-product, device/motorola/common/common_hijack.mk)
 
 
 $(call inherit-product, build/target/product/full_base.mk)
