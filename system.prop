@@ -12,7 +12,7 @@ persist.ril.modem.mode =1
 # This defines the max event window manager can
 # handle in 1 s. We may adjust this # for performance
 # reason later
-windowsmgr.max_events_per_sec=70
+windowsmgr.max_events_per_sec=180
 
 # USB modes allowed for UI and switching
 ro.ngp_available=1
@@ -20,7 +20,8 @@ ro.modem_available=0
 
 # Default network type.
 # 4 => CDMA/EVDO. To be used until Targa has LTE SFN
-ro.telephony.default_network=4
+# 7 => GLOBAL.
+ro.telephony.default_network=7
 ro.com.google.clientid=android-motorola
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
@@ -57,7 +58,7 @@ ro.HorizontalVVM=true
 ro.opengles.version = 131072
 
 # This is a high density device with more memory, so larger vm heaps for it.
-dalvik.vm.heapsize=32m
+dalvik.vm.heapsize=64m
 
 # our HTML browser (not WAP browser ) does not need to specify UAProf URL
 ro.mot.hw.uaprof=http://uaprof.vtext.com/mot/xt875/xt875.xml
@@ -98,7 +99,7 @@ persist.mot.usb.mediasync = 1
 ro.service.start.smc=1
 ro.HorizontalBUA=true
 #Proximity sensor debounce time
-mot.proximity.delay=450
+mot.proximity.delay=150
 # disable touch below 60 pixels
 mot.proximity.distance=60
 
@@ -150,7 +151,7 @@ ro.mot.dpmext = true
 # This is necessary for framework to support
 # the LTE and eHRPD capability.
 ##### Override in cdma_targa.mk until LTE + Global support. ######
-#ro.mot.lte_on_cdma=1
+ro.mot.lte_on_cdma=1
 
 # BEGIN Moto, IKSTABLETWO-1284, nfjb73
 # without this property, the lock screen would take global phone as UMTS
@@ -210,19 +211,20 @@ ro.product.use_charge_counter=1
 #
 # ADDITIONAL_BUILD_PROPERTIES
 #
-ro.com.google.clientidbase.ms=android-verizon 
-ro.com.google.clientidbase.am=android-verizon 
-ro.com.google.clientidbase.gmm=android-motorola 
-ro.com.google.clientidbase.yt=android-verizon 
-ro.kernel.android.ril=yes 
-persist.ril.mux.noofchannels=10 
-persist.ril.mux.ttydevice=/dev/ttyO0 
-persist.ril.modem.ttydevice=/dev/ttyUSB4 
-persist.ril.tcmd.ttydevice=/dev/usb/tty2-1:1.3 
-persist.ril.features=0x90A 
-persist.ril.mux.retries=500 
-persist.ril.mux.sleep=2 
-rild.libpath=/system/lib/moto-ril-multimode.so 
+ro.com.google.clientidbase=android-motorola
+ro.com.google.clientidbase.ms=android-verizon
+ro.com.google.clientidbase.am=android-verizon
+ro.com.google.clientidbase.gmm=android-motorola
+ro.com.google.clientidbase.yt=android-verizon
+ro.kernel.android.ril=yes
+persist.ril.mux.noofchannels=10
+persist.ril.mux.ttydevice=/dev/ttyO0
+persist.ril.modem.ttydevice=/dev/ttyUSB4
+persist.ril.tcmd.ttydevice=/dev/usb/tty2-1:1.3
+persist.ril.features=0x90A
+persist.ril.mux.retries=500
+persist.ril.mux.sleep=2
+rild.libpath=/system/lib/moto-ril-multimode.so
 ro.default_usb_mode=0 
 ro.media.enc.aud.fileformat=qcp 
 ro.media.enc.aud.codec=qcelp 
