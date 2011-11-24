@@ -78,8 +78,8 @@ BOARD_HAS_SDCARD_INTERNAL := true
 #BOARD_HAS_SDEXT := false
 #BOARD_HAS_WEBTOP := false
 
-#TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /data/.recovery_mode; sync;"
-#TARGET_RECOVERY_PRE_COMMAND_CLEAR_REASON := true
+TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /data/.recovery_mode; sync;"
+TARGET_RECOVERY_PRE_COMMAND_CLEAR_REASON := true
 
 
 # Sandbox Filesystem Settings
