@@ -15,7 +15,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
     device/motorola/targa/root/ueventd.mapphone_cdma.rc:system/etc/rootfs/ueventd.mapphone_cdma.rc \
     device/motorola/targa/root/ueventd.mapphone_umts.rc:system/etc/rootfs/ueventd.mapphone_umts.rc \
-    device/motorola/targa/recovery/postrecoveryboot.sh:/recovery/root/sbin/postrecoveryboot.sh
+    device/motorola/targa/recovery/postrecoveryboot.sh:/recovery/root/sbin/postrecoveryboot.sh \
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
