@@ -20,7 +20,7 @@ PRODUCT_COPY_FILES += \
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
 # Device overlay
-    DEVICE_PACKAGE_OVERLAYS += device/motorola/targa/overlay
+#    DEVICE_PACKAGE_OVERLAYS += device/motorola/targa/overlay
 
 # Permissions files
 PRODUCT_COPY_FILES += \
@@ -78,65 +78,64 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     gralloc.omap4 \
     hwcomposer.default \
-
-#    gralloc.default \
+    gralloc.default \
 
 # Audio HAL
 #    alsa.omap4 \
 
-#PRODUCT_PACKAGES += \
-#    acoustics.default \
-#    alsa.default \
+PRODUCT_PACKAGES += \
+    acoustics.default \
+    alsa.default \
 
 # Thermal Manager
-#PRODUCT_PACKAGES += \
-#    libconfig \
-#    libthermal_manager \
-#    thermaldaemon \
+PRODUCT_PACKAGES += \
+    libconfig \
+    libthermal_manager \
+    thermaldaemon \
 
 # Sound / Media
 #    libaudio \
 
-#PRODUCT_PACKAGES += \
-#    libaudiopolicy \
-#    libbundlewrapper \
-#    libreverbwrapper \
-#    libvisualizer \
+PRODUCT_PACKAGES += \
+    libaudiopolicy \
+    libbundlewrapper \
+    libreverbwrapper \
+    libvisualizer \
 
 # Modem
-#PRODUCT_PACKAGES += \
-#    libaudiomodemgeneric \
-#    libreference-cdma-sms \
+PRODUCT_PACKAGES += \
+    libaudiomodemgeneric \
+    libreference-cdma-sms \
 
 # OMX
-#PRODUCT_PACKAGES += \
-#    OMXCore \
-#    libOMX_CoreOsal \
-#    libOMX_Core \
-#    libomx_rpc \
-#    libomx_proxy_common \
-#    libOMX.TI.DUCATI1.VIDEO.H264D \
-#    libOMX.TI.DUCATI1.VIDEO.MPEG4D \
-#    libOMX.TI.DUCATI1.VIDEO.VP6D \
-#    libOMX.TI.DUCATI1.VIDEO.VP7D \
-#    libOMX.TI.DUCATI1.VIDEO.H264E \
-#    libOMX.TI.DUCATI1.VIDEO.MPEG4E \
-#    libOMX.TI.DUCATI1.IMAGE.JPEGD \
-#    libOMX.TI.DUCATI1.VIDEO.CAMERA \
-#    libOMX.TI.DUCATI1.MISC.SAMPLE \
-#    libOMX.TI.DUCATI1.VIDEO.DECODER \
-#    libOMX_ResourceManagerProxy \
-#    libVendor_ti_omx \
-#    libVendor_ti_omx_config_parser \
-#    libstagefrighthw \
-#    libLCML \
-#    libOMX.TI.Video.Decoder \
-#    libOMX.TI.Video.encoder \
+PRODUCT_PACKAGES += \
+    OMXCore \
+    libOMX_CoreOsal \
+    libOMX_Core \
+    libomx_rpc \
+    libomx_proxy_common \
+    libOMX.TI.DUCATI1.VIDEO.H264D \
+    libOMX.TI.DUCATI1.VIDEO.MPEG4D \
+    libOMX.TI.DUCATI1.VIDEO.VP6D \
+    libOMX.TI.DUCATI1.VIDEO.VP7D \
+    libOMX.TI.DUCATI1.VIDEO.H264E \
+    libOMX.TI.DUCATI1.VIDEO.MPEG4E \
+    libOMX.TI.DUCATI1.IMAGE.JPEGD \
+    libOMX.TI.DUCATI1.VIDEO.CAMERA \
+    libOMX.TI.DUCATI1.MISC.SAMPLE \
+    libOMX.TI.DUCATI1.VIDEO.DECODER \
+    libOMX_ResourceManagerProxy \
+    libVendor_ti_omx \
+    libVendor_ti_omx_config_parser \
+    libstagefrighthw \
+    libLCML \
+    libOMX.TI.Video.Decoder \
+    libOMX.TI.Video.encoder \
 
 # OMX Binaries
-#PRODUCT_PACKAGES += \
-#    OMXPolicyManager \
-#    OMXResourceManager \
+PRODUCT_PACKAGES += \
+    OMXPolicyManager \
+    OMXResourceManager \
 
 # Syslink and Tiler
 PRODUCT_PACKAGES += \
@@ -150,72 +149,72 @@ PRODUCT_PACKAGES += \
     libnotify \
     libd2cmap \
     libtimemmgr \
-#    dmm_daemontest.out \
-#    ducati_load.out \
-#    event_listener.out \
-#    gateMPApp.out \
-#    heapBufMPApp.out \
-#    heapMemMPApp.out \
-#    interm3.out \
-#    listMPApp.out \
-#    memmgrserver.out \
-#    messageQApp.out \
-#    nameServerApp.out \
-#    notifyping.out \
-#    procMgrApp.out \
-#    rcm_daemontest.out \
-#    rcm_multiclienttest.out \
-#    rcm_multitest.out \
-#    rcm_multithreadtest.out \
-#    rcm_singletest.out \
-#    sharedRegionApp.out \
-#    slpmresources.out \
-#    slpmtest.out \
-#    slpmtransport.out \
-#    utilsApp.out \
-#    libsyslink_ipc_listener \
-#    libomap_mm_library_jni \
+    dmm_daemontest.out \
+    ducati_load.out \
+    event_listener.out \
+    gateMPApp.out \
+    heapBufMPApp.out \
+    heapMemMPApp.out \
+    interm3.out \
+    listMPApp.out \
+    memmgrserver.out \
+    messageQApp.out \
+    nameServerApp.out \
+    notifyping.out \
+    procMgrApp.out \
+    rcm_daemontest.out \
+    rcm_multiclienttest.out \
+    rcm_multitest.out \
+    rcm_multithreadtest.out \
+    rcm_singletest.out \
+    sharedRegionApp.out \
+    slpmresources.out \
+    slpmtest.out \
+    slpmtransport.out \
+    utilsApp.out \
+    libsyslink_ipc_listener \
+    libomap_mm_library_jni \
 
 # TI CameraHal
-#PRODUCT_PACKAGES += \
-#    libtiutils \
-#    libcamera \
-#    libfakecameraadapter \
-#    libomxcameraadapter \
+PRODUCT_PACKAGES += \
+    libtiutils \
+    libcamera \
+    libfakecameraadapter \
+    libomxcameraadapter \
 
 #libskiahw-omap4
-#PRODUCT_PACKAGES += \
-#    libskiahwdec \
-#    SkLibTiJpeg_Test \
+PRODUCT_PACKAGES += \
+    libskiahwdec \
+    SkLibTiJpeg_Test \
 
 # Overlay
-#PRODUCT_PACKAGES += \
-#    overlay.omap4 \
+PRODUCT_PACKAGES += \
+    overlay.omap4 \
 
 # FM Radio
-#PRODUCT_PACKAGES += \
-#    libfmchr \
-#    libfm_stack \
-#    libmcphal \
+PRODUCT_PACKAGES += \
+    libfmchr \
+    libfm_stack \
+    libmcphal \
 
 # Framework
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
 
 # Wifi
-#PRODUCT_PACKAGES += \
-#    libtiOsLib \
-#    libCustomWifi \
-#    wlan_loader \
-#    wlan_cu \
-#    dhcpcd.conf \
-#    wpa_supplicant.conf \
+PRODUCT_PACKAGES += \
+    libtiOsLib \
+    libCustomWifi \
+    wlan_loader \
+    wlan_cu \
+    dhcpcd.conf \
+    wpa_supplicant.conf \
 
 # HotSpot
-#PRODUCT_PACKAGES += \
-#    tiap_loader \
-#    tiap_cu \
-#    hostap \
-#    hostapd.conf \
+PRODUCT_PACKAGES += \
+    tiap_loader \
+    tiap_cu \
+    hostap \
+    hostapd.conf \
 
 # Lights
 #PRODUCT_PACKAGES += \
@@ -226,21 +225,21 @@ PRODUCT_PACKAGES += \
 #    sensors.targa \
 
 # Release utilities
-#PRODUCT_PACKAGES += \
-#    solana_releaseutils-check_kernel \
-#    solana_releaseutils-finalize_release \
-#    solana_releaseutils-mke2fs \
-#    solana_releaseutils-tune2fs
+PRODUCT_PACKAGES += \
+    targa_releaseutils-check_kernel \
+    targa_releaseutils-finalize_release \
+    targa_releaseutils-mke2fs \
+    targa_releaseutils-tune2fs
 
 # Libs
-#PRODUCT_PACKAGES += \
-#    libRS \
-#    librs_jni \
-#    libSR_AudioIn \
-#    libicui18n \
-#    lubicuuc \
-#    libjni_latinime \
-#    libvorbisidec \
+PRODUCT_PACKAGES += \
+    libRS \
+    librs_jni \
+    libSR_AudioIn \
+    libicui18n \
+    lubicuuc \
+    libjni_latinime \
+    libvorbisidec \
 
 # Tests -- Can remove later
 PRODUCT_PACKAGES += \
@@ -249,16 +248,16 @@ PRODUCT_PACKAGES += \
     utils_test \
     tiler_ptest \
     overlay_test \
-#    camera_test \
-#    VideoEncTest \
+    camera_test \
+    VideoEncTest \
     omx_tests \
 
 # Misc Packages
 #    safestrapmenu \
 #    2nd-init \
 
-#PRODUCT_PACKAGES += \
-#    Usb \
+PRODUCT_PACKAGES += \
+    Usb \
 
 
 FRAMEWORKS_BASE_SUBDIRS += \
@@ -270,7 +269,7 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 # high-density artwork where available
 PRODUCT_LOCALES += hdpi
 # still need to set english for audio init
-#PRODUCT_LOCALES += en_US
+PRODUCT_LOCALES += en_US
 
 
 # copy all kernel modules under the "modules" directory to system/lib/modules
