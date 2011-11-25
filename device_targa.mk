@@ -51,7 +51,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
     device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
     device/motorola/targa/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
-    device/motorola/targa/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/motorola/targa/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/targa/prebuilt/etc/powervr.ini:system/etc/powervr.ini \
     device/motorola/targa/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
@@ -61,6 +60,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
     device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip \
 
+#    device/motorola/targa/prebuilt/etc/gps.conf:system/etc/gps.conf \
 # Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
 #    device/motorola/targa/prebuilt/audio/acoustics.default.so:/system/lib/hw/acoustics.default.so \
 #    device/motorola/targa/prebuilt/audio/alsa.default.so:/system/lib/hw/alsa.default.so \
