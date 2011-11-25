@@ -108,11 +108,8 @@ loglevel 3
     chmod 0644 /dev/xt_qtaguid
 
 on fs
-    mount yaffs2 /dev/block/mmcblk1p23 /system
     mount ext3 /dev/block/mmcblk1p23 /system wait noatime nodiratime barrier=1
-    mount yaffs2 /dev/block/mmcblk1p24 /data nosuid nodev
     mount ext3 /dev/block/mmcblk1p24 /data nosuid nodev noatime nodiratime
-    mount yaffs2 /dev/block/mmcblk1p22 /cache nosuid nodev
     mount ext3 /dev/block/mmcblk1p22 /cache nosuid nodev noatime nodiratime
 
 on post-fs
