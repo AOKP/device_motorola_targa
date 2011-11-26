@@ -4,6 +4,7 @@
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
+## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
@@ -16,7 +17,11 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/ueventd.mapphone_cdma.rc:system/etc/rootfs/ueventd.mapphone_cdma.rc \
     device/motorola/targa/root/ueventd.mapphone_umts.rc:system/etc/rootfs/ueventd.mapphone_umts.rc \
     device/motorola/targa/recovery/postrecoveryboot.sh:/recovery/root/sbin/postrecoveryboot.sh \
-    device/motorola/targa/root/sbin/adbd:system/etc/rootfs/sbin/adbd \
+    device/motorola/targa/root/sbin/adbd:system/etc/rootfs/sbin/adbd 
+
+## (2) Also get non-open-source GSM-specific aspects if available
+$(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
+$(call inherit-product-if-exists, vendor/google/google-vendor.mk)
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
@@ -25,24 +30,26 @@ PRODUCT_COPY_FILES += \
 
 # Permissions files
 PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.camera.front.xml:/system/etc/permissions/android.hardware.camera.front.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.camera.flash-autofocus.xml:/system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.location.gps.xml:/system/etc/permissions/android.hardware.location.gps.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.sensor.accelerometer.xml:/system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.sensor.light.xml:/system/etc/permissions/android.hardware.sensor.light.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.sensor.proximity.xml:/system/etc/permissions/android.hardware.sensor.proximity.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.telephony.cdma.xml:/system/etc/permissions/android.hardware.telephony.cdma.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.telephony.gsm.xml:/system/etc/permissions/android.hardware.telephony.gsm.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.touchscreen.multitouch.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.hardware.wifi.xml:/system/etc/permissions/android.hardware.wifi.xml \
-    device/motorola/targa/prebuilt/etc/permissions/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml \
-    device/motorola/targa/prebuilt/etc/permissions/com.android.location.provider.xml:/system/etc/permissions/com.android.location.provider.xml \
-    device/motorola/targa/prebuilt/etc/permissions/com.motorola.android.tcmd.xml:/system/etc/permissions/com.motorola.android.tcmd.xml \
-    device/motorola/targa/prebuilt/etc/permissions/com.motorola.atcmd_library.xml:/system/etc/permissions/com.motorola.atcmd_library.xml \
-    device/motorola/targa/prebuilt/etc/permissions/com.motorola.device.xml:/system/etc/permissions/com.motorola.device.xml \
-    device/motorola/targa/prebuilt/etc/permissions/handheld_core_hardware.xml:/system/etc/permissions/handheld_core_hardware.xml \
-    device/motorola/targa/prebuilt/etc/permissions/jcifs-krb5-1.3.12.xml:/system/etc/permissions/jcifs-krb5-1.3.12.xml \
+    frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:/system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/base/data/etc/android.hardware.camera.front.xml:/system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/base/data/etc/android.hardware.camera.xml:/system/etc/permissions/android.hardware.camera.xml \
+    frameworks/base/data/etc/android.hardware.location.gps.xml:/system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:/system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/base/data/etc/android.hardware.sensor.compass.xml:/system/etc/permissions/android.hardware.sensor.compass.xml \
+    frameworks/base/data/etc/android.hardware.sensor.light.xml:/system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/base/data/etc/android.hardware.sensor.proximity.xml:/system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/base/data/etc/android.hardware.telephony.cdma.xml:/system/etc/permissions/android.hardware.telephony.cdma.xml \
+    frameworks/base/data/etc/android.hardware.telephony.gsm.xml:/system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
+    frameworks/base/data/etc/android.hardware.wifi.xml:/system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/base/data/etc/handheld_core_hardware.xml:/system/etc/permissions/handheld_core_hardware.xml 
+
+#    device/motorola/targa/prebuilt/etc/permissions/com.android.location.provider.xml:/system/etc/permissions/com.android.location.provider.xml \
+#    device/motorola/targa/prebuilt/etc/permissions/com.motorola.android.tcmd.xml:/system/etc/permissions/com.motorola.android.tcmd.xml \
+#    device/motorola/targa/prebuilt/etc/permissions/com.motorola.atcmd_library.xml:/system/etc/permissions/com.motorola.atcmd_library.xml \
+#    device/motorola/targa/prebuilt/etc/permissions/com.motorola.device.xml:/system/etc/permissions/com.motorola.device.xml \
+#    device/motorola/targa/prebuilt/etc/permissions/jcifs-krb5-1.3.12.xml:/system/etc/permissions/jcifs-krb5-1.3.12.xml \
 
 # Prebuilts
 #    device/motorola/targa/prebuilt/app/Usb.apk:system/app/Usb.apk \
@@ -52,6 +59,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
     device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
     device/motorola/targa/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
+    device/motorola/targa/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/motorola/targa/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/targa/prebuilt/etc/powervr.ini:system/etc/powervr.ini \
     device/motorola/targa/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
@@ -61,9 +69,8 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/usr/keychars/omap-keypad.kcm.bin:system/usr/keychars/omap-keypad.kcm.bin \
     device/motorola/targa/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
     device/motorola/targa/prebuilt/usr/keylayout/qtouch-touchscreen.kl:system/usr/keylayout/qtouch-touchscreen.kl \
-    device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip \
+    device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip 
 
-#    device/motorola/targa/prebuilt/etc/gps.conf:system/etc/gps.conf \
 # Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
 #    device/motorola/targa/prebuilt/audio/acoustics.default.so:/system/lib/hw/acoustics.default.so \
 #    device/motorola/targa/prebuilt/audio/alsa.default.so:/system/lib/hw/alsa.default.so \
@@ -85,23 +92,21 @@ PRODUCT_PACKAGES += \
 
 # HW Libs
 PRODUCT_PACKAGES += \
-    gralloc.omap4 \
-    hwcomposer.default \
-    gralloc.default \
+    hwcomposer.default 
 
 # Sound / Media
 #    libaudio \
 
-PRODUCT_PACKAGES += \
-    libaudiopolicy \
-    libbundlewrapper \
-    libreverbwrapper \
-    libvisualizer \
+#PRODUCT_PACKAGES += \
+#    libaudiopolicy \
+#    libbundlewrapper \
+#    libreverbwrapper \
+#    libvisualizer \
 
 # Modem
-PRODUCT_PACKAGES += \
-    libaudiomodemgeneric \
-    libreference-cdma-sms \
+#PRODUCT_PACKAGES += \
+#    libaudiomodemgeneric \
+#    libreference-cdma-sms \
 
 # Syslink and Tiler
 PRODUCT_PACKAGES += \
@@ -114,32 +119,32 @@ PRODUCT_PACKAGES += \
     libsysmgr \
     libnotify \
     libd2cmap \
-    libtimemmgr \
-    dmm_daemontest.out \
-    ducati_load.out \
-    event_listener.out \
-    gateMPApp.out \
-    heapBufMPApp.out \
-    heapMemMPApp.out \
-    interm3.out \
-    listMPApp.out \
-    memmgrserver.out \
-    messageQApp.out \
-    nameServerApp.out \
-    notifyping.out \
-    procMgrApp.out \
-    rcm_daemontest.out \
-    rcm_multiclienttest.out \
-    rcm_multitest.out \
-    rcm_multithreadtest.out \
-    rcm_singletest.out \
-    sharedRegionApp.out \
-    slpmresources.out \
-    slpmtest.out \
-    slpmtransport.out \
-    utilsApp.out \
-    libsyslink_ipc_listener \
-    libomap_mm_library_jni \
+    libtimemmgr 
+#    dmm_daemontest.out \
+#    ducati_load.out \
+#    event_listener.out \
+#    gateMPApp.out \
+#    heapBufMPApp.out \
+#    heapMemMPApp.out \
+#    interm3.out \
+#    listMPApp.out \
+#    memmgrserver.out \
+#    messageQApp.out \
+#    nameServerApp.out \
+#    notifyping.out \
+#    procMgrApp.out \
+#    rcm_daemontest.out \
+#    rcm_multiclienttest.out \
+#    rcm_multitest.out \
+#    rcm_multithreadtest.out \
+#    rcm_singletest.out \
+#    sharedRegionApp.out \
+#    slpmresources.out \
+#    slpmtest.out \
+#    slpmtransport.out \
+#    utilsApp.out \
+#    libsyslink_ipc_listener \
+#    libomap_mm_library_jni \
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -148,29 +153,29 @@ PRODUCT_PACKAGES += \
     wlan_loader \
     wlan_cu \
     dhcpcd.conf \
-    wpa_supplicant.conf \
+    wpa_supplicant.conf 
 
 # HotSpot
 PRODUCT_PACKAGES += \
     tiap_loader \
     tiap_cu \
     hostap \
-    hostapd.conf \
+    hostapd.conf 
 
 # Lights
 #PRODUCT_PACKAGES += \
-#    lights.targa \
+#    lights.targa 
 
 # Sensors
 #PRODUCT_PACKAGES += \
-#    sensors.targa \
+#    sensors.targa 
 
 # Release utilities
-PRODUCT_PACKAGES += \
-    targa_releaseutils-check_kernel \
-    targa_releaseutils-finalize_release \
-    targa_releaseutils-mke2fs \
-    targa_releaseutils-tune2fs
+#PRODUCT_PACKAGES += \
+#    targa_releaseutils-check_kernel \
+#    targa_releaseutils-finalize_release \
+#    targa_releaseutils-mke2fs \
+#    targa_releaseutils-tune2fs
 
 # Tests -- Can remove later
 PRODUCT_PACKAGES += \
@@ -179,17 +184,25 @@ PRODUCT_PACKAGES += \
     utils_test \
     tiler_ptest \
     overlay_test \
-    camera_test \
-    VideoEncTest \
     omx_tests \
+    camera_test \
+    VideoEncTest 
 
 # Misc Packages
 #    safestrapmenu \
-#    2nd-init \
+#    2nd-init 
 
 PRODUCT_PACKAGES += \
     Usb \
-
+    Basic \
+	HoloSpiral \
+	MagicSmoke \
+	NoiseField \
+	Galaxy4 \
+	LiveWallpapersPicker \
+	MusicVisualization \
+	PhaseBeam \
+	Camera 
 
 #FRAMEWORKS_BASE_SUBDIRS += \
 #    $(addsuffix /java, omapmmlib)
@@ -197,11 +210,17 @@ PRODUCT_PACKAGES += \
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
+# This device is hdpi.  However the platform doesn't
+# currently contain all of the bitmaps at xhdpi density so
+# we do this little trick to fall back to the hdpi version
+# if the xhdpi doesn't exist.
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
 # high-density artwork where available
 PRODUCT_LOCALES += hdpi
 # still need to set english for audio init
 PRODUCT_LOCALES += en_US
-
 
 # copy all kernel modules under the "modules" directory to system/lib/modules
 PRODUCT_COPY_FILES += $(shell \
@@ -218,15 +237,17 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
+# stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 
-$(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
-
 # stuff common to all Motorola phones -- disabled for Sandbox
-$(call inherit-product, device/motorola/common/common_hijack.mk)
-
+#$(call inherit-product, device/motorola/common/common_hijack.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
 
+# Discard inherited values and use our own instead.
 PRODUCT_NAME := full_targa
 PRODUCT_DEVICE := targa
+PRODUCT_BRAND := Motorola
+PRODUCT_MODEL := DROID BIONIC
+PRODUCT_MANUFACTURER := motorola
