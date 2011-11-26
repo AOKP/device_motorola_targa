@@ -16,6 +16,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/ueventd.mapphone_cdma.rc:system/etc/rootfs/ueventd.mapphone_cdma.rc \
     device/motorola/targa/root/ueventd.mapphone_umts.rc:system/etc/rootfs/ueventd.mapphone_umts.rc \
     device/motorola/targa/recovery/postrecoveryboot.sh:/recovery/root/sbin/postrecoveryboot.sh \
+    device/motorola/targa/root/sbin/adbd:system/etc/rootfs/sbin/adbd \
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
@@ -56,8 +57,10 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/motorola/targa/prebuilt/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
     device/motorola/targa/prebuilt/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
+    device/motorola/targa/prebuilt/usr/idc/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
     device/motorola/targa/prebuilt/usr/keychars/omap-keypad.kcm.bin:system/usr/keychars/omap-keypad.kcm.bin \
     device/motorola/targa/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
+    device/motorola/solana/prebuilt/usr/keylayout/qtouch-touchscreen.kl:system/usr/keylayout/qtouch-touchscreen.kl \
     device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip \
 
 #    device/motorola/targa/prebuilt/etc/gps.conf:system/etc/gps.conf \
@@ -86,19 +89,6 @@ PRODUCT_PACKAGES += \
     hwcomposer.default \
     gralloc.default \
 
-# Audio HAL
-#    alsa.omap4 \
-
-PRODUCT_PACKAGES += \
-    acoustics.default \
-    alsa.default \
-
-# Thermal Manager
-PRODUCT_PACKAGES += \
-    libconfig \
-    libthermal_manager \
-    thermaldaemon \
-
 # Sound / Media
 #    libaudio \
 
@@ -112,36 +102,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libaudiomodemgeneric \
     libreference-cdma-sms \
-
-# OMX
-PRODUCT_PACKAGES += \
-    OMXCore \
-    libOMX_CoreOsal \
-    libOMX_Core \
-    libomx_rpc \
-    libomx_proxy_common \
-    libOMX.TI.DUCATI1.VIDEO.H264D \
-    libOMX.TI.DUCATI1.VIDEO.MPEG4D \
-    libOMX.TI.DUCATI1.VIDEO.VP6D \
-    libOMX.TI.DUCATI1.VIDEO.VP7D \
-    libOMX.TI.DUCATI1.VIDEO.H264E \
-    libOMX.TI.DUCATI1.VIDEO.MPEG4E \
-    libOMX.TI.DUCATI1.IMAGE.JPEGD \
-    libOMX.TI.DUCATI1.VIDEO.CAMERA \
-    libOMX.TI.DUCATI1.MISC.SAMPLE \
-    libOMX.TI.DUCATI1.VIDEO.DECODER \
-    libOMX_ResourceManagerProxy \
-    libVendor_ti_omx \
-    libVendor_ti_omx_config_parser \
-    libstagefrighthw \
-    libLCML \
-    libOMX.TI.Video.Decoder \
-    libOMX.TI.Video.encoder \
-
-# OMX Binaries
-PRODUCT_PACKAGES += \
-    OMXPolicyManager \
-    OMXResourceManager \
 
 # Syslink and Tiler
 PRODUCT_PACKAGES += \
@@ -181,31 +141,6 @@ PRODUCT_PACKAGES += \
     libsyslink_ipc_listener \
     libomap_mm_library_jni \
 
-# TI CameraHal
-PRODUCT_PACKAGES += \
-    libtiutils \
-    libcamera \
-    libfakecameraadapter \
-    libomxcameraadapter \
-
-#libskiahw-omap4
-PRODUCT_PACKAGES += \
-    libskiahwdec \
-    SkLibTiJpeg_Test \
-
-# Overlay
-PRODUCT_PACKAGES += \
-    overlay.omap4 \
-
-# FM Radio
-PRODUCT_PACKAGES += \
-    libfmchr \
-    libfm_stack \
-    libmcphal \
-
-# Framework
-PRODUCT_PACKAGES += \
-
 # Wifi
 PRODUCT_PACKAGES += \
     libtiOsLib \
@@ -236,16 +171,6 @@ PRODUCT_PACKAGES += \
     targa_releaseutils-finalize_release \
     targa_releaseutils-mke2fs \
     targa_releaseutils-tune2fs
-
-# Libs
-PRODUCT_PACKAGES += \
-    libRS \
-    librs_jni \
-    libSR_AudioIn \
-    libicui18n \
-    lubicuuc \
-    libjni_latinime \
-    libvorbisidec \
 
 # Tests -- Can remove later
 PRODUCT_PACKAGES += \
