@@ -74,6 +74,12 @@ PRODUCT_COPY_FILES += \
 #    device/motorola/targa/prebuilt/audio/libasound.so:/system/lib/libasound.so \
 #    device/motorola/targa/prebuilt/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
 
+# SU
+PRODUCT_PACKAGES += \
+    Superuser \
+    Superuser.apk \
+    su
+
 # HW Libs
 PRODUCT_PACKAGES += \
     gralloc.omap4 \
@@ -260,8 +266,8 @@ PRODUCT_PACKAGES += \
     Usb \
 
 
-FRAMEWORKS_BASE_SUBDIRS += \
-    $(addsuffix /java, omapmmlib)
+#FRAMEWORKS_BASE_SUBDIRS += \
+#    $(addsuffix /java, omapmmlib)
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -295,7 +301,7 @@ $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
 $(call inherit-product, device/motorola/common/common_hijack.mk)
 
 
-$(call inherit-product, build/target/product/full_base.mk)
+$(call inherit-product, build/target/product/full_base_telephony.mk)
 
 PRODUCT_NAME := full_targa
 PRODUCT_DEVICE := targa
