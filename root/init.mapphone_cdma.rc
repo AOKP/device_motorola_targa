@@ -566,11 +566,11 @@ service telnet /system/bin/telnetd
     class pre-zygote_services
     oneshot
 
-#service usbd /system/bin/usbd
-#    class pre-zygote_services
+service usbd /system/bin/usbd
+    class pre-zygote_services
 
 service battd /system/bin/battd
-    class pre-zygote_services
+    class core
     socket battdsock stream 0660 mot_accy mot_accy
     user root
     group mot_accy mot_pwric
@@ -894,7 +894,7 @@ service syslinkdaemon /system/bin/strace -ff -F -tt -s 200 -o /data/trace/syslin
 #service gadget-qbp-diag /system/bin/tty2ttyd /dev/ttyUSB0 /dev/ttyGS3 0 1024
 #    user radio
 #    group radio
- #   disabled
+#   disabled
 
 #on property:ro.bootmode=bp-tools
 #    start tcmd
