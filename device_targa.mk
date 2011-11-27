@@ -156,11 +156,11 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf 
 
 # HotSpot
-PRODUCT_PACKAGES += \
-    tiap_loader \
-    tiap_cu \
-    hostap \
-    hostapd.conf 
+#PRODUCT_PACKAGES += \
+#    tiap_loader \
+#    tiap_cu \
+#    hostap \
+#    hostapd.conf 
 
 # Lights
 #PRODUCT_PACKAGES += \
