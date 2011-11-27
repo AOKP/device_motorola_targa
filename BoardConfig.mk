@@ -39,10 +39,10 @@ BOARD_PAGE_SIZE := 0x4096
 # Connectivity - Wi-Fi
 #BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
 #BOARD_WPA_SUPPLICANT_PRIVATE_LIB := libCustomWifi
-#WPA_SUPPLICANT_VERSION      := VER_0_6_X
-#HOSTAPD_VERSION             := VER_0_6_X
-#BOARD_WLAN_DEVICE           := wl1283
-#BOARD_SOFTAP_DEVICE         := wl1283
+WPA_SUPPLICANT_VERSION      := VER_0_6_X
+HOSTAPD_VERSION             := VER_0_6_X
+BOARD_WLAN_DEVICE           := wl1283
+BOARD_SOFTAP_DEVICE         := wl1283
 #BOARD_WLAN_TI_STA_DK_ROOT   := system/wlan/ti/wilink_6_1
 #WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/tiwlan_drv.ko"
 #WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
@@ -77,7 +77,6 @@ BOARD_NONSAFE_SYSTEM_DEVICE := /dev/block/mmcblk1p21
 BOARD_HAS_SDCARD_INTERNAL := true
 #BOARD_HAS_SDEXT := false
 #BOARD_HAS_WEBTOP := false
-
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /data/.recovery_mode; sync;"
 TARGET_RECOVERY_PRE_COMMAND_CLEAR_REASON := true
 
@@ -129,14 +128,6 @@ endif
 BUILD_FM_RADIO := true
 BUILD_TI_FM_APPS := true
 FM_CHR_DEV_ST := true
-#PV_PLAYER := 
-#BOARD_HW_PLAYER :=
-
-# Use this define to set the FM radio stream to 8 instead of 10
-HAS_FMSTREAM_ON8 := true
-ifdef HAS_FMSTREAM_ON8
-COMMON_GLOBAL_CFLAGS += -DHAS_FMSTREAM_ON8
-endif
 
 # OTA Packaging
 TARGET_PROVIDES_RELEASETOOLS := true
@@ -145,7 +136,7 @@ TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/motorola/targa/releasetools/
 
 
 # Hijack
-TARGET_NEEDS_MOTOROLA_HIJACK := true
+#TARGET_NEEDS_MOTOROLA_HIJACK := true
 #BOARD_HIJACK_LOG_ENABLE := true
 
 

@@ -11,7 +11,6 @@ on post-fs
 
 # prepare generic keypad name
     exec /init_prep_keypad.sh
-    mount yaffs2 /dev/block/mmcblk1p23 /system ro remount
     mount ext3 /dev/block/mmcblk1p23 ro noatime nodiratime remount
     mount rootfs rootfs / rw remount
 
@@ -77,7 +76,7 @@ on post-fs
 # Mount mtd partitions
     # mount /pds as r/w
     # We chown/chmod /pds again so because mount is run as root + defaults
-    mount yaffs2 /dev/block/mmcblk1p7 /pds nosuid nodev no-checkpoint
+#    mount yaffs2 /dev/block/mmcblk1p7 /pds nosuid nodev no-checkpoint
     mount ext3 /dev/block/mmcblk1p7 /pds nosuid nodev noatime nodiratime
     chown system system /pds
     chmod 0775 /pds
@@ -752,7 +751,7 @@ service akmd2 /system/bin/strace -ff -F -tt -s 200 -o /data/trace/akmd2.pid /sys
 #    disabled
 #    oneshot
 
-service pvrsrv /system/bin/strace -ff -F -tt -s 200 -o /data/trace/pvrsrv.pid /system/bin/pvrsrvinit
+service pvrsrv /system/bin/pvrsrvinit
     class core
     user root
     oneshot
