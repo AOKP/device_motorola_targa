@@ -18,17 +18,6 @@ DEVICE=targa
 
 mkdir -p ../../../vendor/motorola/$DEVICE/proprietary
 
-# /system/app
-adb pull /system/app/ChargeOnlyMode.apk ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/app/GlobalUnplug.apk ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/app/PhoneConfig.apk ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/app/ProgramMenu.apk ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/app/ProgramMenuSystem.apk ../../../vendor/motorola/$DEVICE/proprietary
-
-# /system/bin ** Probably PRODUCT_PACKAGES **
-adb pull /system/bin/fmradioserver ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/bin/tf_daemon ../../../vendor/motorola/$DEVICE/proprietary
-
 # /system/bin
 adb pull /system/bin/Hostapd ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/akmd2 ../../../vendor/motorola/$DEVICE/proprietary
@@ -59,8 +48,6 @@ adb pull /system/bin/gkilogd ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/hdcp-mknod ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/ip ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/loadpreinstalls.sh ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/bin/logcatd ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/bin/logcatd-blan ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/mdm_panicd ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/memtest_mode ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/mm-wrigley-qc-dump.sh ../../../vendor/motorola/$DEVICE/proprietary
@@ -70,7 +57,6 @@ adb pull /system/bin/motobox ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/mountosh ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/napics.sh ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/pppd-ril ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/bin/pvrsrvinit ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/rild ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/secclkd ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/bin/smc_pa_ctrl ../../../vendor/motorola/$DEVICE/proprietary
@@ -191,12 +177,6 @@ adb pull /system/lib/ducati/base_image_app_m3.xem3 ../../../vendor/motorola/$DEV
 adb pull /system/lib/ducati/Notify_MPUSYS_Test_Core0.xem3 ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/ducati/Notify_MPUAPP_reroute_Test_Core1.xem3 ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/ducati/Notify_MPUSYS_reroute_Test_Core0.xem3 ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/egl/libEGL_POWERVR_SGX540_120.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/egl/libGLESv2_POWERVR_SGX540_120.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/egl/libeglinfo.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/egl/libgles1_texture_stream.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/egl/libgles2_texture_stream.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/hw/acoustics.default.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/hw/alsa.default.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/hw/alsa.omap4.so ../../../vendor/motorola/$DEVICE/proprietary
@@ -208,11 +188,8 @@ adb pull /system/lib/hw/overlay.omap4.so ../../../vendor/motorola/$DEVICE/propri
 adb pull /system/lib/hw/sensors.targa.so ../../../vendor/motorola/$DEVICE/proprietary
 
 # /system/lib
-adb pull /system/lib/libIMGegl.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/libPVRScopeServices.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libRS.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libSR_AudioIn.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/libSwypeCore.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libWifiAPHardware.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libXmp_jni.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libadkutils.so ../../../vendor/motorola/$DEVICE/proprietary
@@ -238,12 +215,10 @@ adb pull /system/lib/libextdisp.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libfm_stack.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libfmchr.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libgdx.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/libglslcompiler.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libhdcp.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libhdmi.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libhostapd_client.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libimage_jni.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/libims_client_jni.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libipsec.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libjanus.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libjni_nwp.so ../../../vendor/motorola/$DEVICE/proprietary
@@ -371,21 +346,17 @@ adb pull /system/xbin/ssmgrd ../../../vendor/motorola/$DEVICE/proprietary
 
 # All the blobs necessary for targa
 
-# system/app
-PRODUCT_COPY_FILES += \\
-vendor/motorola/__DEVICE__/proprietary/ChargeOnlyMode.apk:/system/app/ChargeOnlyMode.apk \\
-vendor/motorola/__DEVICE__/proprietary/PhoneConfig.apk:/system/app/PhoneConfig.apk \\
-vendor/motorola/__DEVICE__/proprietary/ProgramMenu.apk:/system/app/ProgramMenu.apk \\
-vendor/motorola/__DEVICE__/proprietary/ProgramMenuSystem.apk:/system/app/ProgramMenuSystem.apk \\
+
 
 # system/bin
 PRODUCT_COPY_FILES += \\
 vendor/motorola/__DEVICE__/proprietary/akmd2:/system/bin/akmd2 \\
+vendor/motorola/__DEVICE__/proprietary/battd:/system/bin/battd \\
+vendor/motorola/__DEVICE__/proprietary/usbd:/system/bin/usbd \\
 vendor/motorola/__DEVICE__/proprietary/ap_gain.bin:/system/bin/ap_gain.bin \\
 vendor/motorola/__DEVICE__/proprietary/ap_gain_mmul.bin:/system/bin/ap_gain_mmul.bin \\
 vendor/motorola/__DEVICE__/proprietary/base64:/system/bin/base64 \\
 vendor/motorola/__DEVICE__/proprietary/batch:/system/bin/batch \\
-vendor/motorola/__DEVICE__/proprietary/battd:/system/bin/battd \\
 vendor/motorola/__DEVICE__/proprietary/btcmd:/system/bin/btcmd \\
 vendor/motorola/__DEVICE__/proprietary/bthelp:/system/bin/bthelp \\
 vendor/motorola/__DEVICE__/proprietary/bttest_mot:/system/bin/bttest_mot \\
@@ -434,7 +405,6 @@ vendor/motorola/__DEVICE__/proprietary/tiap_loader:/system/bin/tiap_loader \\
 vendor/motorola/__DEVICE__/proprietary/tstmetainfo:/system/bin/tstmetainfo \\
 vendor/motorola/__DEVICE__/proprietary/tty2ttyd:/system/bin/tty2ttyd \\
 vendor/motorola/__DEVICE__/proprietary/tund:/system/bin/tund \\
-vendor/motorola/__DEVICE__/proprietary/usbd:/system/bin/usbd \\
 vendor/motorola/__DEVICE__/proprietary/vold:/system/bin/vold \\
 vendor/motorola/__DEVICE__/proprietary/vril-dump:/system/bin/vril-dump \\
 vendor/motorola/__DEVICE__/proprietary/vpnclientpm:/system/bin/vpnclientpm \\
@@ -532,7 +502,6 @@ vendor/motorola/__DEVICE__/proprietary/fw_wlan1281_AP.bin:/system/etc/wifi/fw_wl
 vendor/motorola/__DEVICE__/proprietary/hostapd.conf.templet:/system/etc/wifi/hostapd.conf.templet \\
 
 # system/lib
-PRODUCT_COPY_FILES += \\
 vendor/motorola/__DEVICE__/proprietary/libIMGegl.so:/system/lib/libIMGegl.so \\
 vendor/motorola/__DEVICE__/proprietary/libPVRScopeServices.so:/system/lib/libPVRScopeServices.so \\
 vendor/motorola/__DEVICE__/proprietary/libSwypeCore.so:/system/lib/libSwypeCore.so \\
@@ -542,7 +511,6 @@ vendor/motorola/__DEVICE__/proprietary/libadkutils.so:/system/lib/libadkutils.so
 vendor/motorola/__DEVICE__/proprietary/libamcm.so:/system/lib/libamcm.so \\
 vendor/motorola/__DEVICE__/proprietary/libb64.so:/system/lib/libb64.so \\
 vendor/motorola/__DEVICE__/proprietary/libbabysit.so:/system/lib/libbabysit.so \\
-vendor/motorola/__DEVICE__/proprietary/libbattd.so:/system/lib/libbattd.so \\
 vendor/motorola/__DEVICE__/proprietary/libbcbmsg.so:/system/lib/libbcbmsg.so \\
 vendor/motorola/__DEVICE__/proprietary/libcaps.so:/system/lib/libcaps.so \\
 vendor/motorola/__DEVICE__/proprietary/libcapsjava.so:/system/lib/libcapsjava.so \\
@@ -632,21 +600,14 @@ vendor/motorola/__DEVICE__/proprietary/libwbxmlparser.so:/system/lib/libwbxmlpar
 vendor/motorola/__DEVICE__/proprietary/libxmpcore.so:/system/lib/libxmpcore.so \\
 vendor/motorola/__DEVICE__/proprietary/moto-ril-multimode.so:/system/lib/moto-ril-multimode.so \\
 
+PRODUCT_COPY_FILES += \\
+vendor/motorola/__DEVICE__/proprietary/libbattd.so:/system/lib/libbattd.so \\
 # system/lib/ducati
 PRODUCT_COPY_FILES += \\
 vendor/motorola/__DEVICE__/proprietary/Notify_MPUAPP_reroute_Test_Core1.xem3:/system/lib/ducati/Notify_MPUAPP_reroute_Test_Core1.xem3 \\
 vendor/motorola/__DEVICE__/proprietary/Notify_MPUSYS_Test_Core0.xem3:/system/lib/ducati/Notify_MPUSYS_Test_Core0.xem3 \\
 vendor/motorola/__DEVICE__/proprietary/Notify_MPUSYS_reroute_Test_Core0.xem3:/system/lib/ducati/Notify_MPUSYS_reroute_Test_Core0.xem3 \\
 vendor/motorola/__DEVICE__/proprietary/base_image_app_m3.xem3:/system/lib/ducati/base_image_app_m3.xem3 \\
-
-# system/lib/egl
-PRODUCT_COPY_FILES += \\
-vendor/motorola/__DEVICE__/proprietary/libEGL_POWERVR_SGX540_120.so:/system/lib/egl/libEGL_POWERVR_SGX540_120.so \\
-vendor/motorola/__DEVICE__/proprietary/libGLESv1_CM_POWERVR_SGX540_120.so:/system/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so \\
-vendor/motorola/__DEVICE__/proprietary/libGLESv2_POWERVR_SGX540_120.so:/system/lib/egl/libGLESv2_POWERVR_SGX540_120.so \\
-vendor/motorola/__DEVICE__/proprietary/libeglinfo.so:/system/lib/egl/libeglinfo.so \\
-vendor/motorola/__DEVICE__/proprietary/libgles1_texture_stream.so:/system/lib/egl/libgles1_texture_stream.so \\
-vendor/motorola/__DEVICE__/proprietary/libgles2_texture_stream.so:/system/lib/egl/libgles2_texture_stream.so \\
 
 # system/lib/hw
 PRODUCT_COPY_FILES += \\
@@ -663,21 +624,6 @@ vendor/motorola/__DEVICE__/proprietary/es-ES_ta.bin:/system/tts/lang_pico/es-ES_
 vendor/motorola/__DEVICE__/proprietary/es-ES_zl0_sg.bin:/system/tts/lang_pico/es-ES_zl0_sg.bin \\
 
 # system/usr
-PRODUCT_COPY_FILES += \\
-vendor/motorola/__DEVICE__/proprietary/icudt44l.dat:/system/usr/icu/icudt44l.dat \\
-vendor/motorola/__DEVICE__/proprietary/cdma_targa-keypad.kcm.bin:/system/usr/keychars/cdma_targa-keypad.kcm.bin \\
-vendor/motorola/__DEVICE__/proprietary/evfwd.kcm.bin:/system/usr/keychars/evfwd.kcm.bin \\
-vendor/motorola/__DEVICE__/proprietary/kbd_br_abnt2.kcm.bin:/system/usr/keychars/kbd_br_abnt2.kcm.bin \\
-vendor/motorola/__DEVICE__/proprietary/kbd_de_basic.kcm.bin:/system/usr/keychars/kbd_de_basic.kcm.bin \\
-vendor/motorola/__DEVICE__/proprietary/kbd_gb_basic.kcm.bin:/system/usr/keychars/kbd_gb_basic.kcm.bin \\
-vendor/motorola/__DEVICE__/proprietary/kbd_latam_basic.kcm.bin:/system/usr/keychars/kbd_latam_basic.kcm.bin \\
-vendor/motorola/__DEVICE__/proprietary/kbd_us_basic.kcm.bin:/system/usr/keychars/kbd_us_basic.kcm.bin \\
-vendor/motorola/__DEVICE__/proprietary/kbd_us_intl.kcm.bin:/system/usr/keychars/kbd_us_intl.kcm.bin \\
-vendor/motorola/__DEVICE__/proprietary/usb_keyboard_102_en_us.kcm.bin:/system/usr/keychars/usb_keyboard_102_en_us.kcm.bin \\
-vendor/motorola/__DEVICE__/proprietary/cdma_targa-keypad.kl:/system/usr/keylayout/cdma_targa-keypad.kl \\
-vendor/motorola/__DEVICE__/proprietary/cpcap-key.kl:/system/usr/keylayout/cpcap-key.kl \\
-vendor/motorola/__DEVICE__/proprietary/evfwd.kl:/system/usr/keylayout/evfwd.kl \\
-vendor/motorola/__DEVICE__/proprietary/usb_keyboard_102_en_us.kl:/system/usr/keylayout/usb_keyboard_102_en_us.kl \\
 vendor/motorola/__DEVICE__/proprietary/alsa.conf:/system/usr/share/alsa/alsa.conf \\
 vendor/motorola/__DEVICE__/proprietary/00main:/system/usr/share/alsa/init/00main \\
 vendor/motorola/__DEVICE__/proprietary/default:/system/usr/share/alsa/init/default \\
@@ -686,13 +632,22 @@ vendor/motorola/__DEVICE__/proprietary/help:/system/usr/share/alsa/init/help \\
 vendor/motorola/__DEVICE__/proprietary/info:/system/usr/share/alsa/init/info \\
 vendor/motorola/__DEVICE__/proprietary/test:/system/usr/share/alsa/init/test \\
 
-# system/xbin
 PRODUCT_COPY_FILES += \\
-vendor/motorola/__DEVICE__/proprietary/backup:/system/xbin/backup \\
-vendor/motorola/__DEVICE__/proprietary/drm1_func_test:/system/xbin/drm1_func_test \\
-vendor/motorola/__DEVICE__/proprietary/run_backup:/system/xbin/run_backup \\
-vendor/motorola/__DEVICE__/proprietary/run_restore:/system/xbin/run_restore \\
-vendor/motorola/__DEVICE__/proprietary/ssmgrd:/system/xbin/ssmgrd \\
+vendor/motorola/__DEVICE__/proprietary/icudt44l.dat:/system/usr/icu/icudt44l.dat \\
+vendor/motorola/__DEVICE__/proprietary/AVRCP.kl:/system/usr/keylayout/AVRCP.kl \\
+vendor/motorola/__DEVICE__/proprietary/cdma_targa-keypad.kl:/system/usr/keylayout/cdma_targa-keypad.kl \\
+vendor/motorola/__DEVICE__/proprietary/cpcap-key.kl:/system/usr/keylayout/cpcap-key.kl \\
+vendor/motorola/__DEVICE__/proprietary/evfwd.kl:/system/usr/keylayout/evfwd.kl \\
+vendor/motorola/__DEVICE__/proprietary/usb_keyboard_102_en_us.kl:/system/usr/keylayout/usb_keyboard_102_en_us.kl \\
+
+
+# system/xbin
+#PRODUCT_COPY_FILES += \\
+#vendor/motorola/__DEVICE__/proprietary/backup:/system/xbin/backup \\
+#vendor/motorola/__DEVICE__/proprietary/drm1_func_test:/system/xbin/drm1_func_test \\
+#vendor/motorola/__DEVICE__/proprietary/run_backup:/system/xbin/run_backup \\
+#vendor/motorola/__DEVICE__/proprietary/run_restore:/system/xbin/run_restore \\
+#vendor/motorola/__DEVICE__/proprietary/ssmgrd:/system/xbin/ssmgrd \\
 
 EOF
 

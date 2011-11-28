@@ -472,7 +472,7 @@ on property:ro.debuggable=1
 
 # adbd is controlled by the persist.service.adb.enable system property
 service adbd /sbin/adbd
-    class pre-zygote_services
+    class core
     disabled
 
 # adbd on at boot in emulator
@@ -520,20 +520,20 @@ service vold /system/bin/vold
 #    socket tund stream 0660 vpn system
 #    ioprio be 2
 
-#service netd /system/bin/strace -ff -F -tt -s 200 -o /data/trace/netd.pid /system/bin/netd
-#    class main
-#    socket netd stream 0660 root system
-#    socket dnsproxyd stream 0660 root inet
+service netd /system/bin/netd
+    class main
+    socket netd stream 0660 root system
+    socket dnsproxyd stream 0660 root inet
 
 service debuggerd /system/bin/strace -ff -F -tt -s 200 -o /data/trace/debuggerd.pid /system/bin/debuggerd
     class main
 
-#service ril-daemon /system/bin/strace -ff -F -tt -s 200 -o /data/trace/rild.pid /system/bin/rild
-#    class main
-#    socket rild stream 660 root radio
-#    socket rild-debug stream 660 radio system
-#    user root
-#    group radio cache inet misc audio sdcard_rw log mot_secclkd mot_accy bluetooth
+service ril-daemon /system/bin/strace -ff -F -tt -s 200 -o /data/trace/rild.pid /system/bin/rild
+    class late-start
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc audio sdcard_rw log mot_secclkd mot_accy bluetooth
 
 service surfaceflinger /system/bin/strace -ff -F -tt -s 200 -o /data/trace/surfaceflinger.pid /system/bin/surfaceflinger
     class main

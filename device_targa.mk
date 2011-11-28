@@ -52,8 +52,6 @@ PRODUCT_COPY_FILES += \
 #    device/motorola/targa/prebuilt/etc/permissions/jcifs-krb5-1.3.12.xml:/system/etc/permissions/jcifs-krb5-1.3.12.xml \
 
 # Prebuilts
-#    device/motorola/targa/prebuilt/app/Usb.apk:system/app/Usb.apk \
-
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
@@ -65,19 +63,32 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
     device/motorola/targa/prebuilt/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
     device/motorola/targa/prebuilt/usr/idc/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
-    device/motorola/targa/prebuilt/usr/keychars/omap-keypad.kcm.bin:system/usr/keychars/omap-keypad.kcm.bin \
+    device/motorola/targa/prebuilt/usr/keychars/omap-keypad.kcm:system/usr/keychars/omap-keypad.kcm \
+    device/motorola/targa/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+    device/motorola/targa/prebuilt/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
     device/motorola/targa/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
+    device/motorola/targa/prebuilt/usr/keylayout/usb_keyboard_102_en_us.kl:system/usr/keylayout/usb_keyboard_102_en_us.kl \
     device/motorola/targa/prebuilt/usr/keylayout/qtouch-touchscreen.kl:system/usr/keylayout/qtouch-touchscreen.kl \
     device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip 
 
-#    device/motorola/targa/prebuilt/etc/powervr.ini:system/etc/powervr.ini \
-# Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
-#    device/motorola/targa/prebuilt/audio/acoustics.default.so:/system/lib/hw/acoustics.default.so \
-#    device/motorola/targa/prebuilt/audio/alsa.default.so:/system/lib/hw/alsa.default.so \
-#    device/motorola/targa/prebuilt/audio/libaudiopolicy.so:/system/lib/libaudiopolicy.so \
-#    device/motorola/targa/prebuilt/audio/libaudiopolicy_ext.so:/system/lib/libaudiopolicy_ext.so \
-#    device/motorola/targa/prebuilt/audio/libmediaext.so:/system/lib/libmediaext.so \
+# Graphics
+PRODUCT_COPY_FILES += \
+    device/motorola/targa/prebuilt/imgtec/pvrsrvinit:system/bin/pvrsrvinit \
+    device/motorola/targa/prebuilt/imgtec/libEGL_POWERVR_SGX540_120.so:system/lib/egl/libEGL_POWERVR_SGX540_120.so \
+    device/motorola/targa/prebuilt/imgtec/libGLESv1_CM_POWERVR_SGX540_120.so:system/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so \
+    device/motorola/targa/prebuilt/imgtec/libGLESv2_POWERVR_SGX540_120.so:system/lib/egl/libGLESv2_POWERVR_SGX540_120.so \
+    device/motorola/targa/prebuilt/imgtec/gralloc.omap4.so:system/lib/hw/gralloc.omap4.so \
+    device/motorola/targa/prebuilt/imgtec/libglslcompiler.so:system/lib/libglslcompiler.so \
+    device/motorola/targa/prebuilt/imgtec/libIMGegl.so:system/lib/libIMGegl.so \
+    device/motorola/targa/prebuilt/imgtec/libpvr2d.so:system/lib/libpvr2d.so \
+    device/motorola/targa/prebuilt/imgtec/libpvrANDROID_WSEGL.so:system/lib/libpvrANDROID_WSEGL.so \
+    device/motorola/targa/prebuilt/imgtec/libPVRScopeServices.so:system/lib/libPVRScopeServices.so \
+    device/motorola/targa/prebuilt/imgtec/libsrv_init.so:system/lib/libsrv_init.so \
+    device/motorola/targa/prebuilt/imgtec/libsrv_um.so:system/lib/libsrv_um.so \
+    device/motorola/targa/prebuilt/imgtec/libusc.so:system/lib/libusc.so \
+    device/motorola/targa/prebuilt/imgtec/libdrm.so:system/lib/libdrm.so \
 
+# Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
 #PRODUCT_COPY_FILES += \
 #    device/motorola/targa/prebuilt/audio/libaudio.so:/system/lib/libaudio.so \
 #    device/motorola/targa/prebuilt/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
@@ -94,19 +105,27 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hwcomposer.default 
 
+# Lights
+#PRODUCT_PACKAGES += \
+#    lights.targa 
+
+# Sensors
+#PRODUCT_PACKAGES += \
+#    sensors.targa 
+
 # Sound / Media
-#    libaudio \
+#    libaudio 
 
 #PRODUCT_PACKAGES += \
 #    libaudiopolicy \
 #    libbundlewrapper \
 #    libreverbwrapper \
-#    libvisualizer \
+#    libvisualizer 
 
 # Modem
 #PRODUCT_PACKAGES += \
 #    libaudiomodemgeneric \
-#    libreference-cdma-sms \
+#    libreference-cdma-sms 
 
 # Syslink and Tiler
 PRODUCT_PACKAGES += \
@@ -162,14 +181,6 @@ PRODUCT_PACKAGES += \
 #    hostap \
 #    hostapd.conf 
 
-# Lights
-#PRODUCT_PACKAGES += \
-#    lights.targa 
-
-# Sensors
-#PRODUCT_PACKAGES += \
-#    sensors.targa 
-
 # Release utilities
 #PRODUCT_PACKAGES += \
 #    targa_releaseutils-check_kernel \
@@ -195,14 +206,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Usb \
     Basic \
-	HoloSpiral \
-	MagicSmoke \
-	NoiseField \
-	Galaxy4 \
-	LiveWallpapersPicker \
-	MusicVisualization \
-	PhaseBeam \
-	Camera 
+    HoloSpiralWallpaper \
+    MagicSmoke \
+    NoiseField \
+    Galaxy4 \
+    LiveWallpapersPicker \
+    MusicVisualization \
+    PhaseBeam \
+    Camera 
 
 #FRAMEWORKS_BASE_SUBDIRS += \
 #    $(addsuffix /java, omapmmlib)
@@ -241,7 +252,7 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 
 # stuff common to all Motorola phones -- disabled for Sandbox
-#$(call inherit-product, device/motorola/common/common_hijack.mk)
+$(call inherit-product, device/motorola/common/common_hijack.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
 

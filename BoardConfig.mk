@@ -42,14 +42,14 @@ BOARD_PAGE_SIZE := 0x4096
 WPA_SUPPLICANT_VERSION      := VER_0_6_X
 HOSTAPD_VERSION             := VER_0_6_X
 BOARD_WLAN_DEVICE           := wl1283
-BOARD_SOFTAP_DEVICE         := wl1283
+#BOARD_SOFTAP_DEVICE         := wl1283
 #BOARD_WLAN_TI_STA_DK_ROOT   := system/wlan/ti/wilink_6_1
-#WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/tiwlan_drv.ko"
-#WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
-#WIFI_DRIVER_MODULE_ARG      := ""
-#WIFI_FIRMWARE_LOADER        := "wlan_loader"
-#WIFI_DRIVER_FW_STA_PATH     := "/system/etc/wifi/fw_wlan1283.bin"
-#WIFI_DRIVER_FW_AP_PATH      := "/system/etc/wifi/fw_wlan1283_AP.bin"
+WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/tiwlan_drv.ko"
+WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
+WIFI_DRIVER_MODULE_ARG      := ""
+WIFI_FIRMWARE_LOADER        := "wlan_loader"
+WIFI_DRIVER_FW_STA_PATH     := "/system/etc/wifi/fw_wlan1283.bin"
+WIFI_DRIVER_FW_AP_PATH      := "/system/etc/wifi/fw_wlan1283_AP.bin"
 
 
 # Audio
@@ -69,6 +69,7 @@ BUILD_BOOTMENU_STANDALONE := true
 BOARD_HAS_LOCKED_BOOTLOADER := true
 TARGET_PREBUILT_RECOVERY_KERNEL := device/motorola/targa/recovery-kernel
 #BOARD_CUSTOM_GRAPHICS := ../../../device/motorola/targa/recovery/graphics.c
+#BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/motorola/targa/recovery/recovery_ui.c
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_ALWAYS_INSECURE := true
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -82,7 +83,7 @@ TARGET_RECOVERY_PRE_COMMAND_CLEAR_REASON := true
 
 
 # Sandbox Filesystem Settings
-BOARD_SYSTEM_DEVICE := /dev/block/mmcblk1p23
+BOARD_SYSTEM_DEVICE := /dev/block/system
 BOARD_SYSTEM_FILESYSTEM_OPTIONS := noatime,nodiratime
 BOARD_SYSTEM_FILESYSTEM := ext3
 
@@ -95,6 +96,7 @@ BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK := true
 ifdef BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
 COMMON_GLOBAL_CFLAGS += -DBOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
 endif
+
 
 # OMX
 HARDWARE_OMX := true
@@ -129,6 +131,7 @@ BUILD_FM_RADIO := true
 BUILD_TI_FM_APPS := true
 FM_CHR_DEV_ST := true
 
+
 # OTA Packaging
 TARGET_PROVIDES_RELEASETOOLS := true
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/motorola/targa/releasetools/targa_ota_from_target_files
@@ -136,7 +139,7 @@ TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/motorola/targa/releasetools/
 
 
 # Hijack
-#TARGET_NEEDS_MOTOROLA_HIJACK := true
+TARGET_NEEDS_MOTOROLA_HIJACK := true
 #BOARD_HIJACK_LOG_ENABLE := true
 
 
@@ -144,6 +147,7 @@ TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/motorola/targa/releasetools/
 BOARD_USE_BATTERY_CHARGE_COUNTER := true
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_NEEDS_CUTILS_LOG := true
+BOARD_USES_SECURE_SERVICES := true
 
 targa_HARDWARE := true
 BOARD_GLOBAL_CFLAGS += -Dtarga_HARDWARE
