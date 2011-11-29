@@ -6,12 +6,14 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit some common CM stuff.
 #$(call inherit-product, vendor/cm/config/gsm.mk)
-
+#
+# Setup device specific product configuration.
+#
 PRODUCT_NAME := cm_targa
-PRODUCT_DEVICE := targa
 PRODUCT_BRAND := verizon
+PRODUCT_DEVICE := targa
 PRODUCT_MODEL := XT875
-PRODUCT_MANUFACTURER := motorola
+PRODUCT_MANUFACTURER := Motorola
 PRODUCT_SFX := vzw
 
 # Release name and versioning
@@ -37,5 +39,5 @@ BUILD_HOST=TH3ORYROM-BUILDBOX \
 PRODUCT_DEFAULT_LANGUAGE=en \
 PRODUCT_DEFAULT_REGION=US \
 
-# Extra Droid3 overlay
+# Extra Droid_Bionic overlay
 #PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/targa

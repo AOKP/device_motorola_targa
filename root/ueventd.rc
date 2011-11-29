@@ -53,7 +53,6 @@
 /dev/msm_pcm_ctl*         0660   system     audio
 /dev/msm_snd*             0660   system     audio
 /dev/msm_mp3*             0660   system     audio
-/dev/msm_aac*             0660   system     audio
 /dev/audience_a1026*      0660   system     audio
 /dev/tpa2018d1*           0660   system     audio
 /dev/msm_audpre           0660   system     audio
@@ -71,6 +70,7 @@
 /dev/qmi1                 0640   radio      radio
 /dev/qmi2                 0640   radio      radio
 /dev/bus/usb/*            0660   root       usb
+/dev/mtp_usb              0660   root       mtp
 /dev/usb_accessory        0660   root       usb
 
 # touchpad related stuff
@@ -86,6 +86,6 @@
 /sys/devices/virtual/input/input*   poll_delay  0660  root   input
 
 # video encoder on 720p-enabled 8k targets
-/dev/pmem_venc            0660   system     audio
+#/dev/pmem_venc            0660   system     audio
 
 /sys/devices/virtual/usb_composite/*   enable      0664  root   system

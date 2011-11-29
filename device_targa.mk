@@ -14,6 +14,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/init.mapphone_cdma.rc:system/etc/rootfs/init.mapphone_cdma.rc \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
     device/motorola/targa/recovery/postrecoveryboot.sh:/recovery/root/sbin/postrecoveryboot.sh \
+    device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
     device/motorola/targa/root/sbin/adbd:system/etc/rootfs/sbin/adbd 
 
 ## (2) Also get non-open-source GSM-specific aspects if available
@@ -74,7 +75,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/imgtec/libEGL_POWERVR_SGX540_120.so:system/lib/egl/libEGL_POWERVR_SGX540_120.so \
     device/motorola/targa/prebuilt/imgtec/libGLESv1_CM_POWERVR_SGX540_120.so:system/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so \
     device/motorola/targa/prebuilt/imgtec/libGLESv2_POWERVR_SGX540_120.so:system/lib/egl/libGLESv2_POWERVR_SGX540_120.so \
-    device/motorola/targa/prebuilt/imgtec/gralloc.omap4.so:system/lib/hw/gralloc.omap4.so \
     device/motorola/targa/prebuilt/imgtec/libglslcompiler.so:system/lib/libglslcompiler.so \
     device/motorola/targa/prebuilt/imgtec/libIMGegl.so:system/lib/libIMGegl.so \
     device/motorola/targa/prebuilt/imgtec/libpvr2d.so:system/lib/libpvr2d.so \
@@ -84,6 +84,10 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/imgtec/libsrv_um.so:system/lib/libsrv_um.so \
     device/motorola/targa/prebuilt/imgtec/libusc.so:system/lib/libusc.so \
     device/motorola/targa/prebuilt/imgtec/libdrm.so:system/lib/libdrm.so \
+
+# Hardware HALs
+PRODUCT_COPY_FILES += \
+    device/motorola/targa/prebuilt/imgtec/gralloc.omap4.so:system/lib/hw/gralloc.omap4.so \
 
 # Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
 #PRODUCT_COPY_FILES += \
@@ -186,13 +190,10 @@ PRODUCT_PACKAGES += \
     camera_test \
     VideoEncTest 
 
-# Misc Packages
-#    safestrapmenu \
-#    2nd-init 
-
 PRODUCT_PACKAGES += \
-    Usb \
-    Camera 
+    Camera \
+    Usb 
+
 
 #FRAMEWORKS_BASE_SUBDIRS += \
 #    $(addsuffix /java, omapmmlib)
@@ -235,3 +236,5 @@ $(call inherit-product, device/motorola/common/common_hijack.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
 
+PRODUCT_NAME := full_targa
+PRODUCT_DEVICE := targa
