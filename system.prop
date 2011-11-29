@@ -151,7 +151,7 @@ ro.mot.dpmext = true
 # This is necessary for framework to support
 # the LTE and eHRPD capability.
 ##### Override in cdma_targa.mk until LTE + Global support. ######
-ro.mot.lte_on_cdma=1
+#ro.mot.lte_on_cdma=1
 
 # BEGIN Moto, IKSTABLETWO-1284, nfjb73
 # without this property, the lock screen would take global phone as UMTS

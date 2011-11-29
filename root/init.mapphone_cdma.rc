@@ -76,7 +76,6 @@ on post-fs
 # Mount mtd partitions
     # mount /pds as r/w
     # We chown/chmod /pds again so because mount is run as root + defaults
-#    mount yaffs2 /dev/block/mmcblk1p7 /pds nosuid nodev no-checkpoint
     mount ext3 /dev/block/mmcblk1p7 /pds nosuid nodev noatime nodiratime
     chown system system /pds
     chmod 0775 /pds
@@ -454,7 +453,7 @@ on boot
     write /sys/devices/platform/omap_wdt/enabled on
 
 # Start services
-    exec /system/bin/mot_boot_mode
+#    exec /system/bin/mot_boot_mode
 
 # Set core max size (2G)
     setrlimit 4 2147483648 2147483648
@@ -498,18 +497,18 @@ on property:sys.chargeonly.mode=1
 
 # Power up to normal
 on property:tcmd.suspend=0
-    class_start pre-zygote_services
-    class_start zygote_services
+    class_start core
+    class_start main
     class_start late_start
 
 # Power up to suspend
 on property:tcmd.suspend=1
-    class_start pre-zygote_services
+    class_start core
     class_start late_start
 
 # Normal to suspend
 on property:tcmd.suspend=2
-    class_stop zygote_services
+    class_stop main
 
 #start console for userdebug and eng builds
 on property:ro.debuggable=1
@@ -554,7 +553,7 @@ on property:sys.shutdown=1
 # ro.sys.atvc_allow_all_adb
 
 #service atvc /system/bin/dbvc_atvc_property_set
-#    class pre-zygote_services
+#    class core
 #    user system
 #    group system
 #    oneshot
@@ -562,11 +561,11 @@ on property:sys.shutdown=1
 #service watchdogd /system/bin/watchdogd
 
 service telnet /system/bin/telnetd
-    class pre-zygote_services
+    class core
     oneshot
 
 service usbd /system/bin/usbd
-    class pre-zygote_services
+    class core
 
 service battd /system/bin/battd
     class core
@@ -576,7 +575,7 @@ service battd /system/bin/battd
     oneshot
 
 #service catcommands /system/bin/catcommands
-#    class pre-zygote_services
+#    class core
 #    group radio
 
 #service whisperd /system/bin/whisperd /dev/ttyO1
@@ -586,13 +585,13 @@ service battd /system/bin/battd
 #    oneshot
 
 #service msp430 /system/bin/msp430 boot
-#    class pre-zygote_services
+#    class core
 #    user compass
 #    group compass misc input
 #    oneshot
 
 #service uim /system/bin/uim-sysfs
-#    class pre-zygote_services
+#    class core
 #    user root
 #    group media bluetooth
 #    oneshot
@@ -602,7 +601,7 @@ service battd /system/bin/battd
 #    disabled
 #    oneshot
 
-service hciattach /system/bin/strace -ff -F -tt -s 200 -o /data/trace/hciattach.pid /system/bin/hciattach -l
+service hciattach /system/bin/hciattach -l
     class late_start
     user bluetooth
     group bluetooth net_bt_admin
@@ -641,7 +640,7 @@ service del_panu /system/bin/sdptool remove PANU
 #    disabled
     oneshot
 
-service btdhcpd /system/bin/strace -ff -F -tt -s 200 -o /data/trace/dnsmasq-btpan.pid /system/bin/dnsmasq -C /system/etc/btpan.conf
+service btdhcpd /system/bin/dnsmasq -C /system/etc/btpan.conf
     user root
     disabled
     oneshot
@@ -697,30 +696,30 @@ on property:tcmd.start_tcmdhelp=1
     start tcmdhelp
 
 # Ecompass daemon
-service akmd2 /system/bin/strace -ff -F -tt -s 200 -o /data/trace/akmd2.pid /system/bin/akmd2
+service akmd2 /system/bin/akmd2
     class core
     user compass
     group compass misc input
 
-#service wlan_loader /system/bin/wlan_loader \
-#        -f /system/etc/wifi/fw_wlan1281.bin -i /system/etc/wifi/tiwlan.ini \
-#        -e /pds/wifi/nvs_map.bin
-#    class late_start
-#    disabled
-#    oneshot
+service wlan_loader /system/bin/wlan_loader \
+        -f /system/etc/wifi/fw_wlan1281.bin -i /system/etc/wifi/tiwlan.ini \
+        -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
-#service ap_fmloader /system/bin/logwrapper /system/bin/tiap_loader \
-#        -f /system/etc/wifi/fw_wlan1281_AP.bin -i /system/etc/wifi/tiwlan_ap.ini \
-#        -e /pds/wifi/nvs_map.bin
-#    class late_start
-#    disabled
-#    oneshot
+service ap_fmloader /system/bin/logwrapper /system/bin/tiap_loader \
+        -f /system/etc/wifi/fw_wlan1281_AP.bin -i /system/etc/wifi/tiwlan_ap.ini \
+        -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
-#service wlan_loader_rfmd /system/bin/wlan_loader \
-#        -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini -e /pds/wifi/nvs_map.bin
-#    class late_start
-#    disabled
-#    oneshot
+service wlan_loader_rfmd /system/bin/wlan_loader \
+        -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
 #service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/wlan_loader \
 #        -f /system/etc/wifi/fw_tiwlan_ap_rfmd.bin -i /system/etc/wifi/tiwlan_ap_rfmd.ini \
@@ -729,19 +728,19 @@ service akmd2 /system/bin/strace -ff -F -tt -s 200 -o /data/trace/akmd2.pid /sys
 #    disabled
 #    oneshot
 
-#service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
-#    class late_start
+service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
+    class late_start
 # we will start as root and wpa_supplicant will switch to user wifi
 # after setting up the capabilities required for WEXT
-# user wifi
-# group wifi inet keystore
-#    socket wpa_tiwlan0 dgram 660 wifi wifi
-#    disabled
-#    oneshot
-#service dhcpcd_tiwlan0 /system/bin/dhcpcd
-#    class late_start
-#    disabled
-#    oneshot
+ user wifi
+ group wifi inet keystore
+    socket wpa_tiwlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+service dhcpcd_tiwlan0 /system/bin/dhcpcd
+    class late_start
+    disabled
+    oneshot
 #service dhcpcd_bnep0 /system/bin/dhcpcd
 #    disabled
 #    oneshot
@@ -763,14 +762,14 @@ service pvrsrv /system/bin/pvrsrvinit
 #    oneshot
 #    keycodes 114 115 # default to VOLUME_DOWN + VOLUME_UP
 
-#service pppd-ril /system/bin/pppd-ril /dev/ttyUSB0 call pppd-ril.options plugin /system/lib/libpppd_plugin-ril.so
-#    class late_start
-#    user root
-#    disabled
-#    oneshot
+service pppd-ril /system/bin/pppd-ril /dev/ttyUSB0 call pppd-ril.options plugin /system/lib/libpppd_plugin-ril.so
+    class late_start
+    user root
+    disabled
+    oneshot
 
 #service smc /system/bin/startup_smc.sh
-#    class pre-zygote_services
+#    class core
 #    user mot_tpapi
 #    group mot_tpapi
 #    disabled
@@ -858,7 +857,7 @@ service vpnclientpm /system/bin/vpnclientpm
 #    oneshot
 
 # start syslink daemon
-service syslinkdaemon /system/bin/strace -ff -F -tt -s 200 -o /data/trace/syslink.pid /system/bin/syslink_daemon.out -f /system/lib/ducati/Notify_MPUSYS_reroute_Test_Core0.xem3 /system/lib/ducati/base_image_app_m3.xem3
+service syslinkdaemon /system/bin/syslink_daemon.out -f /system/lib/ducati/Notify_MPUSYS_reroute_Test_Core0.xem3 /system/lib/ducati/base_image_app_m3.xem3
     class core
     user media
     group video
@@ -869,31 +868,31 @@ service syslinkdaemon /system/bin/strace -ff -F -tt -s 200 -o /data/trace/syslin
 #    group input graphics
 #    class late_start
 
-#service gadget-lte-modem /system/bin/tty2ttyd /dev/ttyACM0 /dev/ttyGS1 0 512
-#    user radio
-#    group radio
-#    disabled
+service gadget-lte-modem /system/bin/tty2ttyd /dev/ttyACM0 /dev/ttyGS1 0 512
+    user radio
+    group radio
+    disabled
 
-#service wrigley-diag /system/bin/wrigley-diag.sh
-#    oneshot
-#    disabled
+service wrigley-diag /system/bin/wrigley-diag.sh
+    oneshot
+    disabled
 
-#service logcatd-blan /system/bin/logcatd-blan
-#    user root
-    # Immediately drops root, keeps CAP_SYS_ADMIN, and runs as below
-    # user system
-    # group system log inet
-#    disabled
+service logcatd-blan /system/bin/logcatd-blan
+    user root
+     Immediately drops root, keeps CAP_SYS_ADMIN, and runs as below
+     user system
+     group system log inet
+    disabled
 
-#service gadget-qbp-modem /system/bin/tty2ttyd /dev/ttyUSB4 /dev/ttyGS2 0 1024
-#    user radio
-#    group radio
-#    disabled
+service gadget-qbp-modem /system/bin/tty2ttyd /dev/ttyUSB4 /dev/ttyGS2 0 1024
+    user radio
+    group radio
+    disabled
 
-#service gadget-qbp-diag /system/bin/tty2ttyd /dev/ttyUSB0 /dev/ttyGS3 0 1024
-#    user radio
-#    group radio
-#   disabled
+service gadget-qbp-diag /system/bin/tty2ttyd /dev/ttyUSB0 /dev/ttyGS3 0 1024
+    user radio
+    group radio
+   disabled
 
 #on property:ro.bootmode=bp-tools
 #    start tcmd

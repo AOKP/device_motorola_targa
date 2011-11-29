@@ -13,9 +13,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/init.rc:system/etc/rootfs/init.rc \
     device/motorola/targa/root/init.mapphone_cdma.rc:system/etc/rootfs/init.mapphone_cdma.rc \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
-    device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
-    device/motorola/targa/root/ueventd.mapphone_cdma.rc:system/etc/rootfs/ueventd.mapphone_cdma.rc \
-    device/motorola/targa/root/ueventd.mapphone_umts.rc:system/etc/rootfs/ueventd.mapphone_umts.rc \
     device/motorola/targa/recovery/postrecoveryboot.sh:/recovery/root/sbin/postrecoveryboot.sh \
     device/motorola/targa/root/sbin/adbd:system/etc/rootfs/sbin/adbd 
 
@@ -26,7 +23,7 @@ $(call inherit-product-if-exists, vendor/google/google-vendor.mk)
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
 # Device overlay
-#    DEVICE_PACKAGE_OVERLAYS += device/motorola/targa/overlay
+    DEVICE_PACKAGE_OVERLAYS += device/motorola/targa/overlay
 
 # Permissions files
 PRODUCT_COPY_FILES += \
@@ -94,16 +91,6 @@ PRODUCT_COPY_FILES += \
 #    device/motorola/targa/prebuilt/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
 #    device/motorola/targa/prebuilt/audio/libasound.so:/system/lib/libasound.so \
 #    device/motorola/targa/prebuilt/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
-
-# SU
-PRODUCT_PACKAGES += \
-    Superuser \
-    Superuser.apk \
-    su
-
-# HW Libs
-PRODUCT_PACKAGES += \
-    hwcomposer.default 
 
 # Lights
 #PRODUCT_PACKAGES += \
@@ -175,18 +162,18 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf 
 
 # HotSpot
-#PRODUCT_PACKAGES += \
-#    tiap_loader \
-#    tiap_cu \
-#    hostap \
-#    hostapd.conf 
+PRODUCT_PACKAGES += \
+    tiap_loader \
+    tiap_cu \
+    hostap \
+    hostapd.conf 
 
 # Release utilities
-#PRODUCT_PACKAGES += \
-#    targa_releaseutils-check_kernel \
-#    targa_releaseutils-finalize_release \
-#    targa_releaseutils-mke2fs \
-#    targa_releaseutils-tune2fs
+PRODUCT_PACKAGES += \
+    targa_releaseutils-check_kernel \
+    targa_releaseutils-finalize_release \
+    targa_releaseutils-mke2fs \
+    targa_releaseutils-tune2fs
 
 # Tests -- Can remove later
 PRODUCT_PACKAGES += \
@@ -205,14 +192,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     Usb \
-    Basic \
-    HoloSpiralWallpaper \
-    MagicSmoke \
-    NoiseField \
-    Galaxy4 \
-    LiveWallpapersPicker \
-    MusicVisualization \
-    PhaseBeam \
     Camera 
 
 #FRAMEWORKS_BASE_SUBDIRS += \
@@ -256,9 +235,3 @@ $(call inherit-product, device/motorola/common/common_hijack.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
 
-# Discard inherited values and use our own instead.
-PRODUCT_NAME := full_targa
-PRODUCT_DEVICE := targa
-PRODUCT_BRAND := Motorola
-PRODUCT_MODEL := DROID BIONIC
-PRODUCT_MANUFACTURER := motorola
