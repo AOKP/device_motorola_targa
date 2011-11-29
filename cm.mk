@@ -9,13 +9,13 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 PRODUCT_NAME := cm_targa
 PRODUCT_DEVICE := targa
-PRODUCT_BRAND := Verizon
+PRODUCT_BRAND := verizon
 PRODUCT_MODEL := XT875
 PRODUCT_MANUFACTURER := motorola
 PRODUCT_SFX := vzw
 
 # Release name and versioning
-PRODUCT_RELEASE_NAME := DROID BIONIC
+PRODUCT_RELEASE_NAME := DROID_BIONIC
 
 UTC_DATE := $(shell date +%s)
 DATE := $(shell date +%Y%m%d)
