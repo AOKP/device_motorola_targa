@@ -134,6 +134,7 @@ FM_CHR_DEV_ST := true
 
 # OTA Packaging
 TARGET_PROVIDES_RELEASETOOLS := true
+TARGET_CUSTOM_RELEASE_TOOL := vendor/cm/tools/squisher
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/motorola/targa/releasetools/targa_ota_from_target_files
 TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/motorola/targa/releasetools/targa_img_from_target_files
 
