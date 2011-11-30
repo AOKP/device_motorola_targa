@@ -48,13 +48,13 @@ PRODUCT_COPY_FILES += \
 #    device/motorola/targa/prebuilt/etc/permissions/com.motorola.atcmd_library.xml:/system/etc/permissions/com.motorola.atcmd_library.xml \
 #    device/motorola/targa/prebuilt/etc/permissions/com.motorola.device.xml:/system/etc/permissions/com.motorola.device.xml \
 #    device/motorola/targa/prebuilt/etc/permissions/jcifs-krb5-1.3.12.xml:/system/etc/permissions/jcifs-krb5-1.3.12.xml \
+#    device/motorola/targa/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
 
 # Prebuilts
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
     device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
-    device/motorola/targa/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
     device/motorola/targa/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/motorola/targa/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/targa/prebuilt/etc/vold.fstab:system/etc/vold.fstab \

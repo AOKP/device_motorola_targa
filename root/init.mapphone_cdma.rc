@@ -13,6 +13,7 @@ on post-fs-data
     mount rootfs rootfs / rw remount
 
     mkdir /cdrom 0770 system system
+    mount auto /dev/block/mmcblk1p17 /cdrom ro
 
     symlink /dev/ttyGS0 /dev/acm0
 
@@ -57,8 +58,8 @@ on post-fs-data
     chmod 0220 /proc/sysrq-trigger
 
 #Set the default value for bluedroid_ref
-#    write /data/tmp/bluedroid_ref 0
-#    chown system system /data/tmp/bluedroid_ref
+    write /data/tmp/bluedroid_ref 0
+    chown system system /data/tmp/bluedroid_ref
 
 # Configure kernel options
 
@@ -174,8 +175,8 @@ on post-fs-data
     chown root root /cache/lost+found
     chmod 0770 /cache/lost+found
 
-#    chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
-#    chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
+    chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
+    chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
 #    chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
 #    chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
@@ -727,10 +728,10 @@ service battd /system/bin/battd
 #    group media bluetooth
 #    oneshot
 
-#service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
-#    socket hostapd_tiap0 dgram 660 wifi wifi
-#    disabled
-#    oneshot
+service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
+    socket hostapd_tiap0 dgram 660 wifi wifi
+    disabled
+    oneshot
 
 service hciattach /system/bin/hciattach -l
     class late_start
@@ -783,18 +784,18 @@ service map /system/bin/sdptool add --channel=20 --network=2 MAP
     disabled
     oneshot
 
-#service tcmd /system/bin/tcmd
-#    class late_start
-#    group mot_tcmd radio mot_pwric input system log camera graphics mot_accy sdcard_rw audio inet bluetooth wifi compass net_bt_admin mot_tombstone mot_tpapi mount net_raw net_admin mot_whisper media
-#    socket local_tcmd stream 0660 mot_tcmd mot_tcmd
-#    socket batch_socket stream 0600 mot_tcmd mot_tcmd
-#    oneshot
+service tcmd /system/bin/tcmd
+    class late_start
+    group mot_tcmd radio mot_pwric input system log camera graphics mot_accy sdcard_rw audio inet bluetooth wifi compass net_bt_admin mot_tombstone mot_tpapi mount net_raw net_admin mot_whisper media
+    socket local_tcmd stream 0660 mot_tcmd mot_tcmd
+   socket batch_socket stream 0600 mot_tcmd mot_tcmd
+    oneshot
 
-#service tcmdhelp /system/bin/tcmdhelp
-#    class late_start
-#    socket tcmdhelp stream 0600 mot_tcmd mot_tcmd
-#    oneshot
-#    disabled
+service tcmdhelp /system/bin/tcmdhelp
+    class late_start
+    socket tcmdhelp stream 0600 mot_tcmd mot_tcmd
+    oneshot
+    disabled
 
 # turn on wifi for tcmd step one
 on property:tcmd.load_wlan=1
@@ -832,42 +833,42 @@ service akmd2 /system/bin/akmd2
     user compass
     group compass misc input
 
-#service wlan_loader /system/bin/wlan_loader \
-#        -f /system/etc/wifi/fw_wlan1281.bin -i /system/etc/wifi/tiwlan.ini \
-#        -e /pds/wifi/nvs_map.bin
-#    class late_start
-#    disabled
-#    oneshot
+service wlan_loader /system/bin/wlan_loader \
+        -f /system/etc/wifi/fw_wlan1281.bin -i /system/etc/wifi/tiwlan.ini \
+        -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
-#service ap_fmloader /system/bin/logwrapper /system/bin/tiap_loader \
-#        -f /system/etc/wifi/fw_wlan1281_AP.bin -i /system/etc/wifi/tiwlan_ap.ini \
-#        -e /pds/wifi/nvs_map.bin
-#    class late_start
-#    disabled
-#    oneshot
+service ap_fmloader /system/bin/logwrapper /system/bin/tiap_loader \
+        -f /system/etc/wifi/fw_wlan1281_AP.bin -i /system/etc/wifi/tiwlan_ap.ini \
+        -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
-#service wlan_loader_rfmd /system/bin/wlan_loader \
-#        -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini -e /pds/wifi/nvs_map.bin
-#    class late_start
-#    disabled
-#    oneshot
+service wlan_loader_rfmd /system/bin/wlan_loader \
+        -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
-#service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/wlan_loader \
-#        -f /system/etc/wifi/fw_tiwlan_ap_rfmd.bin -i /system/etc/wifi/tiwlan_ap_rfmd.ini \
-#        -e /pds/wifi/nvs_map.bin
-#    class late_start
-#    disabled
-#    oneshot
+service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/wlan_loader \
+        -f /system/etc/wifi/fw_tiwlan_ap_rfmd.bin -i /system/etc/wifi/tiwlan_ap_rfmd.ini \
+        -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
-#service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
-#    class late_start
+service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
+    class late_start
 # we will start as root and wpa_supplicant will switch to user wifi
 # after setting up the capabilities required for WEXT
-# user wifi
-# group wifi inet keystore
-#    socket wpa_tiwlan0 dgram 660 wifi wifi
-#    disabled
-#    oneshot
+ user wifi
+ group wifi inet keystore
+    socket wpa_tiwlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
 
 service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
 	class main
@@ -1005,15 +1006,15 @@ service logcatd-blan /system/bin/logcatd-blan
      group system log inet
     disabled
 
-#service gadget-qbp-modem /system/bin/tty2ttyd /dev/ttyUSB4 /dev/ttyGS2 0 1024
-#    user radio
-#    group radio
-#    disabled
+service gadget-qbp-modem /system/bin/tty2ttyd /dev/ttyUSB4 /dev/ttyGS2 0 1024
+    user radio
+    group radio
+    disabled
 
-#service gadget-qbp-diag /system/bin/tty2ttyd /dev/ttyUSB0 /dev/ttyGS3 0 1024
-#    user radio
-#    group radio
-#    disabled
+service gadget-qbp-diag /system/bin/tty2ttyd /dev/ttyUSB0 /dev/ttyGS3 0 1024
+    user radio
+    group radio
+    disabled
 
 #on property:ro.bootmode=bp-tools
 #    start tcmd
@@ -1064,11 +1065,11 @@ service pbap  /system/bin/sdptool add --channel=19 PBAP
 #     class core
 #     oneshot
 
-#service dnsmasq /system/bin/logwrapper /system/bin/dnsmasq -C/data/misc/wifi/dns.conf -k
-#    class late_start
-#    group wifi
-#    disabled
-#    oneshot
+service dnsmasq /system/bin/logwrapper /system/bin/dnsmasq -C/data/misc/wifi/dns.conf -k
+    class late_start
+    group wifi
+    disabled
+    oneshot
 
 #service tund /system/bin/tund
 #    class core
