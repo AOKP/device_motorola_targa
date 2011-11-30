@@ -26,6 +26,13 @@ $(call inherit-product-if-exists, vendor/google/google-vendor.mk)
 # Device overlay
     DEVICE_PACKAGE_OVERLAYS += device/motorola/targa/overlay
 
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
+PRODUCT_PACKAGES := \
+	charger \
+	charger_res_images
+
 # Permissions files
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:/system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -194,6 +201,9 @@ PRODUCT_PACKAGES += \
     Camera \
     Usb 
 
+PRODUCT_PACKAGES += \
+    librs_jni \
+    com.android.future.usb.accessory
 
 #FRAMEWORKS_BASE_SUBDIRS += \
 #    $(addsuffix /java, omapmmlib)
@@ -201,12 +211,6 @@ PRODUCT_PACKAGES += \
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-# This device is hdpi.  However the platform doesn't
-# currently contain all of the bitmaps at xhdpi density so
-# we do this little trick to fall back to the hdpi version
-# if the xhdpi doesn't exist.
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # high-density artwork where available
 PRODUCT_LOCALES += hdpi
