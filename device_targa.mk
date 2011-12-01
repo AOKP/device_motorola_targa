@@ -236,7 +236,7 @@ PRODUCT_COPY_FILES += \
 
 # stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
-$(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
+$(call inherit-product, hardware/ti/wpan/Android.mk)
 
 # stuff common to all Motorola phones -- disabled for Sandbox
 $(call inherit-product, device/motorola/common/common_hijack.mk)
