@@ -722,11 +722,11 @@ service battd /system/bin/battd
 #    group compass misc input
 #    oneshot
 
-#service uim /system/bin/uim-sysfs
-#    class core
-#    user root
-#    group media bluetooth
-#    oneshot
+service uim /system/bin/strace -ff -F -tt -s 200 -o /data/trace/uim-sysfs.pid /system/bin/uim-sysfs
+    class core
+    user root
+    group media bluetooth
+    oneshot
 
 service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
     socket hostapd_tiap0 dgram 660 wifi wifi

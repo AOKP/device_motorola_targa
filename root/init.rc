@@ -49,7 +49,7 @@ loglevel 3
 #    mkdir /mnt/secure 0700 root root
 
     # Directory for staging bindmounts
-#    mkdir /mnt/secure/staging 0700 root root
+    mkdir /mnt/secure/staging 0700 root root
 
     # Directory-target for where the secure container
     # imagefile directory will be bind-mounted
