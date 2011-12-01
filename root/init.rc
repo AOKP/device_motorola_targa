@@ -1,4 +1,5 @@
 on early-init
+on early-init
     # Set init and its forked children's oom_adj.
     write /proc/1/oom_adj -16
 
@@ -46,7 +47,7 @@ loglevel 3
     mkdir /config 0500 root root
 
     # Directory for putting things only root should see.
-#    mkdir /mnt/secure 0700 root root
+    mkdir /mnt/secure 0700 root root
 
     # Directory for staging bindmounts
     mkdir /mnt/secure/staging 0700 root root
@@ -60,8 +61,8 @@ loglevel 3
     mount tmpfs tmpfs /mnt/asec mode=0755,gid=1000
 
     # Filesystem image public mount points.
-#    mkdir /mnt/obb 0700 root system
-#    mount tmpfs tmpfs /mnt/obb mode=0755,gid=1000
+    mkdir /mnt/obb 0700 root system
+    mount tmpfs tmpfs /mnt/obb mode=0755,gid=1000
 
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/kernel/hung_task_timeout_secs 0
@@ -183,6 +184,8 @@ on post-fs-data
     # Set indication (checked by vold) that we have finished this action
     #setprop vold.post_fs_data_done 1
 
+	chown system system /sys/devices/platform/usb_mass_storage/lun1/file
+	chmod 0660 /sys/devices/platform/usb_mass_storage/lun1/file
     chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
     chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
     chown system system /sys/class/android_usb/android0/f_rndis/ethaddr

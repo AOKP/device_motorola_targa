@@ -21,7 +21,8 @@ ro.modem_available=0
 # Default network type.
 # 4 => CDMA/EVDO. To be used until Targa has LTE SFN
 # 7 => GLOBAL.
-ro.telephony.default_network=7
+# NETWORK_MODE_LTE_CDMA_EVDO  = 8 for ICS
+ro.telephony.default_network=8
 ro.com.google.clientid=android-motorola
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
@@ -200,6 +201,7 @@ ril.dumpstate.timeout=60
 ro.hdcp.support=2
 
 # Mount the internal SD card, too
+ro.phone_storage = 1
 ro.additionalmounts=/mnt/emmc
 
 #special moto usb handling

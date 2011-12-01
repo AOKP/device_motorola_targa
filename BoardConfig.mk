@@ -34,7 +34,7 @@ BOARD_PAGE_SIZE := 0x4096
 
 
 # Storage
-
+BOARD_EMMC_DEVICE := /dev/block/mmcblk1p26
 
 # Connectivity - Wi-Fi
 BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
