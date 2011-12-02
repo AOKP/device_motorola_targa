@@ -158,9 +158,6 @@ adb pull /system/etc/opl.dat.enc ../../../vendor/motorola/$DEVICE/proprietary
 
 # /system/etc/* (other dirs)
 adb pull /system/etc/ppp/peers/pppd-ril.options ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/etc/security/mancacerts.zip ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/etc/security/oprcacerts.zip ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/etc/security/suplcerts.bks ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/etc/spellchecker/en_US.aff ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/etc/spellchecker/en_US.dic ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/etc/spellchecker/es_ES.aff ../../../vendor/motorola/$DEVICE/proprietary

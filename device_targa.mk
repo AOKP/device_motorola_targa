@@ -27,10 +27,10 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/imgtec/gralloc.omap4.so:system/lib/hw/gralloc.omap4.so \
 
 # Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
-#PRODUCT_COPY_FILES += \
-#    device/motorola/targa/prebuilt/audio/libaudio.so:/system/lib/libaudio.so \
-#    device/motorola/targa/prebuilt/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
-#    device/motorola/targa/prebuilt/audio/libasound.so:/system/lib/libasound.so \
+PRODUCT_COPY_FILES += \
+    device/motorola/targa/prebuilt/audio/libaudio.so:/system/lib/libaudio.so \
+    device/motorola/targa/prebuilt/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
+    device/motorola/targa/prebuilt/audio/libasound.so:/system/lib/libasound.so \
 #    device/motorola/targa/prebuilt/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
 
 # Lights
@@ -113,6 +113,13 @@ PRODUCT_PACKAGES += \
     hostap \
     hostapd.conf \
     libhostapdcli
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    uim \
+    uim-sysfs \
+    uim-rfkill \
+    liba2dp \
 
 # Release utilities
 PRODUCT_PACKAGES += \

@@ -91,7 +91,7 @@
 /sys/devices/virtual/usb_composite/*   enable      0664  root   system
 
 # used by RIL and GPS
-/dev/ttyO0                0660   system     radio
+/dev/ttyO0		    0660   system     radio
 
 #for LTE RIL
 /dev/cdma_boot0		    0660	radio	radio
@@ -104,8 +104,8 @@
 /dev/cdma_rmnet5	    0660	radio	radio
 /dev/cdma_rmnet6	    0660	radio	radio
 /dev/lte_rmnet4		    0660	radio	radio
-/dev/ttyGS1			    0660	radio	radio
-/dev/block/mmcblk0p4	0660	radio	radio
-/dev/modem_br           0660    radio   radio
-/dev/cdma_ramdump0      0660    radio   radio
-/dev/lte_ramdump0       0660    radio   radio
+/dev/ttyGS1		    0660	radio	radio
+/dev/block/mmcblk0p4	    0660	radio	radio
+/dev/modem_br               0660        radio   radio
+/dev/cdma_ramdump0          0660        radio   radio
+/dev/lte_ramdump0           0660        radio   radio

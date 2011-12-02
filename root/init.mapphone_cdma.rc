@@ -352,6 +352,8 @@ on boot
    chown system system /sys/class/backlight/430_540_960_amoled_bl/brightness
 # Change the ownership of touch screen file
    chown root mot_tcmd /sys/bus/i2c/drivers/qtouch-obp-ts/2-004a/irq_enable
+# Change the ownership of cpcap
+   chmod 0666 /dev/cpcap
 # changes for enabling ducati...
    chmod 0660 /dev/syslink-proc4430
    chown media media /dev/syslink-proc4430
@@ -550,7 +552,6 @@ on boot
 #    insmod /system/lib/modules/vpnclient.ko
 
 # Load Quota2 support modules
-    insmod /system/lib/modules/xt_ipv6_udp.ko
     insmod /system/lib/modules/xt_qtaguid.ko
     insmod /system/lib/modules/xt_quota2.ko
 
@@ -715,11 +716,11 @@ service battd /system/bin/battd
 #    class core
 #    group radio
 
-#service whisperd /system/bin/whisperd /dev/ttyO1
-#    class late_start
-#    user mot_whisper
-#    group mot_whisper mot_pwric
-#    oneshot
+service whisperd /system/bin/whisperd /dev/ttyO1
+    class late_start
+    user mot_whisper
+    group mot_whisper mot_pwric
+    oneshot
 
 #service msp430 /system/bin/msp430 boot
 #    class core

@@ -6,6 +6,7 @@
 USE_CAMERA_STUB := false
 BOARD_USES_TI_CAMERA_HAL := true
 BOARD_USE_LEGACY_TOUCHSCREEN := true
+BOARD_USES_AUDIO_LEGACY := true
 
 # inherit from the proprietary version
 -include vendor/motorola/targa/BoardConfigVendor.mk
@@ -34,7 +35,7 @@ BOARD_PAGE_SIZE := 0x4096
 
 
 # Storage
-BOARD_EMMC_DEVICE := /dev/block/mmcblk1p26
+
 
 # Connectivity - Wi-Fi
 BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
@@ -94,9 +95,7 @@ BOARD_SYSTEM_FILESYSTEM := ext3
 # Graphics
 BOARD_EGL_CFG := device/motorola/targa/prebuilt/etc/egl.cfg
 BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK := true
-ifdef BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
 COMMON_GLOBAL_CFLAGS += -DBOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
-endif
 
 
 # OMX
@@ -117,14 +116,8 @@ endif
 
 
 # MOTOROLA
-USE_MOTOROLA_CODE := true
-ifdef USE_MOTOROLA_CODE
 COMMON_GLOBAL_CFLAGS += -DUSE_MOTOROLA_CODE
-endif
-USE_MOTOROLA_USERS := true
-ifdef USE_MOTOROLA_USERS
 COMMON_GLOBAL_CFLAGS += -DUSE_MOTOROLA_USERS
-endif
 
 
 # Media / Radio
@@ -150,7 +143,4 @@ BOARD_USE_BATTERY_CHARGE_COUNTER := true
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_NEEDS_CUTILS_LOG := true
 BOARD_USES_SECURE_SERVICES := true
-
-targa_HARDWARE := true
-BOARD_GLOBAL_CFLAGS += -Dtarga_HARDWARE
 
