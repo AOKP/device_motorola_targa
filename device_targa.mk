@@ -95,6 +95,12 @@ PRODUCT_PACKAGES += \
 #    libsyslink_ipc_listener \
 #    libomap_mm_library_jni \
 
+# FM Radio
+PRODUCT_PACKAGES += \
+    libfmchr \
+    libfm_stack \
+    libmcphal 
+    
 # Wifi
 PRODUCT_PACKAGES += \
     libtiOsLib \
