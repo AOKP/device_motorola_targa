@@ -42,6 +42,8 @@ PRODUCT_COPY_FILES += \
 #    sensors.targa 
 
 # Sound / Media
+PRODUCT_PACKAGES += \
+	liba2dp
 #    libaudio 
 
 #PRODUCT_PACKAGES += \
@@ -110,7 +112,6 @@ PRODUCT_PACKAGES += \
     tiap_cu \
     hostap \
     hostapd.conf \
-    libhostapdcli
 
 # Release utilities
 PRODUCT_PACKAGES += \
@@ -175,6 +176,7 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilts
 PRODUCT_COPY_FILES += \
+    device/motorola/targa/prebuilt/bin/battd:system/bin/battd \
     device/motorola/targa/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
     device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \

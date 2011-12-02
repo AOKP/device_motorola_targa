@@ -8,7 +8,7 @@ BOARD_USES_TI_CAMERA_HAL := true
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # inherit from the proprietary version
-#-include vendor/motorola/targa/BoardConfigVendor.mk
+-include vendor/motorola/targa/BoardConfigVendor.mk
 
 
 # Processor
@@ -48,9 +48,11 @@ WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/tiwlan_drv.ko"
 WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
 WIFI_DRIVER_MODULE_ARG      := ""
 WIFI_FIRMWARE_LOADER        := "wlan_loader"
-PRODUCT_WIRELESS_TOOLS      := true
 WIFI_DRIVER_FW_STA_PATH     := "/system/etc/wifi/fw_wlan1283.bin"
 WIFI_DRIVER_FW_AP_PATH      := "/system/etc/wifi/fw_wlan1283_AP.bin"
+PRODUCT_WIRELESS_TOOLS      := true
+AP_CONFIG_DRIVER_WILINK     := true
+WPA_SUPPL_APPROX_USE_RSSI   := true
 
 
 # Audio

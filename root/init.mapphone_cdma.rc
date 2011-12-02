@@ -14,7 +14,6 @@ on post-fs-data
     mount rootfs rootfs / rw remount
 
     mkdir /cdrom 0770 system system
-    mount auto /dev/block/mmcblk1p17 /cdrom ro
 
     symlink /dev/ttyGS0 /dev/acm0
 
@@ -551,10 +550,10 @@ on boot
 #    insmod /system/lib/modules/vpnclient.ko
 
 # Load Quota2 support modules
-    insmod /system/lib/modules/xt_ipv6_udp.ko	
-    insmod /system/lib/modules/xt_qtaguid.ko	
+    insmod /system/lib/modules/xt_ipv6_udp.ko
+    insmod /system/lib/modules/xt_qtaguid.ko
     insmod /system/lib/modules/xt_quota2.ko
-    
+
 # Enable hardware watchdog
     write /sys/devices/platform/omap_wdt/enabled on
 
@@ -728,7 +727,7 @@ service battd /system/bin/battd
 #    group compass misc input
 #    oneshot
 
-service uim /system/bin/strace -ff -F -tt -s 200 -o /data/trace/uim-sysfs.pid /system/bin/uim-sysfs
+service uim /system/bin/uim-sysfs
     class core
     user root
     group media bluetooth
@@ -1077,8 +1076,8 @@ service dnsmasq /system/bin/logwrapper /system/bin/dnsmasq -C/data/misc/wifi/dns
     disabled
     oneshot
 
-#service tund /system/bin/tund
-#    class core
-#    socket tund stream 0660 vpn system
-#    ioprio be 2
+service tund /system/bin/tund
+    class core
+    socket tund stream 0660 vpn system
+    ioprio be 2
 
