@@ -661,14 +661,14 @@ on property:sys.shutdown=1
     exec /system/bin/sleep 10
     exec /system/bin/reboot -p
 
-#on property:init.svc.wpa_supplicant=stopped
-#    stop dhcpcd_wlan0
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd_wlan0
 
-#on property:ro.hdcp.support=1
-#    insmod /system/lib/modules/omap-hdcp.ko
-#    exec /system/bin/hdcp-mknod
-#    chown system media /dev/omap-hdcp
-#    chmod 0660 /dev/omap-hdcp
+on property:ro.hdcp.support=1
+    insmod /system/lib/modules/omap-hdcp.ko
+    exec /system/bin/hdcp-mknod
+    chown system media /dev/omap-hdcp
+    chmod 0660 /dev/omap-hdcp
 
 on property:ro.hdcp.support=2
     insmod /system/lib/modules/omap-hdcp.ko
@@ -772,10 +772,10 @@ service del_panu /system/bin/sdptool remove PANU
     disabled
     oneshot
 
-#service napics /system/bin/napics.sh
-#    class late_start
-#    user root
-#    disabled
+service napics /system/bin/napics.sh
+    class late_start
+    user root
+    disabled
     oneshot
 
 service btdhcpd /system/bin/dnsmasq -C /system/etc/btpan.conf
@@ -934,11 +934,11 @@ service smc /system/bin/startup_smc.sh
 service modemlog /system/bin/modemlog
 	oneshot
 
-#service ftmipcd /system/bin/ftmipcd
-#    class late_start
-#    user radio
-#    group radio inet
-#    oneshot
+service ftmipcd /system/bin/ftmipcd
+     class late_start
+    user radio
+    group radio inet
+    oneshot
 
 #service qbplogd /system/bin/qbplogd
 #    class late_start
@@ -954,11 +954,11 @@ service modemlog /system/bin/modemlog
 #    oneshot
 #    disabled
 
-#service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
-#    class late_start
-#    group net_bt net_bt_admin
-#    disabled
-#    oneshot
+service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
+    class late_start
+    group net_bt net_bt_admin
+    disabled
+    oneshot
 
 on property:dev.bootcomplete=1
     start savebpver
@@ -1029,10 +1029,10 @@ service gadget-qbp-diag /system/bin/tty2ttyd /dev/ttyUSB0 /dev/ttyGS3 0 1024
 #    start logcatd-blan
 
 
-#service mdm_usb_suspend /system/bin/enable_mdm_usb_suspend.sh
-#    class core
-#    group radio
-#    oneshot
+service mdm_usb_suspend /system/bin/enable_mdm_usb_suspend.sh
+    class core
+    group radio
+    oneshot
 
 service hfag /system/bin/sdptool add --channel=10 HFAG
     class late_start

@@ -97,9 +97,9 @@ PRODUCT_PACKAGES += \
 
 # FM Radio
 PRODUCT_PACKAGES += \
-    libfmchr \
     libfm_stack \
     libmcphal 
+#    libfmchr \
     
 # Wifi
 PRODUCT_PACKAGES += \
