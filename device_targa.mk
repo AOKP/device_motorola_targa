@@ -43,8 +43,8 @@ PRODUCT_COPY_FILES += \
 
 # Sound / Media
 PRODUCT_PACKAGES += \
-	liba2dp
-#    libaudio 
+    liba2dp \
+    libaudio 
 
 #PRODUCT_PACKAGES += \
 #    libaudiopolicy \
@@ -112,6 +112,7 @@ PRODUCT_PACKAGES += \
     tiap_cu \
     hostap \
     hostapd.conf \
+    libhostapdcli
 
 # Release utilities
 PRODUCT_PACKAGES += \
