@@ -151,7 +151,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory
-
+    
+PRODUCT_PACKAGES += \
+    AndroidTerm \
+    FileManager 
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
