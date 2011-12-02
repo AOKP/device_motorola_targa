@@ -44,7 +44,7 @@ PRODUCT_COPY_FILES += \
 # Sound / Media
 PRODUCT_PACKAGES += \
     liba2dp \
-#    libaudio 
+    libaudio 
 
 #PRODUCT_PACKAGES += \
 #    libaudiopolicy \
