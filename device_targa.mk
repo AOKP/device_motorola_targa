@@ -107,6 +107,7 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
+    bt_sco_app \
     uim \
     uim-sysfs \
     uim-rfkill \
@@ -245,7 +246,7 @@ PRODUCT_COPY_FILES += \
 
 # stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
-$(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
+$(call inherit-product, hardware/ti/wpan/Android.mk)
 #$(call inherit-product, hardware/ti/wpan/tools/fmradio/Android.mk)
 
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
