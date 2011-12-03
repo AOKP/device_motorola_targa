@@ -145,14 +145,12 @@ PRODUCT_PACKAGES += \
 # Rootfs files
 PRODUCT_COPY_FILES += \
     out/target/product/targa/root/init:system/etc/rootfs/init \
-    out/target/product/targa/system/bin/adbd:system/etc/rootfs/sbin/adbd \
+    out/target/product/targa/root/sbin/adbd:system/etc/rootfs/sbin/adbd \
     device/motorola/targa/root/default.prop:system/etc/rootfs/default.prop \
     device/motorola/targa/root/init.rc:system/etc/rootfs/init.rc \
     device/motorola/targa/root/init.mapphone_cdma.rc:system/etc/rootfs/init.mapphone_cdma.rc \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
     device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
-
-
 
 # Permissions files
 PRODUCT_COPY_FILES += \
