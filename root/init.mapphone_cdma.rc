@@ -3,7 +3,6 @@ on init
     export DOWNLOAD_CACHE /cache/download
     export SD_EXT_DIRECTORY /sd-ext
     export EXTERNAL_STORAGE /mnt/sdcard
-    export EXTERNAL_ALT_STORAGE /mnt/sdcard  # not really used but whatever
     export PHONE_STORAGE /mnt/emmc
 
 on post-fs-data
@@ -58,8 +57,8 @@ on post-fs-data
     chmod 0220 /proc/sysrq-trigger
 
 #Set the default value for bluedroid_ref
-    write /data/tmp/bluedroid_ref 0
-    chown system system /data/tmp/bluedroid_ref
+#    write /data/tmp/bluedroid_ref 0
+#    chown system system /data/tmp/bluedroid_ref
 
 # Configure kernel options
 
@@ -197,6 +196,7 @@ on post-fs-data
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown radio radio /sys/class/radio/w3g_lte/command
+    chmod 777 /sys/class/radio/w3g_lte/command
     # create logger folder
     mkdir /data/logger 0770 radio log
     chown radio log /data/logger
@@ -661,8 +661,8 @@ on property:sys.shutdown=1
     exec /system/bin/sleep 10
     exec /system/bin/reboot -p
 
-#on property:init.svc.wpa_supplicant=stopped
-#    stop dhcpcd_wlan0
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd_wlan0
 
 #on property:ro.hdcp.support=1
 #    insmod /system/lib/modules/omap-hdcp.ko
@@ -670,33 +670,11 @@ on property:sys.shutdown=1
 #    chown system media /dev/omap-hdcp
 #    chmod 0660 /dev/omap-hdcp
 
-on property:ro.hdcp.support=2
-    insmod /system/lib/modules/omap-hdcp.ko
-    exec /system/bin/hdcp-mknod
-    chown system media /dev/omap-hdcp
-    chmod 0660 /dev/omap-hdcp
-
-# The following services are added by moto
-# Set property strings for ATVC logging
-# This conditionally sets :
-# ro.sys.atvc_allow_bp_log
-# ro.sys.atvc_allow_gki_log
-# ro.sys.atvc_allow_ap_mot_log
-# ro.sys.atvc_allow_all_core
-# ro.sys.atvc_allow_res_core
-# ro.sys.atvc_allow_res_panic
-# ro.sys.atvc_allow_efem
-# ro.sys.atvc_allow_netmon_usb
-# ro.sys.atvc_allow_netmon_ih
-# ro.sys.atvc_allow_all_adb
-
-service atvc /system/bin/dbvc_atvc_property_set
-	class core
-	user system
-	group system
-	oneshot
-
-#service watchdogd /system/bin/watchdogd
+#on property:ro.hdcp.support=2
+#    insmod /system/lib/modules/omap-hdcp.ko
+#    exec /system/bin/hdcp-mknod
+#    chown system media /dev/omap-hdcp
+#    chmod 0660 /dev/omap-hdcp
 
 service telnet /system/bin/telnetd
     class core
@@ -721,12 +699,6 @@ service whisperd /system/bin/whisperd /dev/ttyO1
     user mot_whisper
     group mot_whisper mot_pwric
     oneshot
-
-#service msp430 /system/bin/msp430 boot
-#    class core
-#    user compass
-#    group compass misc input
-#    oneshot
 
 service uim /system/bin/uim-sysfs
     class core
@@ -934,11 +906,11 @@ service smc /system/bin/startup_smc.sh
 service modemlog /system/bin/modemlog
 	oneshot
 
-#service ftmipcd /system/bin/ftmipcd
-#    class late_start
-#    user radio
-#    group radio inet
-#    oneshot
+service ftmipcd /system/bin/ftmipcd
+    class late_start
+    user radio
+    group radio inet
+    oneshot
 
 #service qbplogd /system/bin/qbplogd
 #    class late_start
@@ -1029,10 +1001,10 @@ service gadget-qbp-diag /system/bin/tty2ttyd /dev/ttyUSB0 /dev/ttyGS3 0 1024
 #    start logcatd-blan
 
 
-#service mdm_usb_suspend /system/bin/enable_mdm_usb_suspend.sh
-#    class core
-#    group radio
-#    oneshot
+service mdm_usb_suspend /system/bin/enable_mdm_usb_suspend.sh
+    class core
+    group radio
+    oneshot
 
 service hfag /system/bin/sdptool add --channel=10 HFAG
     class late_start

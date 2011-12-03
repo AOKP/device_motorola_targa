@@ -39,11 +39,7 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 #PRODUCT_PACKAGES += \
-#    sensors.targa 
-
-# Sound / Media
-PRODUCT_PACKAGES += \
-    libaudio 
+#    sensors.targa \
 
 #PRODUCT_PACKAGES += \
 #    libaudiopolicy \
@@ -93,23 +89,14 @@ PRODUCT_PACKAGES += \
 #    utilsApp.out \
 #    libsyslink_ipc_listener \
 #    libomap_mm_library_jni \
-
-# FM Radio
-PRODUCT_PACKAGES += \
-    libfm_stack \
-    libmcphal 
-#    libfmchr \
     
 # Wifi
 PRODUCT_PACKAGES += \
-    libtiOsLib \
     libCustomWifi \
     wlan_loader \
     wlan_cu \
     dhcpcd.conf \
     wpa_supplicant.conf \
-    iwmulticall \
-    dhcpcd.conf \
 
 # HotSpot
 PRODUCT_PACKAGES += \
@@ -153,19 +140,19 @@ PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
     
 PRODUCT_PACKAGES += \
-    AndroidTerm \
     FileManager 
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
-    device/motorola/targa/root/init:system/etc/rootfs/init \
+    out/target/product/targa/root/init:system/etc/rootfs/init \
+    out/target/product/targa/system/bin/adbd:system/etc/rootfs/sbin/adbd \
     device/motorola/targa/root/default.prop:system/etc/rootfs/default.prop \
     device/motorola/targa/root/init.rc:system/etc/rootfs/init.rc \
     device/motorola/targa/root/init.mapphone_cdma.rc:system/etc/rootfs/init.mapphone_cdma.rc \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
-    device/motorola/targa/recovery/postrecoveryboot.sh:/recovery/root/sbin/postrecoveryboot.sh \
     device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
-    device/motorola/targa/root/sbin/adbd:system/etc/rootfs/sbin/adbd 
+
+
 
 # Permissions files
 PRODUCT_COPY_FILES += \
@@ -182,13 +169,7 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:/system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/base/data/etc/handheld_core_hardware.xml:/system/etc/permissions/handheld_core_hardware.xml 
-
-#    device/motorola/targa/prebuilt/etc/permissions/com.android.location.provider.xml:/system/etc/permissions/com.android.location.provider.xml \
-#    device/motorola/targa/prebuilt/etc/permissions/com.motorola.android.tcmd.xml:/system/etc/permissions/com.motorola.android.tcmd.xml \
-#    device/motorola/targa/prebuilt/etc/permissions/com.motorola.atcmd_library.xml:/system/etc/permissions/com.motorola.atcmd_library.xml \
-#    device/motorola/targa/prebuilt/etc/permissions/com.motorola.device.xml:/system/etc/permissions/com.motorola.device.xml \
-#    device/motorola/targa/prebuilt/etc/permissions/jcifs-krb5-1.3.12.xml:/system/etc/permissions/jcifs-krb5-1.3.12.xml \
+    frameworks/base/data/etc/handheld_core_hardware.xml:/system/etc/permissions/handheld_core_hardware.xml \
 
 # Prebuilts
 PRODUCT_COPY_FILES += \

@@ -2,6 +2,7 @@ on fs
 
 on post-fs
     mount ext3 /dev/block/mmcblk1p23 ro noatime nodiratime remount
+
     mount rootfs rootfs / rw remount
 
     mkdir /cdrom 0770 system system
@@ -212,8 +213,7 @@ on early-boot
 # mount eCryptFS if required
     start smc
     exec /system/bin/enc_mgt_tool
-    class_start core
-
+    class_start media_early_init
 on boot
 # Define Motorola DBVC ATVC Property defaults (failsafe properties)
     setprop ro.sys.atvc_allow_netmon_usb 0
@@ -702,7 +702,11 @@ service dhcpcd_bnep0 /system/bin/dhcpcd
 service dhcpcd_usbeth0 /system/bin/dhcpcd
     disabled
     oneshot
-
+service baseimage /system/bin/dspexec -v -T /system/lib/dsp/baseimage.dof
+    class media_early_init
+    user media
+    group media graphics
+    oneshot
 service pvrsrv /system/bin/pvrsrvinit
     user root
     oneshot
@@ -764,11 +768,11 @@ service vpnclientpm /system/bin/vpnclientpm
     oneshot
     user root
 
-#service loadpreinstalls /system/bin/logwrapper /system/bin/loadpreinstalls.sh
-#    user system
-#    group system
-#    disabled
-#    oneshot
+service loadpreinstalls /system/bin/logwrapper /system/bin/loadpreinstalls.sh
+    user system
+    group system
+    disabled
+    oneshot
 
 # start syslink daemon
 service syslinkdaemon /system/bin/syslink_daemon.out -f /system/lib/ducati/Notify_MPUSYS_reroute_Test_Core0.xem3 /system/lib/ducati/base_image_app_m3.xem3

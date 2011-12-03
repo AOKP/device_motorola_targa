@@ -362,7 +362,7 @@ key SPACE {
 }
 
 key TAB {
-    label:                              '	'
+    label:                              't'
     number:                             '2'
     base:                               '\u0010'
     shift, capslock:                    '\u0010'
