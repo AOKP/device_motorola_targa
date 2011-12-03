@@ -97,6 +97,9 @@ PRODUCT_PACKAGES += \
     wlan_cu \
     dhcpcd.conf \
     wpa_supplicant.conf \
+    iwmulticall \
+	hostap \
+	hostapd.conf 
 
 # HotSpot
 PRODUCT_PACKAGES += \
