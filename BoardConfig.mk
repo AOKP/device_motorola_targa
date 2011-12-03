@@ -36,6 +36,7 @@ BOARD_PAGE_SIZE := 0x4096
 
 # Storage
 BOARD_VOLD_MAX_PARTITIONS := 28
+#BOARD_MASS_STORAGE_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun1/file"
 #TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun1/file"
 #TARGET_USE_CUSTOM_SECOND_LUN_NUM := 2
 
@@ -69,6 +70,7 @@ BOARD_USES_AUDIO_LEGACY := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
+BUILD_FM_RADIO := true
 
 # Recovery
 BUILD_BOOTMENU_STANDALONE := true

@@ -9,7 +9,7 @@ on post-fs-data
 
 # prepare generic keypad name
     exec /init_prep_keypad.sh
-    mount ext3 /dev/block/mmcblk1p23 ro noatime nodiratime remount
+    mount ext3 /dev/block/mmcblk1p21 ro noatime nodiratime remount
     mount rootfs rootfs / rw remount
 
     mkdir /cdrom 0770 system system
@@ -180,8 +180,8 @@ on post-fs-data
     chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
     # allow net_raw to have access to /dev/socket directory
-#    chown root net_raw /dev/socket
-#    chmod 0775 /dev/socket
+    chown root net_raw /dev/socket
+    chmod 0775 /dev/socket
 
     # allow system to modify cpufreq control files
     chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -672,17 +672,17 @@ on property:sys.shutdown=1
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd_wlan0
 
-#on property:ro.hdcp.support=1
-#    insmod /system/lib/modules/omap-hdcp.ko
-#    exec /system/bin/hdcp-mknod
-#    chown system media /dev/omap-hdcp
-#    chmod 0660 /dev/omap-hdcp
+on property:ro.hdcp.support=1
+    insmod /system/lib/modules/omap-hdcp.ko
+    exec /system/bin/hdcp-mknod
+    chown system media /dev/omap-hdcp
+    chmod 0660 /dev/omap-hdcp
 
-#on property:ro.hdcp.support=2
-#    insmod /system/lib/modules/omap-hdcp.ko
-#    exec /system/bin/hdcp-mknod
-#    chown system media /dev/omap-hdcp
-#    chmod 0660 /dev/omap-hdcp
+on property:ro.hdcp.support=2
+    insmod /system/lib/modules/omap-hdcp.ko
+    exec /system/bin/hdcp-mknod
+    chown system media /dev/omap-hdcp
+    chmod 0660 /dev/omap-hdcp
 
 service telnet /system/bin/telnetd
     class core
@@ -920,12 +920,12 @@ service ftmipcd /system/bin/ftmipcd
     group radio inet
     oneshot
 
-#service qbplogd /system/bin/qbplogd
-#    class late_start
-#    user radio
-#    group sdcard_rw radio inet
-#    oneshot
-#    disabled
+service qbplogd /system/bin/qbplogd
+    class late_start
+    user radio
+    group sdcard_rw radio inet
+    oneshot
+    disabled
 
 #service dlnasrv /system/bin/dlnasrv
 #    class late_start
@@ -952,12 +952,12 @@ service mdm_panicd /system/bin/mdm_panicd
 #    class late_start
 #    oneshot
 
-#service secclkd /system/bin/secclkd
-#    class late_start
-#    socket secclk_socket stream 660 mot_secclkd mot_secclkd
-#    user mot_tpapi
-#    group mot_tpapi mot_sec_rtc mot_secclkd
-#    oneshot
+service secclkd /system/bin/secclkd
+    class late_start
+    socket secclk_socket stream 660 mot_secclkd mot_secclkd
+    user mot_tpapi
+    group mot_tpapi mot_sec_rtc mot_secclkd
+    oneshot
 
 #start Authentec VPN service
 #service vpnclientpm /system/bin/vpnclientpm
@@ -1002,11 +1002,11 @@ service gadget-qbp-diag /system/bin/tty2ttyd /dev/ttyUSB0 /dev/ttyGS3 0 1024
     group radio
     disabled
 
-#on property:ro.bootmode=bp-tools
-#    start tcmd
-#    start gadget-qbp-diag
-#    start wrigley-diag
-#    start logcatd-blan
+on property:ro.bootmode=bp-tools
+    start tcmd
+    start gadget-qbp-diag
+    start wrigley-diag
+    start logcatd-blan
 
 
 service mdm_usb_suspend /system/bin/enable_mdm_usb_suspend.sh

@@ -5,10 +5,6 @@
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-## (2) Also get non-open-source GSM-specific aspects if available
-$(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
-$(call inherit-product-if-exists, vendor/google/google-vendor.mk)
-
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
 # Device overlay
@@ -89,7 +85,7 @@ PRODUCT_PACKAGES += \
 #    utilsApp.out \
 #    libsyslink_ipc_listener \
 #    libomap_mm_library_jni \
-    
+
 # Wifi
 PRODUCT_PACKAGES += \
     libCustomWifi \
@@ -98,8 +94,8 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     wpa_supplicant.conf \
     iwmulticall \
-	hostap \
-	hostapd.conf 
+    hostap \
+    hostapd.conf 
 
 # HotSpot
 PRODUCT_PACKAGES += \
@@ -141,9 +137,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory
-    
+
 PRODUCT_PACKAGES += \
-    FileManager 
+    FileManager \
+    AndroidTerm
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
@@ -154,6 +151,16 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/init.mapphone_cdma.rc:system/etc/rootfs/init.mapphone_cdma.rc \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
     device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
+
+# Hijack files
+PRODUCT_COPY_FILES += \
+#    device/motorola/targa/root/init:root/init \
+    device/motorola/targa/root/default.prop:root/default.prop \
+    device/motorola/targa/root-hijack/init.rc:root/init.rc \
+    device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
+    device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
+    device/motorola/targa/root/ueventd.rc:root/ueventd.rc \
+#    device/motorola/targa/root/sbin/adbd:root/sbin/adbd \
 
 # Permissions files
 PRODUCT_COPY_FILES += \
@@ -175,6 +182,8 @@ PRODUCT_COPY_FILES += \
 # Prebuilts
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/battd:system/bin/battd \
+    device/motorola/targa/prebuilt/bin/hijack:system/bin/hijack \
+    device/motorola/targa/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
     device/motorola/targa/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
     device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
@@ -236,7 +245,11 @@ PRODUCT_COPY_FILES += \
 
 # stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
-$(call inherit-product, hardware/ti/wpan/Android.mk)
+$(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
+#$(call inherit-product, hardware/ti/wpan/tools/fmradio/Android.mk)
+
+$(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
+$(call inherit-product-if-exists, vendor/google/google-vendor.mk)
 
 # stuff common to all Motorola phones -- disabled for Sandbox
 $(call inherit-product, device/motorola/common/common_hijack.mk)
