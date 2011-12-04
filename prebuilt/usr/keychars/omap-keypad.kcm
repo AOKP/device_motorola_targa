@@ -386,7 +386,7 @@ key MINUS {
     alt, shift+alt, capslock+alt:       '_'
 }
 
-key EQUAL {
+key EQUALS {
     label:                              '='
     number:                             '0'
     base:                               '='
