@@ -36,9 +36,8 @@ BOARD_PAGE_SIZE := 0x4096
 
 # Storage
 BOARD_VOLD_MAX_PARTITIONS := 28
-#BOARD_MASS_STORAGE_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun1/file"
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun1/file"
-#TARGET_USE_CUSTOM_SECOND_LUN_NUM := 2
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun/file"
+#TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
 
 # Connectivity - Wi-Fi
 BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM

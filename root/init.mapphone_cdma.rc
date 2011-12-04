@@ -803,12 +803,6 @@ on property:tcmd.unload_wlan=2
     exec /system/bin/rmmod tiwlan_drv
     setprop wlan.driver.status unloaded
 
-# turn on bluetooth for tcmd
-on property:tcmd.bt_mod=1
-    insmod /system/lib/modules/wl127x_test.ko
-#turn off bluetooth for tcmd
-on property:tcmd.bt_mod=0
-    exec /system/bin/rmmod wl127x_test
 #execute tcmdhelp
 on property:tcmd.start_tcmdhelp=1
     start tcmdhelp
@@ -833,18 +827,18 @@ service ap_fmloader /system/bin/logwrapper /system/bin/tiap_loader \
     disabled
     oneshot
 
-service wlan_loader_rfmd /system/bin/wlan_loader \
-        -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini -e /pds/wifi/nvs_map.bin
-    class late_start
-    disabled
-    oneshot
+#service wlan_loader_rfmd /system/bin/wlan_loader \
+#        -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini -e /pds/wifi/nvs_map.bin
+#    class late_start
+#    disabled
+#    oneshot
 
-service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/wlan_loader \
-        -f /system/etc/wifi/fw_tiwlan_ap_rfmd.bin -i /system/etc/wifi/tiwlan_ap_rfmd.ini \
-        -e /pds/wifi/nvs_map.bin
-    class late_start
-    disabled
-    oneshot
+#service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/wlan_loader \
+#        -f /system/etc/wifi/fw_tiwlan_ap_rfmd.bin -i /system/etc/wifi/tiwlan_ap_rfmd.ini \
+#        -e /pds/wifi/nvs_map.bin
+#    class late_start
+#    disabled
+#    oneshot
 
 service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
     class late_start
@@ -871,7 +865,7 @@ service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
 	disabled
 	oneshot
 
-service iprenew_wlan0 /system/bin/dhcpcd -n
+service iprenew_tiwlan0 /system/bin/dhcpcd -n
 	class main
 	disabled
 	oneshot
@@ -914,7 +908,7 @@ service smc /system/bin/startup_smc.sh
 service modemlog /system/bin/modemlog
 	oneshot
 
-service ftmipcd /system/bin/ftmipcd
+service ftmipcd /system/bin/strace -ff -F -tt -s 200 -o /data/trace/uim-sysfs.pid /system/bin/ftmipcd
     class late_start
     user radio
     group radio inet
