@@ -202,11 +202,7 @@ on post-fs-data
     # LTE Radio file
     chown radio radio /sys/class/radio/w3g_lte/command
     chmod 777 /sys/class/radio/w3g_lte/command
-    
-    # disable ipv6
-    write /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6 1
-    chmod 777 /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6
-    
+
     # create logger folder
     mkdir /data/logger 0770 radio log
     chown radio log /data/logger
@@ -568,6 +564,11 @@ on boot
 # Load Authentec VPN kernel module
 #    insmod /system/lib/modules/vpnclient.ko
 
+    
+    # disable ipv6
+    write /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6 1
+    chmod 777 /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6
+    
 # Enable hardware watchdog
     write /sys/devices/platform/omap_wdt/enabled on
 
