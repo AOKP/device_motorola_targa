@@ -193,9 +193,11 @@ on post-fs-data
 
     # bluetooth power up/down interface
     write sys/class/rfkill/rfkill0/state 0
+    write sys/class/rfkill/rfkill0/type bluetooth
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chmod 0664 /sys/class/rfkill/rfkill0/type
+    chmod 0664 /sys/class/rfkill/rfkill0/state
     
     # LTE Radio file
     chown radio radio /sys/class/radio/w3g_lte/command
@@ -362,6 +364,9 @@ on boot
    chown root mot_tcmd /sys/bus/i2c/drivers/qtouch-obp-ts/2-004a/irq_enable
 # Change the ownership of cpcap
    chmod 0666 /dev/cpcap
+   chmod 0666 /dev/cpcap_batt
+   chmod 0666 /dev/cpcap_mot_rtc
+   chmod 0666 /dev/cpcap_uc
 # changes for enabling ducati...
    chmod 0660 /dev/syslink-proc4430
    chown media media /dev/syslink-proc4430
@@ -669,8 +674,8 @@ on property:sys.shutdown=1
     exec /system/bin/sleep 10
     exec /system/bin/reboot -p
 
-on property:init.svc.wpa_supplicant=stopped
-    stop dhcpcd_wlan0
+#on property:init.svc.wpa_supplicant=stopped
+#    stop dhcpcd_wlan0
 
 #on property:ro.hdcp.support=1
 #    insmod /system/lib/modules/omap-hdcp.ko
@@ -693,7 +698,7 @@ service usbd /system/bin/usbd
 
 service battd /system/bin/battd
     class core
-    socket battdsock stream 0660 mot_accy mot_accy
+    socket battdsock stream 0666 mot_accy mot_accy
     user root
     group mot_accy mot_pwric
     oneshot
