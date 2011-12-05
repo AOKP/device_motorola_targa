@@ -161,7 +161,7 @@ PRODUCT_COPY_FILES += \
 
 # Hijack files
 PRODUCT_COPY_FILES += \
-    device/motorola/targaa/root/default.prop:root/default.prop \
+    device/motorola/targa/root/default.prop:root/default.prop \
     device/motorola/targa/root-hijack/init.rc:root/init.rc \
     device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
     device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
