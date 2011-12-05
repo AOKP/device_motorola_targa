@@ -29,15 +29,12 @@ TARGET_GLOBAL_CFLAGS += -DNEEDS_ARM_ERRATA_754319_754320
 # Kernel
 TARGET_PREBUILT_KERNEL := device/motorola/targa/kernel
 BOARD_KERNEL_CMDLINE := console=/dev/null rw mem=456M@0x80000000 mem=563M@0x9CC00000 vram=20M omapgpu.vram=0:4M,1:16M,2:16MT init=/init ip=off mmcparts=mmcblk1:p7(pds),p15(boot),p16(recovery),p17(cdrom),p18(misc),p19(cid),p20(kpanic),p21(system),p22(cache),p23(preinstall),p24(webtop),p25(userdata),p26(emstorage)
-
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_PAGE_SIZE := 0x4096
 
 
 # Storage
 BOARD_VOLD_MAX_PARTITIONS := 30
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun/file"
-#TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
 
 # Connectivity - Wi-Fi
 BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
@@ -45,8 +42,8 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := libCustomWifi
 WPA_SUPPLICANT_VERSION      := VER_0_6_X
 HOSTAPD_VERSION             := VER_0_6_X
 BOARD_WLAN_DEVICE           := wl1283
-#BOARD_SOFTAP_DEVICE         := wl1283
-#BOARD_WLAN_TI_STA_DK_ROOT   := system/wlan/ti/wilink_6_1
+BOARD_SOFTAP_DEVICE         := wl1283
+BOARD_WLAN_TI_STA_DK_ROOT   := system/wlan/ti/wilink_6_1
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/tiwlan_drv.ko"
 WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
 WIFI_DRIVER_MODULE_ARG      := ""
@@ -69,7 +66,6 @@ BOARD_USES_AUDIO_LEGACY := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
-BUILD_FM_RADIO := true
 
 # Recovery
 BUILD_BOOTMENU_STANDALONE := true

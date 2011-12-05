@@ -106,12 +106,11 @@ PRODUCT_PACKAGES += \
     libhostapdcli
 
 # Bluetooth
+#    uim-rfkill \
+#    liba2dp \
 PRODUCT_PACKAGES += \
     bt_sco_app \
-    uim \
     uim-sysfs \
-    uim-rfkill \
-    liba2dp \
 
 # FM Radio
 PRODUCT_PACKAGES += \
@@ -144,8 +143,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     librs_jni \
-    com.android.future.usb.accessory \
-    UserDictionaryProvider 
+    com.android.future.usb.accessory
 
 PRODUCT_PACKAGES += \
     FileManager \
@@ -163,13 +161,11 @@ PRODUCT_COPY_FILES += \
 
 # Hijack files
 PRODUCT_COPY_FILES += \
-    device/motorola/targa/root/default.prop:root/default.prop \
-    device/motorola/targa/root-hijack/init.rc:root/init.rc \
-    device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
-    device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
-    device/motorola/targa/root/ueventd.rc:root/ueventd.rc \
-#    device/motorola/product/targa/root/init:root/init \
-#    device/motorola/product/targa/root/sbin/adbd:root/sbin/adbd \
+    device/motorola/solana/root/default.prop:root/default.prop \
+    device/motorola/solana/root-hijack/init.rc:root/init.rc \
+    device/motorola/solana/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
+    device/motorola/solana/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
+    device/motorola/solana/root/ueventd.rc:root/ueventd.rc \
 
 # Permissions files
 PRODUCT_COPY_FILES += \

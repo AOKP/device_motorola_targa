@@ -180,8 +180,8 @@ on post-fs-data
     chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
     # allow net_raw to have access to /dev/socket directory
-    chown root net_raw /dev/socket
-    chmod 0775 /dev/socket
+#    chown root net_raw /dev/socket
+#    chmod 0775 /dev/socket
 
     # allow system to modify cpufreq control files
     chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -202,10 +202,6 @@ on post-fs-data
     # LTE Radio file
     chown radio radio /sys/class/radio/w3g_lte/command
     chmod 777 /sys/class/radio/w3g_lte/command
-    
-    # disable ipv6
-    write /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6 1
-    chmod 777 /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6
     
     # create logger folder
     mkdir /data/logger 0770 radio log
@@ -561,14 +557,16 @@ on boot
     insmod /system/lib/modules/sch_htb.ko
     insmod /system/lib/modules/em_u32.ko
 
-# Load Quota2 support modules
-    insmod /system/lib/modules/xt_qtaguid.ko
-    insmod /system/lib/modules/xt_quota2.ko
-
 # Load Authentec VPN kernel module
 #    insmod /system/lib/modules/vpnclient.ko
 
-    
+# Load Quota2 support modules
+#    insmod /system/lib/modules/xt_TPROXY.ko
+#    insmod /system/lib/modules/xt_TRACE.ko
+#    insmod /system/lib/modules/xt_NFQUEUE.ko
+    insmod /system/lib/modules/xt_owner2.ko
+    insmod /system/lib/modules/xt_quota2.ko
+
     # disable ipv6
     write /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6 1
     chmod 777 /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6
@@ -679,20 +677,20 @@ on property:sys.shutdown=1
     exec /system/bin/sleep 10
     exec /system/bin/reboot -p
 
-#on property:init.svc.wpa_supplicant=stopped
-#    stop dhcpcd_wlan0
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd_tiwlan0
 
-#on property:ro.hdcp.support=1
-#    insmod /system/lib/modules/omap-hdcp.ko
-#    exec /system/bin/hdcp-mknod
-#    chown system media /dev/omap-hdcp
-#    chmod 0660 /dev/omap-hdcp
+on property:ro.hdcp.support=1
+    insmod /system/lib/modules/omap-hdcp.ko
+    exec /system/bin/hdcp-mknod
+    chown system media /dev/omap-hdcp
+    chmod 0660 /dev/omap-hdcp
 
-#on property:ro.hdcp.support=2
-#    insmod /system/lib/modules/omap-hdcp.ko
-#    exec /system/bin/hdcp-mknod
-#    chown system media /dev/omap-hdcp
-#    chmod 0660 /dev/omap-hdcp
+on property:ro.hdcp.support=2
+    insmod /system/lib/modules/omap-hdcp.ko
+    exec /system/bin/hdcp-mknod
+    chown system media /dev/omap-hdcp
+    chmod 0660 /dev/omap-hdcp
 
 service telnet /system/bin/telnetd
     class core
@@ -724,7 +722,7 @@ service uim /system/bin/uim-sysfs
     group media bluetooth
     oneshot
 
-service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
+service hostapd /system/bin/logwrapper /system/bin/hostapd /data/misc/wifi/hostapd.conf
     socket hostapd_tiap0 dgram 660 wifi wifi
     disabled
     oneshot
@@ -837,30 +835,30 @@ service ap_fmloader /system/bin/logwrapper /system/bin/tiap_loader \
     disabled
     oneshot
 
-#service wlan_loader_rfmd /system/bin/wlan_loader \
-#        -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini -e /pds/wifi/nvs_map.bin
-#    class late_start
-#    disabled
-#    oneshot
+service wlan_loader_rfmd /system/bin/wlan_loader \
+        -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
-#service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/wlan_loader \
-#        -f /system/etc/wifi/fw_tiwlan_ap_rfmd.bin -i /system/etc/wifi/tiwlan_ap_rfmd.ini \
-#        -e /pds/wifi/nvs_map.bin
-#    class late_start
-#    disabled
-#    oneshot
+service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/wlan_loader \
+        -f /system/etc/wifi/fw_tiwlan_ap_rfmd.bin -i /system/etc/wifi/tiwlan_ap_rfmd.ini \
+        -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
 service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
     class late_start
 # we will start as root and wpa_supplicant will switch to user wifi
 # after setting up the capabilities required for WEXT
- user wifi
- group wifi inet keystore
+# user wifi
+# group wifi inet keystore
     socket wpa_tiwlan0 dgram 660 wifi wifi
     disabled
     oneshot
 
-service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
+service dhcpcd_tiwlan0 /system/bin/dhcpcd -ABKL
 	class main
 	disabled
 	oneshot
@@ -918,18 +916,18 @@ service smc /system/bin/startup_smc.sh
 service modemlog /system/bin/modemlog
 	oneshot
 
-service ftmipcd /system/bin/strace -ff -F -tt -s 200 -o /data/trace/uim-sysfs.pid /system/bin/ftmipcd
+service ftmipcd /system/bin/ftmipcd
     class late_start
     user radio
     group radio inet
     oneshot
 
-#service qbplogd /system/bin/qbplogd
-#    class late_start
-#    user radio
-#    group sdcard_rw radio inet
-#    oneshot
-#    disabled
+service qbplogd /system/bin/qbplogd
+    class late_start
+    user radio
+    group sdcard_rw radio inet
+    oneshot
+    disabled
 
 #service dlnasrv /system/bin/dlnasrv
 #    class late_start
@@ -938,11 +936,11 @@ service ftmipcd /system/bin/strace -ff -F -tt -s 200 -o /data/trace/uim-sysfs.pi
 #    oneshot
 #    disabled
 
-#service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
-#    class late_start
-#    group net_bt net_bt_admin
-#    disabled
-#    oneshot
+service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
+    class late_start
+    group net_bt net_bt_admin
+    disabled
+    oneshot
 
 on property:dev.bootcomplete=1
     start savebpver
@@ -956,17 +954,17 @@ service mdm_panicd /system/bin/mdm_panicd
 #    class late_start
 #    oneshot
 
-#service secclkd /system/bin/secclkd
-#    class late_start
-#    socket secclk_socket stream 660 mot_secclkd mot_secclkd
-#    user mot_tpapi
-#    group mot_tpapi mot_sec_rtc mot_secclkd
-#    oneshot
+service secclkd /system/bin/secclkd
+    class late_start
+    socket secclk_socket stream 660 mot_secclkd mot_secclkd
+    user mot_tpapi
+    group mot_tpapi mot_sec_rtc mot_secclkd
+    oneshot
 
 #start Authentec VPN service
-#service vpnclientpm /system/bin/vpnclientpm
-#    oneshot
-#    user root
+service vpnclientpm /system/bin/vpnclientpm
+    oneshot
+    user root
 
 # start syslink daemon
 service syslinkdaemon /system/bin/syslink_daemon.out -f /system/lib/ducati/Notify_MPUSYS_reroute_Test_Core0.xem3 /system/lib/ducati/base_image_app_m3.xem3
@@ -1006,11 +1004,11 @@ service gadget-qbp-diag /system/bin/tty2ttyd /dev/ttyUSB0 /dev/ttyGS3 0 1024
     group radio
     disabled
 
-#on property:ro.bootmode=bp-tools
-#    start tcmd
-#    start gadget-qbp-diag
-#    start wrigley-diag
-#    start logcatd-blan
+on property:ro.bootmode=bp-tools
+    start tcmd
+    start gadget-qbp-diag
+    start wrigley-diag
+    start logcatd-blan
 
 
 service mdm_usb_suspend /system/bin/enable_mdm_usb_suspend.sh
