@@ -113,6 +113,13 @@ PRODUCT_PACKAGES += \
     uim-rfkill \
     liba2dp \
 
+# FM Radio
+PRODUCT_PACKAGES += \
+    com.ti.fm.fmradioif.xml \
+    fmradioif \
+    FmRxApp \
+    FmTxApp \
+    FmService \
 # Release utilities
 PRODUCT_PACKAGES += \
     targa_releaseutils-check_kernel \
@@ -247,8 +254,8 @@ PRODUCT_COPY_FILES += \
 
 # stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
-$(call inherit-product, hardware/ti/wpan/Android.mk)
-#$(call inherit-product, hardware/ti/wpan/tools/fmradio/Android.mk)
+$(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
+#$(call inherit-product, hardware/ti/wpan/tools/FM/Android.mk)
 
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
 $(call inherit-product-if-exists, vendor/google/google-vendor.mk)

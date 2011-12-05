@@ -8,7 +8,6 @@ on post-fs
 
 # prepare generic keypad name
     exec /init_prep_keypad.sh
-    mount yaffs2 /dev/block/mmcblk1p21 /system ro remount
     mount ext3 /dev/block/mmcblk1p21 /system ro noatime nodiratime remount
 
     mount rootfs rootfs / rw remount
