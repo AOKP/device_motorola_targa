@@ -161,11 +161,11 @@ PRODUCT_COPY_FILES += \
 
 # Hijack files
 PRODUCT_COPY_FILES += \
-    device/motorola/solana/root/default.prop:root/default.prop \
-    device/motorola/solana/root-hijack/init.rc:root/init.rc \
-    device/motorola/solana/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
-    device/motorola/solana/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
-    device/motorola/solana/root/ueventd.rc:root/ueventd.rc \
+    device/motorola/targaa/root/default.prop:root/default.prop \
+    device/motorola/targa/root-hijack/init.rc:root/init.rc \
+    device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
+    device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
+    device/motorola/targa/root/ueventd.rc:root/ueventd.rc \
 
 # Permissions files
 PRODUCT_COPY_FILES += \
