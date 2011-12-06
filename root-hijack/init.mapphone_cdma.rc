@@ -567,10 +567,6 @@ on boot
     insmod /system/lib/modules/xt_qtaguid.ko
     insmod /system/lib/modules/xt_quota2.ko
 
-    # disable ipv6
-    write /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6 1
-    chmod 777 /proc/sys/net/ipv6/conf/tiwlan0/disable_ipv6
-    
 # Enable hardware watchdog
     write /sys/devices/platform/omap_wdt/enabled on
 
@@ -722,10 +718,10 @@ service uim /system/bin/uim-sysfs
     group media bluetooth
     oneshot
 
-service hostapd /system/bin/logwrapper /system/bin/hostapd /data/misc/wifi/hostapd.conf
-    socket hostapd_tiap0 dgram 660 wifi wifi
-    disabled
-    oneshot
+#service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
+#    socket hostapd_tiap0 dgram 660 wifi wifi
+#    disabled
+#    oneshot
 
 service hciattach /system/bin/hciattach -l
     class late_start

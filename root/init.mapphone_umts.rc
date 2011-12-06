@@ -216,8 +216,13 @@ on post-fs
     insmod /system/lib/modules/modem_pm_driver.ko
     insmod /system/lib/modules/sec.ko
 # Load Quota2 support modules
-    insmod /system/lib/modules/xt_qtaguid.ko
+    insmod /system/lib/modules/xt_TPROXY.ko
+    insmod /system/lib/modules/xt_TRACE.ko
+    insmod /system/lib/modules/xt_NFQUEUE.ko
+    insmod /system/lib/modules/xt_owner2.ko
     insmod /system/lib/modules/xt_quota2.ko
+    insmod /system/lib/modules/ip6_table.ko
+
 # Install product specific kernel modules
     exec /system/bin/load_modules.sh
 # chown/chmod for FOTA

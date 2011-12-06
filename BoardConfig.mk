@@ -55,6 +55,8 @@ PRODUCT_WIRELESS_TOOLS      := true
 AP_CONFIG_DRIVER_WILINK     := true
 WPA_SUPPL_APPROX_USE_RSSI   := true
 
+# Connectivity data
+BOARD_MOBILEDATA_INTERFACE_NAME := ppp0
 
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
