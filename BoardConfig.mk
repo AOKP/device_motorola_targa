@@ -56,7 +56,7 @@ AP_CONFIG_DRIVER_WILINK     := true
 WPA_SUPPL_APPROX_USE_RSSI   := true
 
 # Connectivity data
-BOARD_MOBILEDATA_INTERFACE_NAME := ppp0
+BOARD_MOBILEDATA_INTERFACE_NAME := "ppp0"
 
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
@@ -132,7 +132,6 @@ endif
 BUILD_FM_RADIO := true
 BUILD_TI_FM_APPS := true
 FM_CHR_DEV_ST := true
-
 
 # OTA Packaging
 TARGET_CUSTOM_RELEASETOOL := ./vendor/cm/tools/squisher
