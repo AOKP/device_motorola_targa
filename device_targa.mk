@@ -27,7 +27,12 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/audio/libaudio.so:/system/lib/libaudio.so \
     device/motorola/targa/prebuilt/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
     device/motorola/targa/prebuilt/audio/libasound.so:/system/lib/libasound.so \
+    device/motorola/targa/prebuilt/audio/liba2dp.so:/system/lib/liba2dp.so \
 #    device/motorola/targa/prebuilt/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
+
+PRODUCT_PACKAGES += \
+    audio_policy.targa \
+    audio.primary.targa \
 
 # Lights
 #PRODUCT_PACKAGES += \
@@ -119,6 +124,7 @@ PRODUCT_PACKAGES += \
     FmRxApp \
     FmTxApp \
     FmService \
+
 # Release utilities
 PRODUCT_PACKAGES += \
     targa_releaseutils-check_kernel \
