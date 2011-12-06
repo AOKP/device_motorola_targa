@@ -133,6 +133,8 @@ BUILD_FM_RADIO := true
 BUILD_TI_FM_APPS := true
 FM_CHR_DEV_ST := true
 
+BOARD_USES_SECURE_SERVICES := true
+
 # OTA Packaging
 TARGET_CUSTOM_RELEASETOOL := ./vendor/cm/tools/squisher
 TARGET_PROVIDES_RELEASETOOLS := true
