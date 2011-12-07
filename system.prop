@@ -19,10 +19,10 @@ ro.ngp_available=1
 ro.modem_available=0
 
 # Default network type.
-# 4 => CDMA/EVDO. To be used until Targa has LTE SFN
-# 7 => GLOBAL.
-# NETWORK_MODE_LTE_CDMA_EVDO  = 8 for ICS
-ro.telephony.default_network=8
+# RADIO_TECHNOLOGY_1xRTT = 6
+# RADIO_TECHNOLOGY_EHRPD = 13
+# RADIO_TECHNOLOGY_LTE = 14 for ICS
+ro.telephony.default_network=14
 ro.com.google.clientid=android-motorola
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html

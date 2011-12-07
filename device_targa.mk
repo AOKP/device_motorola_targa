@@ -48,8 +48,16 @@ PRODUCT_PACKAGES += \
 #    libreverbwrapper \
 #    libvisualizer 
 
+#	 pppd-ril
+#	 rild
+#	 libmock_ril \
+#	 libreference-ril \
+#	 libril_rds \
+	
 # Modem
 PRODUCT_PACKAGES += \
+	libril \
+    Stk\
     libaudiomodemgeneric \
     libreference-cdma-sms 
 
