@@ -1,18 +1,17 @@
+on init
+    export ANDROID_CACHE /cache
+    export DOWNLOAD_CACHE /cache/download
+    export SD_EXT_DIRECTORY /sd-ext
+    export EXTERNAL_STORAGE /mnt/sdcard
+    export PHONE_STORAGE /mnt/emmc
 
-
-
-
-
-
-on post-fs
-
+on post-fs-data
 
 # Backward compatibility
     symlink /dev /dev/netmux
 
 # prepare generic keypad name
     exec /init_prep_keypad.sh
-    mount yaffs2 /dev/block/mmcblk1p23 /system ro remount
     mount ext3 /dev/block/mmcblk1p23 /system ro noatime nodiratime remount
 
     mount rootfs rootfs / rw remount
@@ -23,18 +22,48 @@ on post-fs
     symlink /dev/ttyGS0 /dev/acm0
 
 # Create mountpoints and mount tmpfs
-    mkdir /pds 0775 system system
 
-    mkdir /tmp 0777 system system
-    mount tmpfs tmpfs /tmp size=2m
+    mkdir /mnt 0775 root system
+    mkdir /osh 0755 root root
+    mkdir /preinstall 0755 system system
+    mkdir /pds 0775 system system
+    mkdir /data/tmp 0777 system system
+    mkdir /misc 0770 system misc
+    mkdir /sd-ext 0771 system system
+
+    mkdir /mnt/emmc 0000 system system
+    mkdir /mnt/sdcard 0000 system system
+
+    symlink /data/tmp /tmp
+    symlink /mnt/sdcard /sdcard
+    symlink /mnt/emmc /emmc
+
+    mount tmpfs tmpfs /tmp
+
+    # Same reason as /data above
+    chown system cache /cache
+    chmod 0771 /cache
+
+    chown system misc /misc
+    chmod 0770 /misc
+
+    # This may have been created by the recovery system with odd permissions
+    chown system cache /cache/recovery
+    chmod 0770 /cache/recovery
+
+    #change permissions on vmallocinfo so we can grab it from bugreports
+    chown root log /proc/vmallocinfo
+    chmod 0440 /proc/vmallocinfo
+
+    #change permissions on kmsg & sysrq-trigger so bugreports can grab kthread stacks
+    chown root system /proc/kmsg
+    chmod 0440 /proc/kmsg
+    chown root system /proc/sysrq-trigger
+    chmod 0220 /proc/sysrq-trigger
 
 #Set the default value for bluedroid_ref
-    write /data/tmp/bluedroid_ref 0
-    chown system system /data/tmp/bluedroid_ref
-
-
-
-
+#    write /data/tmp/bluedroid_ref 0
+#    chown system system /data/tmp/bluedroid_ref
 
 # Configure kernel options
     # Enable automatic power control for EHCI USB IPC
@@ -84,7 +113,6 @@ on post-fs
 # Mount mtd partitions
     # mount /pds as r/w
     # We chown/chmod /pds again so because mount is run as root + defaults
-    mount yaffs2 mtd@pds /pds nosuid nodev no-checkpoint
     exec /system/bin/logwrapper /system/bin/mount_ext3.sh pds /pds
     chown system system /pds
     chmod 0775 /pds
@@ -114,6 +142,9 @@ on post-fs
     mkdir /data/system 0771 system system
     # wifi dirs
     mkdir /data/misc/wifi 0770 wifi wifi
+    chmod 0770 /data/misc/wifi
+
+    mkdir /data/misc/wifi/hostapd.sockets 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
@@ -130,16 +161,13 @@ on post-fs
     mkdir /tmp/commdrv 0770 radio radio
     mkdir /data/comm_drv 0770 radio radio
     # bluetooth power up/down interface
+    write sys/class/rfkill/rfkill0/state 0
+    write sys/class/rfkill/rfkill0/type bluetooth
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chmod 0660 /sys/class/rfkill/rfkill0/state
-    # following two dirs are for storing BP Flex and PDS files. NVM Daemon is using these folders
-    mkdir /data/bp_nvm
-    chown radio radio /data/bp_nvm
-    chmod 0770 /data/bp_nvm
-    mkdir /pds/bp_nvm
-    chown radio radio /pds/bp_nvm
-    chmod 0770 /pds/bp_nvm
+    chmod 0664 /sys/class/rfkill/rfkill0/type
+    chmod 0664 /sys/class/rfkill/rfkill0/state
+
     # create logger folder
     mkdir /data/logger 0770 radio log
     chown radio log /data/logger
@@ -215,13 +243,6 @@ on post-fs
     insmod /system/lib/modules/netmux_linkdriver.ko
     insmod /system/lib/modules/modem_pm_driver.ko
     insmod /system/lib/modules/sec.ko
-# Load Quota2 support modules
-    insmod /system/lib/modules/xt_TPROXY.ko
-    insmod /system/lib/modules/xt_TRACE.ko
-    insmod /system/lib/modules/xt_NFQUEUE.ko
-    insmod /system/lib/modules/xt_owner2.ko
-    insmod /system/lib/modules/xt_quota2.ko
-    insmod /system/lib/modules/ip6_table.ko
 
 # Install product specific kernel modules
     exec /system/bin/load_modules.sh
@@ -248,6 +269,7 @@ on boot
     setprop ro.sys.atvc_allow_ap_mot_log 0
     setprop ro.sys.atvc_allow_gki_log 0
 # Change the ownership of led files.
+   chown media media /sys/class/leds/af-led/brightness
    chown system system /sys/class/leds/lcd-backlight/als
    chown system system /sys/class/leds/lcd-backlight/pwm_mode
    chown system system /sys/class/leds/lcd-backlight/brightness
@@ -291,7 +313,12 @@ on boot
    chown system system /sys/class/backlight/430_540_960_amoled_bl/brightness
 # Change the ownership of touch screen file
    chown root mot_tcmd /sys/bus/i2c/drivers/qtouch-obp-ts/2-004a/irq_enable
-   # changes for enabling ducati...
+# Change the ownership of cpcap
+   chmod 0666 /dev/cpcap
+   chmod 0666 /dev/cpcap_batt
+   chmod 0666 /dev/cpcap_mot_rtc
+   chmod 0666 /dev/cpcap_uc
+# changes for enabling ducati...
    chmod 0660 /dev/syslink-proc4430
    chown media media /dev/syslink-proc4430
    chmod 0660 /dev/syslink-procmgr
@@ -418,8 +445,8 @@ on boot
    chown system system /sys/devices/platform/omapdss/display2/timings
    chown system system /sys/devices/platform/omapdss/display3/timings
    # change permissions for Tiler driver
-   chmod 0660 /dev/tiler
-   chmod 0660 /dev/dmm
+   chmod 0777 /dev/tiler
+   chmod 0777 /dev/dmm
    chown media media /dev/tiler
    chown media media /dev/dmm
    # Change permission of tiler's free_page_max to allow mot_osh access
@@ -449,6 +476,15 @@ on boot
     write /proc/sys/kernel/softlockup_panic 1
 # Load Authentec VPN kernel module
     insmod /system/lib/modules/vpnclient.ko
+
+# Load Quota2 support modules
+    insmod /system/lib/modules/ip6_tables.ko
+    insmod /system/lib/modules/xt_TPROXY.ko
+    insmod /system/lib/modules/xt_TRACE.ko
+    insmod /system/lib/modules/xt_NFQUEUE.ko
+    insmod /system/lib/modules/xt_qtaguid.ko
+    insmod /system/lib/modules/xt_quota2.ko
+
 # Enable hardware watchdog
     write /sys/devices/platform/omap_wdt/enabled on
 # Start services
@@ -529,26 +565,7 @@ on property:ro.hdcp.support=2
     exec /system/bin/hdcp-mknod
     chown system media /dev/omap-hdcp
     chmod 0660 /dev/omap-hdcp
-# The following services are added by moto
-# Set property strings for ATVC logging
-# This conditionally sets :
-# ro.sys.atvc_allow_bp_log
-# ro.sys.atvc_allow_gki_log
-# ro.sys.atvc_allow_ap_mot_log
-# ro.sys.atvc_allow_all_core
-# ro.sys.atvc_allow_res_core
-# ro.sys.atvc_allow_res_panic
-# ro.sys.atvc_allow_efem
-# ro.sys.atvc_allow_netmon_usb
-# ro.sys.atvc_allow_netmon_ih
-# ro.sys.atvc_allow_all_adb
-service atvc /system/bin/dbvc_atvc_property_set
-    class core
-    user system
-    group system
-    oneshot
-#service watchdogd /system/bin/watchdogd
-# class core
+
 service telnet /system/bin/telnetd
     class core
     oneshot
@@ -583,9 +600,11 @@ service battd /system/bin/battd
     user root
     group mot_accy mot_pwric
     oneshot
-service catcommands /system/bin/catcommands
-    class core
-    group radio
+
+#service catcommands /system/bin/catcommands
+#    class core
+#    group radio
+
 service whisperd /system/bin/whisperd /dev/ttyO1
     class late_start
     user mot_whisper
@@ -613,36 +632,34 @@ service uim /system/bin/uim-sysfs
     user root
     group media bluetooth
     oneshot
-service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
-    class late_start
-    socket hostapd_tiap0 dgram 660 wifi wifi
-    disabled
-    oneshot
+
+#service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
+#    class late_start
+#    socket hostapd_tiap0 dgram 660 wifi wifi
+#    disabled
+#    oneshot
+
 service hciattach /system/bin/hciattach -l
     class late_start
     user bluetooth
     group bluetooth net_bt_admin
     disabled
 service nap /system/bin/sdptool add NAP
-    class late_start
     user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
 service del_nap /system/bin/sdptool remove NAP
-    class late_start
     user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
 service panu /system/bin/sdptool add PANU
-    class late_start
     user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
 service del_panu /system/bin/sdptool remove PANU
-    class late_start
     user bluetooth
     group bluetooth net_bt_admin
     disabled
@@ -653,7 +670,6 @@ service napics /system/bin/sh /system/bin/napics.sh
     disabled
     oneshot
 service btdhcpd /system/bin/dnsmasq -C /system/etc/btpan.conf
-    class late_start
     user root
     disabled
     oneshot
@@ -704,7 +720,7 @@ service panic_daemon /system/usr/bin/panic_daemon
     onrestart exec /system/bin/reboot
 # Ecompass daemon
 service akmd2 /system/bin/akmd2
-    class late_start
+    class core
     user compass
     group compass misc input
 service wlan_loader /system/bin/wlan_loader -f /system/etc/wifi/fw_wlan1281.bin -i /system/etc/wifi/tiwlan.ini -e /pds/wifi/nvs_map.bin
@@ -715,10 +731,17 @@ service ap_fmloader /system/bin/logwrapper /system/bin/tiap_loader -f /system/et
     class late_start
     disabled
     oneshot
-service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/wlan_loader -f /system/etc/wifi/fw_tiwlan_ap_rfmd.bin -i /system/etc/wifi/tiwlan_ap_rfmd.ini -e /pds/wifi/nvs_map.bin
+
+service wlan_loader_rfmd /system/bin/wlan_loader -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini -e /pds/wifi/nvs_map.bin
     class late_start
     disabled
     oneshot
+
+service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/tiap_loader -f /system/etc/wifi/fw_tiwlan_ap_rfmd.bin -i /system/etc/wifi/tiwlan_ap_rfmd.ini -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
+
 service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
     class late_start
 # we will start as root and wpa_supplicant will switch to user wifi
@@ -728,39 +751,65 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/mi
     socket wpa_tiwlan0 dgram 660 wifi wifi
     disabled
     oneshot
-service dhcpcd_tiwlan0 /system/bin/dhcpcd
-    class late_start
-    disabled
-    oneshot
-service dhcpcd_bnep0 /system/bin/dhcpcd
-    class late_start
-    disabled
-    oneshot
-service dhcpcd_usbeth0 /system/bin/dhcpcd
-    class late_start
-    disabled
-    oneshot
-service baseimage /system/bin/dspexec -v -T /system/lib/dsp/baseimage.dof
-    class media_early_init
-    user media
-    group media graphics
-    oneshot
-service pvrsrv /system/bin/pvrsrvinit
-    class late_start
-    user root
-    oneshot
+
+service dhcpcd_tiwlan0 /system/bin/dhcpcd -ABKL
+	class main
+	disabled
+	oneshot
+
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+	class main
+	disabled
+	oneshot
+
+service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
+	class main
+	disabled
+	oneshot
+
+service iprenew_tiwlan0 /system/bin/dhcpcd -n
+	class main
+	disabled
+	oneshot
+
+service iprenew_p2p /system/bin/dhcpcd -n
+	class main
+	disabled
+	oneshot
+
+service iprenew_bnep0 /system/bin/dhcpcd -n
+	class main
+	disabled
+	oneshot
+
 service bugtogo /system/bin/bugtogo.sh
     class late_start
     disabled
     user root
     oneshot
     keycodes 114 115 # default to VOLUME_DOWN + VOLUME_UP
+
+service baseimage /system/bin/dspexec -v -T /system/lib/dsp/baseimage.dof
+    class media_early_init
+    user media
+    group media graphics
+    oneshot
+service pvrsrv /system/bin/pvrsrvinit
+	class core
+	user root
+	oneshot
+
 service smc /system/bin/startup_smc.sh
     class core
     user mot_tpapi
     group mot_tpapi
     disabled
     oneshot
+
+service modemlog /system/bin/modemlog
+    class core
+    oneshot
+
 service locDrv /system/usr/bin/brcm_guci_drv -config /system/etc/gpsconfig.xml
     class late_start
     user radio
@@ -818,21 +867,13 @@ service vpnclientpm /system/bin/vpnclientpm
     class late_start
     oneshot
     user root
-service loadpreinstalls /system/bin/logwrapper /system/bin/loadpreinstalls.sh
-    user system
-    group system
-    disabled
-    oneshot
+
 # start syslink daemon
 service syslinkdaemon /system/bin/syslink_daemon.out -f /system/lib/ducati/Notify_MPUSYS_reroute_Test_Core0.xem3 /system/lib/ducati/base_image_app_m3.xem3
     class core
     user media
     group video
-#IKCBS-229 start RescueStarter for MobileRescue
-service RescueStarter /system/bin/RescueStarter
-    user nobody
-    group input graphics
-    class late_start
+
 on property:ro.bootmode=bp-tools
     start tcmd
 #Check available storage space to execute device encryption or decryprion

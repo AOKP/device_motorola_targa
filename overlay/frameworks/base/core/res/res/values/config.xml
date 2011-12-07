@@ -41,7 +41,7 @@
          true here reverses that logic. -->
     <bool name="config_reverseDefaultRotation">false</bool>
 
-    <integer name="config_deskDockKeepsScreenOn">0</integer>
+    <integer name="config_deskDockKeepsScreenOn">1</integer>
     <integer name="config_carDockKeepsScreenOn">1</integer>
 
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
@@ -219,8 +219,8 @@
          true here reverses that logic. -->
     <bool name="config_reverseDefaultRotation">false</bool>
 
-    <!-- The number of degrees to rotate the display when the keyboard is open. -->
-    <integer name="config_lidOpenRotation">90</integer>
+    <!-- The number of degrees to rotate the display when the keyboard is open.
+    <integer name="config_lidOpenRotation">90</integer> -->
 
     <!-- If true, the screen can be rotated via the accelerometer in all 4
          rotations as the default behavior. -->

@@ -81,4 +81,3 @@ include $(BUILD_SHARED_LIBRARY)
 endif
 endif #BOARD_USES_AUDIO_LEGACY
 
-
