@@ -12,17 +12,16 @@ persist.ril.modem.mode =1
 # This defines the max event window manager can
 # handle in 1 s. We may adjust this # for performance
 # reason later
-windowsmgr.max_events_per_sec=180
+windowsmgr.max_events_per_sec=100
 
 # USB modes allowed for UI and switching
 ro.ngp_available=1
 ro.modem_available=0
 
 # Default network type.
-# RADIO_TECHNOLOGY_1xRTT = 6
-# RADIO_TECHNOLOGY_EHRPD = 13
-# RADIO_TECHNOLOGY_LTE = 14 for ICS
-ro.telephony.default_network=14
+# 4 => CDMA/EVDO. To be used until Targa has LTE SFN
+# 7 => GLOBAL.
+ro.telephony.default_network=7
 ro.com.google.clientid=android-motorola
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
@@ -97,8 +96,8 @@ persist.mot.usb.mediasync = 1
 # persist.usb.android_config = 1
 
 # System property for SMC
-ro.service.start.smc=1
-ro.HorizontalBUA=true
+ro.service.start.smc=0
+ro.HorizontalBUA=false
 #Proximity sensor debounce time
 mot.proximity.delay=150
 # disable touch below 60 pixels
@@ -233,7 +232,7 @@ ro.media.enc.aud.codec=qcelp
 ro.media.enc.aud.bps=13300 
 ro.media.enc.aud.ch=1 
 ro.media.enc.aud.hz=8000 
-ro.com.google.gmsversion=2.3_r6 
+ro.com.google.gmsversion=2.3_r7 
 ro.mot.phonemode.vzw4gphone=1 
 ro.mot.lte_on_cdma=1 
 lte_ril.libpath=/system/lib/lib-mot-lte-ril.so 
