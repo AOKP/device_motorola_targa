@@ -43,7 +43,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \  	
     audio_policy.targa \	  	
-    audio.primary.targa \
+    audio.primary.targa 
     
 # Modem
 PRODUCT_PACKAGES += \
@@ -86,7 +86,7 @@ PRODUCT_PACKAGES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     bt_sco_app \
-    uim-sysfs \
+    uim-sysfs 
 
 # FM Radio
 PRODUCT_PACKAGES += \
@@ -94,7 +94,7 @@ PRODUCT_PACKAGES += \
     fmradioif \
     FmRxApp \
     FmTxApp \
-    FmService \
+    FmService 
 
 # Release utilities
 PRODUCT_PACKAGES += \
