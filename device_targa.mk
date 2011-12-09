@@ -41,6 +41,10 @@ PRODUCT_COPY_FILES += \
 #    sensors.targa \
 #    IMSCServer \
 
+PRODUCT_PACKAGES += \  	
+    audio_policy.targa \	  	
+    audio.primary.targa \
+    
 # Modem
 PRODUCT_PACKAGES += \
     Stk\
