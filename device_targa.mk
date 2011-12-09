@@ -19,7 +19,7 @@ PRODUCT_PACKAGES := \
     charger_res_images
 
 # Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
-PRODUCT_COPY_FILES += \\
+PRODUCT_COPY_FILES += \
     device/motorola/targa/audio/acoustics.default.so:/system/lib/hw/acoustics.targa.so \
     device/motorola/targa/audio/alsa.omap4.so:/system/lib/hw/alsa.targa.so \
     device/motorola/targa/audio/libasound.so:/system/lib/libasound.so \
