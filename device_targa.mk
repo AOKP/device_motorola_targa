@@ -20,13 +20,13 @@ PRODUCT_PACKAGES := \
 
 # Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
 PRODUCT_COPY_FILES += \\
-    device/motorola/targa/prebuilt/audio/acoustics.default.so:/system/lib/hw/acoustics.targa.so
-    device/motorola/targa/prebuilt/audio/alsa.omap4.so:/system/lib/hw/alsa.targa.so \
-    device/motorola/targa/prebuilt/audio/libasound.so:/system/lib/libasound.so \
-    device/motorola/targa/prebuilt/audio/libaudio.so:/system/lib/libaudio.so \
-    device/motorola/targa/prebuilt/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
-    device/motorola/targa/prebuilt/audio/libaudiopolicy.so:/system/lib/libaudiopolicy.so \
-    device/motorola/targa/prebuilt/audio/liba2dp.so:/system/lib/liba2dp.so \
+    device/motorola/targa/audio/acoustics.default.so:/system/lib/hw/acoustics.targa.so
+    device/motorola/targa/audio/alsa.omap4.so:/system/lib/hw/alsa.targa.so \
+    device/motorola/targa/audio/libasound.so:/system/lib/libasound.so \
+    device/motorola/targa/audio/libaudio.so:/system/lib/libaudio.so \
+    device/motorola/targa/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
+    device/motorola/targa/audio/libaudiopolicy.so:/system/lib/libaudiopolicy.so \
+    device/motorola/targa/audio/liba2dp.so:/system/lib/liba2dp.so \
 
 # Hardware HALs
 PRODUCT_COPY_FILES += \
