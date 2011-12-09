@@ -124,7 +124,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     FileManager \
-    AndroidTerm
+    AndroidTerm \
+    LatinImeDictionaryPack
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
