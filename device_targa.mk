@@ -58,6 +58,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	libril \
     Stk\
+    IMSCServer \
     libaudiomodemgeneric \
     libreference-cdma-sms 
 
