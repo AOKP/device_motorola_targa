@@ -15,24 +15,22 @@ PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 PRODUCT_PACKAGES := \
-	charger \
-	charger_res_images
+    charger \
+    charger_res_images
+
+# Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
+PRODUCT_COPY_FILES += \\
+    device/motorola/targa/prebuilt/audio/acoustics.default.so:/system/lib/hw/acoustics.targa.so
+    device/motorola/targa/prebuilt/audio/alsa.omap4.so:/system/lib/hw/alsa.targa.so \
+    device/motorola/targa/prebuilt/audio/libasound.so:/system/lib/libasound.so \
+    device/motorola/targa/prebuilt/audio/libaudio.so:/system/lib/libaudio.so \
+    device/motorola/targa/prebuilt/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
+    device/motorola/targa/prebuilt/audio/libaudiopolicy.so:/system/lib/libaudiopolicy.so \
+    device/motorola/targa/prebuilt/audio/liba2dp.so:/system/lib/liba2dp.so \
 
 # Hardware HALs
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/imgtec/gralloc.omap4.so:system/lib/hw/gralloc.omap4.so \
-
-# Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
-PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt/audio/libaudio.so:/system/lib/libaudio.so \
-    device/motorola/targa/prebuilt/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
-    device/motorola/targa/prebuilt/audio/libasound.so:/system/lib/libasound.so \
-#    device/motorola/targa/prebuilt/audio/liba2dp.so:/system/lib/liba2dp.so \
-#    device/motorola/targa/prebuilt/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
-
-PRODUCT_PACKAGES += \
-    audio_policy.targa \
-    audio.primary.targa \
 
 # Lights
 #PRODUCT_PACKAGES += \
@@ -41,22 +39,10 @@ PRODUCT_PACKAGES += \
 # Sensors
 #PRODUCT_PACKAGES += \
 #    sensors.targa \
+#    IMSCServer \
 
-#PRODUCT_PACKAGES += \
-#    libaudiopolicy \
-#    libbundlewrapper \
-#    libreverbwrapper \
-#    libvisualizer 
-
-#	 pppd-ril
-#	 rild
-#	 libmock_ril \
-#	 libreference-ril \
-#	 libril_rds \
-	
 # Modem
 PRODUCT_PACKAGES += \
-	libril \
     Stk\
     libaudiomodemgeneric \
     libreference-cdma-sms 
@@ -73,31 +59,6 @@ PRODUCT_PACKAGES += \
     libnotify \
     libd2cmap \
     libtimemmgr 
-#    dmm_daemontest.out \
-#    ducati_load.out \
-#    event_listener.out \
-#    gateMPApp.out \
-#    heapBufMPApp.out \
-#    heapMemMPApp.out \
-#    interm3.out \
-#    listMPApp.out \
-#    memmgrserver.out \
-#    messageQApp.out \
-#    nameServerApp.out \
-#    notifyping.out \
-#    procMgrApp.out \
-#    rcm_daemontest.out \
-#    rcm_multiclienttest.out \
-#    rcm_multitest.out \
-#    rcm_multithreadtest.out \
-#    rcm_singletest.out \
-#    sharedRegionApp.out \
-#    slpmresources.out \
-#    slpmtest.out \
-#    slpmtransport.out \
-#    utilsApp.out \
-#    libsyslink_ipc_listener \
-#    libomap_mm_library_jni \
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -119,8 +80,6 @@ PRODUCT_PACKAGES += \
     libhostapdcli
 
 # Bluetooth
-#    uim-rfkill \
-#    liba2dp \
 PRODUCT_PACKAGES += \
     bt_sco_app \
     uim-sysfs \
@@ -201,6 +160,8 @@ PRODUCT_COPY_FILES += \
 # Prebuilts
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/battd:system/bin/battd \
+    device/motorola/targa/prebuilt/bin/hijack:system/bin/hijack \
+    device/motorola/targa/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
     device/motorola/targa/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
     device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
@@ -265,8 +226,10 @@ $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
 #$(call inherit-product, hardware/ti/wpan/tools/FM/Android.mk)
 
-$(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
 $(call inherit-product-if-exists, vendor/google/google-vendor.mk)
+
+$(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
+
 
 # stuff common to all Motorola phones -- disabled for Sandbox
 $(call inherit-product, device/motorola/common/common_hijack.mk)
