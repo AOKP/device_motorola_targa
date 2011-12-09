@@ -44,6 +44,7 @@ PRODUCT_COPY_FILES += \
 # Modem
 PRODUCT_PACKAGES += \
     Stk\
+    IMSCServer \
     libaudiomodemgeneric \
     libreference-cdma-sms 
 
