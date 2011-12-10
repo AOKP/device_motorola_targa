@@ -42,7 +42,7 @@ PRODUCT_COPY_FILES += \
 #    IMSCServer \
 
 PRODUCT_PACKAGES += \  	
-    audio_policy.targa \	  	
+    audio.policy.targa \	  	
     audio.primary.targa 
     
 # Modem

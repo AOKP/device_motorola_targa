@@ -22,7 +22,7 @@ LOCAL_STATIC_LIBRARIES := \
 #    libaudiopolicy_legacy
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
-LOCAL_MODULE:= audio_policy.targa
+LOCAL_MODULE:= audio.policy.targa
 LOCAL_MODULE_TAGS := optional
 
 ifeq ($(BOARD_HAVE_BLUETOOTH),true)
