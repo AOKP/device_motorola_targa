@@ -18,6 +18,13 @@ windowsmgr.max_events_per_sec=100
 ro.ngp_available=1
 ro.modem_available=0
 
+telephony.lteOnCdmaDevice=1
+
+# Turn on IMS by default
+persist.radio.imsregrequired=1
+persist.radio.imsallowmtsms=1
+persist.radio.imsfwloglevel=3
+
 # Default network type.
 # 4 => CDMA/EVDO. To be used until Targa has LTE SFN
 # 7 => GLOBAL
@@ -29,9 +36,6 @@ ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/
 ro.cdma.home.operator.numeric=310004	
 ro.cdma.home.operator.alpha=Verizon
 ro.config.vc_call_vol_steps=7
-telephony.lteOnCdmaDevice=1
-persist.radio.imsregrequired=1
-persist.radio.imsallowmtsms=1
 
 # wlan interface
 wifi.interface = tiwlan0
