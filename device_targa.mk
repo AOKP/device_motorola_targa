@@ -202,6 +202,10 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/imgtec/libusc.so:system/lib/libusc.so \
     device/motorola/targa/prebuilt/imgtec/libdrm.so:system/lib/libdrm.so \
 
+FRAMEWORKS_BASE_SUBDIRS += \  	
+    $(addsuffix /java, omapmmlib)
+ 	
+
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
