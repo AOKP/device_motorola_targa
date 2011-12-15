@@ -18,7 +18,7 @@ PRODUCT_PACKAGES := \
     charger \
     charger_res_images
 
-# Audio sucks currently.  Moto customized alsa_sound and while I'm working it out, I'll use phone libs.  blech.
+# Audio
 PRODUCT_COPY_FILES += \
     device/motorola/targa/audio/acoustics.default.so:/system/lib/hw/acoustics.targa.so \
     device/motorola/targa/audio/alsa.omap4.so:/system/lib/hw/alsa.targa.so \
@@ -32,19 +32,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/imgtec/gralloc.omap4.so:system/lib/hw/gralloc.omap4.so \
 
-# Lights
+# Hardware HALs
 #PRODUCT_PACKAGES += \
-#    lights.targa 
-
-# Sensors
-#PRODUCT_PACKAGES += \
+#    lights.targa \
 #    sensors.targa \
 #    IMSCServer \
 
 PRODUCT_PACKAGES += \
-    audio_policy.targa \
-    audio.primary.targa
-    
+    audio.primary.targa \
+    audio_policy.targa 
+
 # Modem
 PRODUCT_PACKAGES += \
     Stk \
@@ -120,12 +117,12 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     librs_jni \
-    com.android.future.usb.accessory
+    com.android.future.usb.accessory \
+    libjni_pinyinime 
 
 PRODUCT_PACKAGES += \
     FileManager \
     AndroidTerm \
-    DSPManager \
     UserDictionaryProvider
 
 # Rootfs files
@@ -202,10 +199,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/imgtec/libusc.so:system/lib/libusc.so \
     device/motorola/targa/prebuilt/imgtec/libdrm.so:system/lib/libdrm.so \
 
-FRAMEWORKS_BASE_SUBDIRS += \  	
-    $(addsuffix /java, omapmmlib)
- 	
-
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -234,6 +227,7 @@ $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
 #$(call inherit-product, hardware/ti/wpan/tools/FM/Android.mk)
 
 $(call inherit-product-if-exists, vendor/google/google-vendor.mk)
+$(call inherit-product-if-exists, vendor/verizon/verizon-vendor.mk)
 
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
 
