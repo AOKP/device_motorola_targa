@@ -132,6 +132,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/init.rc:system/etc/rootfs/init.rc \
     device/motorola/targa/root/init.mapphone_cdma.rc:system/etc/rootfs/init.mapphone_cdma.rc \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
+    device/motorola/targa/init.targa.usb.rc:root/init.targa.usb.rc \
     device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
 
 # Hijack files

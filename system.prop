@@ -103,6 +103,8 @@ ro.cdma.nbpcd=1
 persist.mot.usb.mediasync = 1
 # persist.usb.android_config = 1
 
+persist.sys.usb.config=mass_storage,adb
+
 # System property for SMC
 ro.service.start.smc=1
 ro.HorizontalBUA=true

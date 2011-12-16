@@ -1,3 +1,5 @@
+import init.targa.usb.rc
+
 on init
     export ANDROID_CACHE /cache
     export DOWNLOAD_CACHE /cache/download
