@@ -610,7 +610,7 @@ service rild_tcmd /system/bin/rild_tcmd
 
 service battd /system/bin/battd
     class core
-    socket battdsock stream 0660 mot_accy mot_accy
+    socket battdsock stream 0666 mot_accy mot_accy
     user root
     group mot_accy mot_pwric
     oneshot
@@ -773,8 +773,8 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/mi
     class late_start
 # we will start as root and wpa_supplicant will switch to user wifi
 # after setting up the capabilities required for WEXT
-# user wifi
-# group wifi inet keystore
+#   user wifi
+#   group wifi inet keystore
     socket wpa_tiwlan0 dgram 660 wifi wifi
     disabled
     oneshot
@@ -833,6 +833,10 @@ service smc /system/bin/startup_smc.sh
     disabled
     oneshot
 
+service modemlog /system/bin/modemlog
+    class core
+    oneshot
+
 service locDrv /system/usr/bin/brcm_guci_drv -config /system/etc/gpsconfig.xml
     class late_start
     user radio
@@ -841,10 +845,6 @@ service locDrv /system/usr/bin/brcm_guci_drv -config /system/etc/gpsconfig.xml
 service pm_init /system/bin/sh /system/usr/bin/pm_init.sh
     class late_start
     oneshot
-
-service modemlog /system/bin/modemlog
-   class core
-   oneshot
 
 service gkilogd /system/bin/gkilogd
     class late_start

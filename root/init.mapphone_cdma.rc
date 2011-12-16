@@ -305,6 +305,10 @@ on early-boot
 
 on boot
 
+# Enable ADB
+    exec /usbcheck.sh
+
+
 # Define Motorola DBVC ATVC Property defaults (failsafe properties)
     setprop ro.sys.atvc_allow_netmon_usb 0
     setprop ro.sys.atvc_allow_netmon_ih 0
@@ -561,7 +565,7 @@ on boot
     insmod /system/lib/modules/em_u32.ko
 
 # Load Authentec VPN kernel module
-#    insmod /system/lib/modules/vpnclient.ko
+    insmod /system/lib/modules/vpnclient.ko
 
 # Load Quota2 support modules
 #    insmod /system/lib/modules/ip6_tables.ko

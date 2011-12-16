@@ -9,7 +9,7 @@ on post-fs-data
 
 # prepare generic keypad name
     exec /init_prep_keypad.sh
-    mount ext3 /dev/block/mmcblk1p21 ro noatime nodiratime remount
+    mount ext3 /dev/block/mmcblk1p21 /system ro noatime nodiratime remount
     mount rootfs rootfs / rw remount
 
     mkdir /cdrom 0770 system system
@@ -181,8 +181,8 @@ on post-fs-data
     chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
     # allow net_raw to have access to /dev/socket directory
-    chown root net_raw /dev/socket
-    chmod 0775 /dev/socket
+#    chown root net_raw /dev/socket
+#    chmod 0775 /dev/socket
 
     # allow system to modify cpufreq control files
     chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor

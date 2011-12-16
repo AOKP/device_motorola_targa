@@ -132,7 +132,8 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/init.rc:system/etc/rootfs/init.rc \
     device/motorola/targa/root/init.mapphone_cdma.rc:system/etc/rootfs/init.mapphone_cdma.rc \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
-    device/motorola/targa/root/init.targa.usb.rc:root/init.targa.usb.rc \
+    device/motorola/targa/root/init.targa.usb.rc:system/etc/rootfs/init.targa.usb.rc \
+    device/motorola/targa/root/usbcheck.sh:system/etc/rootfs/usbcheck.sh \
     device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
 
 # Hijack files
@@ -141,6 +142,8 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root-hijack/init.rc:root/init.rc \
     device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
     device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
+    device/motorola/targa/root/init.mapphone.usb.rc:root/init.mapphone.usb.rc \
+    device/motorola/targa/root/usbcheck.sh:root/usbcheck.sh \
     device/motorola/targa/root/ueventd.rc:root/ueventd.rc \
 
 # Permissions files
