@@ -32,7 +32,7 @@ $(file) : device/motorola/$(TARGET_BOOTLOADER_BOARD_NAME)/audio/libasound.so
 	@echo "Copy libasound.so -> $@"
 	@mkdir -p $(dir $@)
 	@rm -rf $@
-	$(hide) cp -a device/motorola/targa/audio/libasound.so $@
+	$(hide) cp -a device/motorola/$(TARGET_BOOTLOADER_BOARD_NAME)/audio/libasound.so $@
 
 file := $(LIBAUDIO_INTERMEDIATES_PREREQS)/libaudiopolicy.so
 $(file) : device/motorola/$(TARGET_BOOTLOADER_BOARD_NAME)/audio/libaudiopolicy.so

@@ -122,7 +122,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     FileManager \
-    AndroidTerm \
     UserDictionaryProvider
 
 # Rootfs files
