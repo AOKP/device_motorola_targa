@@ -165,6 +165,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/hijack:system/bin/hijack \
     device/motorola/targa/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
     device/motorola/targa/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
+    device/motorola/targa/prebuilt/bin/oem-iptables-init.sh:system/bin/oem-iptables-init.sh \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
     device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
     device/motorola/targa/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
