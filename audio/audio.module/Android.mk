@@ -16,8 +16,8 @@ LOCAL_SHARED_LIBRARIES := \
     libm \
     liba2dp \
 
-LOCAL_STATIC_LIBRARIES := \
-    libmedia_helper
+#LOCAL_STATIC_LIBRARIES := \
+#    libmedia_helper
 
 LOCAL_WHOLE_STATIC_LIBRARIES := \
     libaudiohw_legacy
