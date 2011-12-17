@@ -67,18 +67,14 @@ PRODUCT_PACKAGES += \
     wlan_loader \
     wlan_cu \
     dhcpcd.conf \
-    wpa_supplicant.conf \
-    iwmulticall \
-    hostap \
-    hostapd.conf 
+    wpa_supplicant.conf 
 
 # HotSpot
 PRODUCT_PACKAGES += \
     tiap_loader \
     tiap_cu \
     hostap \
-    hostapd.conf \
-    libhostapdcli
+    hostapd.conf 
 
 # Bluetooth
 PRODUCT_PACKAGES += \
