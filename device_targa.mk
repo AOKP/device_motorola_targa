@@ -39,6 +39,7 @@ PRODUCT_COPY_FILES += \
 #    IMSCServer \
 
 PRODUCT_PACKAGES += \
+	libmeditra \
     audio.primary.targa \
     audio_policy.targa 
 
