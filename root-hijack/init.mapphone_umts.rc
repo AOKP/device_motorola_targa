@@ -651,11 +651,11 @@ service uim /system/bin/uim-sysfs
     group media bluetooth
     oneshot
 
-service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
-    class late_start
-    socket hostapd_tiap0 dgram 660 wifi wifi
-    disabled
-    oneshot
+#service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
+#    class late_start
+#    socket hostapd_tiap0 dgram 660 wifi wifi
+#    disabled
+#    oneshot
 
 service hciattach /system/bin/hciattach -l
     class late_start
@@ -858,12 +858,12 @@ service fmradio /system/bin/fmradioserver
     group bluetooth net_bt_admin net_raw net_admin misc
     disabled
 
-service dlnasrv /system/bin/dlnasrv
-    class late_start
-    user mot_dlna
-    group system net_admin sdcard_rw new_raw inet mount misc
-    oneshot
-    disabled
+#service dlnasrv /system/bin/dlnasrv
+#    class late_start
+#    user mot_dlna
+#    group system net_admin sdcard_rw new_raw inet mount misc
+#    oneshot
+#    disabled
 
 service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
     class late_start

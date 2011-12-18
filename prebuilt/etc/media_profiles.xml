@@ -107,7 +107,7 @@
 
         </EncoderProfile>
 
-        <ImageEncoding quality="93" />
+        <ImageEncoding quality="95" />
         <ImageEncoding quality="80" />
         <ImageEncoding quality="70" />
         <ImageDecoding memCap="20000000" />
@@ -145,7 +145,7 @@
 
         </EncoderProfile>
 
-        <ImageEncoding quality="93" />
+        <ImageEncoding quality="95" />
         <ImageEncoding quality="80" />
         <ImageEncoding quality="70" />
         <ImageDecoding memCap="20000000" />
@@ -187,7 +187,7 @@
         minSampleRate="16000" maxSampleRate="44100"
         minChannels="1" maxChannels="1" />
 
-    <AudioEncoderCap name="amrnb" enabled="false"
+    <AudioEncoderCap name="amrnb" enabled="disable"
         minBitRate="5525" maxBitRate="12200"
         minSampleRate="8000" maxSampleRate="8000"
         minChannels="1" maxChannels="1" />

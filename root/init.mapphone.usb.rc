@@ -52,3 +52,4 @@ on property:sys.usb.config=mtp,adb
     start adbd
     setprop sys.usb.state $sys.usb.config
 
+

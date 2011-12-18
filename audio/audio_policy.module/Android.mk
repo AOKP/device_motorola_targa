@@ -15,8 +15,8 @@ LOCAL_SHARED_LIBRARIES:= \
     libaudiopolicy \
     libc
 
-#LOCAL_STATIC_LIBRARIES := \
-#    libmedia_helper
+LOCAL_STATIC_LIBRARIES := \
+    libmedia_helper
 
 LOCAL_WHOLE_STATIC_LIBRARIES:= \
     libaudiopolicy_legacy
