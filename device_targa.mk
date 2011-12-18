@@ -44,6 +44,7 @@ PRODUCT_PACKAGES += \
 
 # Modem
 PRODUCT_PACKAGES += \
+	rild \
     Stk \
     libaudiomodemgeneric \
     libreference-cdma-sms 
