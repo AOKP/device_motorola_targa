@@ -204,7 +204,7 @@ on post-fs-data
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0664 /sys/class/rfkill/rfkill0/type
     chmod 0664 /sys/class/rfkill/rfkill0/state
-    
+
     # LTE Radio file
     chown radio radio /sys/class/radio/w3g_lte/command
     chmod 777 /sys/class/radio/w3g_lte/command
@@ -567,13 +567,13 @@ on boot
     insmod /system/lib/modules/vpnclient.ko
 
 # Load Quota2 support modules
-#    insmod /system/lib/modules/ip6_tables.ko
-#    insmod /system/lib/modules/xt_TPROXY.ko
-#    insmod /system/lib/modules/xt_TRACE.ko
-#    insmod /system/lib/modules/xt_NFQUEUE.ko
-#    insmod /system/lib/modules/xt_qtaguid.ko
+    insmod /system/lib/modules/ip6_tables.ko
+    insmod /system/lib/modules/xt_TPROXY.ko
+    insmod /system/lib/modules/xt_TRACE.ko
+    insmod /system/lib/modules/xt_NFQUEUE.ko
+    insmod /system/lib/modules/xt_qtaguid.ko
     insmod /system/lib/modules/xt_quota2.ko
-    insmod /system/lib/modules/xt_owner2.ko
+#    insmod /system/lib/modules/xt_owner2.ko
 # Enable hardware watchdog
     write /sys/devices/platform/omap_wdt/enabled on
 
@@ -991,7 +991,7 @@ service wrigley-diag /system/bin/wrigley-diag.sh
 
 service logcatd-blan /system/bin/logcatd-blan
     user root
-     Immediately drops root, keeps CAP_SYS_ADMIN, and runs as below
+#     Immediately drops root, keeps CAP_SYS_ADMIN, and runs as below
      user system
      group system log inet
     disabled

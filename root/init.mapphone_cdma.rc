@@ -1,5 +1,3 @@
-import init.mapphone.usb.rc
-
 on init
     # hack to get adbd up and running
     write /dev/usb_device_mode charge_adb
@@ -204,11 +202,11 @@ on post-fs-data
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0664 /sys/class/rfkill/rfkill0/type
     chmod 0664 /sys/class/rfkill/rfkill0/state
-    
+
     # LTE Radio file
     chown radio radio /sys/class/radio/w3g_lte/command
     chmod 777 /sys/class/radio/w3g_lte/command
-    
+
     # create logger folder
     mkdir /data/logger 0770 radio log
     chown radio log /data/logger
@@ -286,6 +284,14 @@ on post-fs-data
 
 # Install kernel modules
     insmod /system/lib/modules/sec.ko
+# Load Quota2 support modules
+    insmod /system/lib/modules/ip6_tables.ko
+    insmod /system/lib/modules/xt_TPROXY.ko
+    insmod /system/lib/modules/xt_TRACE.ko
+    insmod /system/lib/modules/xt_NFQUEUE.ko
+    insmod /system/lib/modules/xt_qtaguid.ko
+#    insmod /system/lib/modules/xt_owner2.ko
+    insmod /system/lib/modules/xt_quota2.ko
 
 # Install product specific kernel modules
     exec /system/bin/load_modules.sh
@@ -565,15 +571,6 @@ on boot
 
 # Load Authentec VPN kernel module
     insmod /system/lib/modules/vpnclient.ko
-
-# Load Quota2 support modules
-#    insmod /system/lib/modules/ip6_tables.ko
-#    insmod /system/lib/modules/xt_TPROXY.ko
-#    insmod /system/lib/modules/xt_TRACE.ko
-#    insmod /system/lib/modules/xt_NFQUEUE.ko
-#    insmod /system/lib/modules/xt_qtaguid.ko
-    insmod /system/lib/modules/xt_quota2.ko
-    insmod /system/lib/modules/xt_owner2.ko
 
 # Enable hardware watchdog
     write /sys/devices/platform/omap_wdt/enabled on
@@ -992,7 +989,7 @@ service wrigley-diag /system/bin/wrigley-diag.sh
 
 service logcatd-blan /system/bin/logcatd-blan
     user root
-     Immediately drops root, keeps CAP_SYS_ADMIN, and runs as below
+#     Immediately drops root, keeps CAP_SYS_ADMIN, and runs as below
      user system
      group system log inet
     disabled
