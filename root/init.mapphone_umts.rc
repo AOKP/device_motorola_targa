@@ -1,5 +1,3 @@
-import init.mapphone.usb.rc
-
 on init
     export ANDROID_CACHE /cache
     export DOWNLOAD_CACHE /cache/download
@@ -15,7 +13,6 @@ on post-fs-data
 # prepare generic keypad name
     exec /init_prep_keypad.sh
     mount ext3 /dev/block/mmcblk1p23 /system ro noatime nodiratime remount
-
     mount rootfs rootfs / rw remount
 
     mkdir /cdrom 0770 system system
@@ -245,6 +242,14 @@ on post-fs-data
     insmod /system/lib/modules/netmux_linkdriver.ko
     insmod /system/lib/modules/modem_pm_driver.ko
     insmod /system/lib/modules/sec.ko
+# Load Quota2 support modules
+#    insmod /system/lib/modules/ip6_tables.ko
+#    insmod /system/lib/modules/xt_TPROXY.ko
+#    insmod /system/lib/modules/xt_TRACE.ko
+#    insmod /system/lib/modules/xt_NFQUEUE.ko
+#    insmod /system/lib/modules/xt_qtaguid.ko
+    insmod /system/lib/modules/xt_owner2.ko
+    insmod /system/lib/modules/xt_quota2.ko
 
 # Install product specific kernel modules
     exec /system/bin/load_modules.sh
@@ -482,15 +487,6 @@ on boot
     write /proc/sys/kernel/softlockup_panic 1
 # Load Authentec VPN kernel module
     insmod /system/lib/modules/vpnclient.ko
-
-# Load Quota2 support modules
-#    insmod /system/lib/modules/ip6_tables.ko
-#    insmod /system/lib/modules/xt_TPROXY.ko
-#    insmod /system/lib/modules/xt_TRACE.ko
-#    insmod /system/lib/modules/xt_NFQUEUE.ko
-#    insmod /system/lib/modules/xt_qtaguid.ko
-    insmod /system/lib/modules/xt_quota2.ko
-    insmod /system/lib/modules/xt_owner2.ko
 
 # Enable hardware watchdog
     write /sys/devices/platform/omap_wdt/enabled on

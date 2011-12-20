@@ -44,10 +44,11 @@ PRODUCT_PACKAGES += \
 
 # Modem
 PRODUCT_PACKAGES += \
-	rild \
     Stk \
     libaudiomodemgeneric \
-    libreference-cdma-sms 
+    libreference-cdma-sms \
+    rild \
+    radiooptions \
 
 # Syslink and Tiler
 PRODUCT_PACKAGES += \
@@ -139,7 +140,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root-hijack/init.rc:root/init.rc \
     device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
     device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
-    device/motorola/targa/root/init.mapphone.usb.rc:root/init.mapphone.usb.rc \
     device/motorola/targa/root/usbcheck.sh:root/usbcheck.sh \
     device/motorola/targa/root/ueventd.rc:root/ueventd.rc \
 
@@ -159,6 +159,9 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:/system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/handheld_core_hardware.xml:/system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+    frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+
 
 # Prebuilts
 PRODUCT_COPY_FILES += \
@@ -225,9 +228,8 @@ PRODUCT_COPY_FILES += \
 # stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
-#$(call inherit-product, hardware/ti/wpan/tools/FM/Android.mk)
-
 $(call inherit-product-if-exists, vendor/google/google-vendor.mk)
+#$(call inherit-product, hardware/ti/wpan/tools/FM/Android.mk)
 $(call inherit-product-if-exists, vendor/verizon/verizon-vendor.mk)
 
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
