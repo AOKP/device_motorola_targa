@@ -57,7 +57,10 @@ echo
 cd $REPACK/ota/system/framework
 $OPTICHARGER framework-res.apk
 cd $REPACK/ota/system/app
-find ./ -name \*.apk | $XARGS $OPTICHARGER
+find ./ -name \*.apk | $XARGS 
+	if [ $name != AtCmd com.motorola.android.server.ims ConnMO DMService LAWMO LocationProxyDmPlugin ModemCutback MotHstcmd MotoAtCmdEpuPlugin MotoAtCmdPlugin ProgramMenu ProgramMenuSystem vzwapnpermission vzwappdirectedsmspermission ]; then
+		$OPTICHARGER $name.apk
+	fi
 )
 
 
