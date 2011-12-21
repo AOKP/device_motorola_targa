@@ -2,12 +2,15 @@
 # system.prop for CDMA Bionic
 #
 # rild.libpath=/system/lib/libril-moto-umts-1.so
-rild.libpath=/system/lib/libmoto_ril.so
+#rild.libpath=/system/lib/libmoto_ril.so
 rild.libargs=-d /dev/ttyO0
 ro.sf.lcd_density=240
 ro.default_usb_mode=2
 ro.mot.ril.danlist=611,*611,#611
 persist.ril.ecclist=911,*911,#911
+
+# Enable ALWAYS_READ_IMSI_FROM_SIM
+persist.ril.features=800
 persist.ril.modem.mode =1
 # This defines the max event window manager can
 # handle in 1 s. We may adjust this # for performance
@@ -29,13 +32,18 @@ persist.radio.imsfwloglevel=3
 # 4 => CDMA/EVDO. To be used until Targa has LTE SFN
 # 7 => GLOBAL
 # 8 => LTE, CDMA and EvDo
-ro.telephony.default_network=6
+ro.telephony.default_network=4
 ro.com.google.clientid=android-motorola
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
 ro.cdma.home.operator.numeric=310004
 ro.cdma.home.operator.alpha=Verizon
 ro.config.vc_call_vol_steps=7
+# Disable ims by setting imsapp.mode to all_dependency_met
+#imsapp.mode=all_dependency_met
+
+# The value of the kernel command line product_type variable for lte on cdma devices
+telephony.lteOnCdmaProductType=clw
 
 # wlan interface
 wifi.interface = tiwlan0
