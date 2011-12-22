@@ -292,6 +292,7 @@ on post-fs-data
 #    insmod /system/lib/modules/xt_qtaguid.ko
     insmod /system/lib/modules/xt_owner2.ko
     insmod /system/lib/modules/xt_quota2.ko
+#    insmod /system/lib/modules/android_usb.ko
 
 # Install product specific kernel modules
     exec /system/bin/load_modules.sh
