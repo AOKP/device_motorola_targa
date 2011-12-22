@@ -12,6 +12,7 @@ persist.ril.ecclist=911,*911,#911
 # Enable ALWAYS_READ_IMSI_FROM_SIM
 persist.ril.features=800
 persist.ril.modem.mode =1
+
 # This defines the max event window manager can
 # handle in 1 s. We may adjust this # for performance
 # reason later
@@ -39,6 +40,7 @@ ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/
 ro.cdma.home.operator.numeric=310004
 ro.cdma.home.operator.alpha=Verizon
 ro.config.vc_call_vol_steps=7
+
 # Disable ims by setting imsapp.mode to all_dependency_met
 #imsapp.mode=all_dependency_met
 
