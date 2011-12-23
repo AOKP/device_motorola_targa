@@ -1,6 +1,8 @@
+import init.targa.usb.rc
+
 on init
-    # hack to get adbd up and running
-    write /dev/usb_device_mode charge_adb
+
+    exec /sbin/fixboot.sh
 
     export ANDROID_CACHE /cache
     export DOWNLOAD_CACHE /cache/download
@@ -8,10 +10,20 @@ on init
     export EXTERNAL_STORAGE /mnt/sdcard
     export PHONE_STORAGE /mnt/emmc
 
+on fs
+
+    mount ext3 /dev/block/mmcblk1p23 /system wait noatime nodiratime barrier=1
+    mount ext3 /dev/block/mmcblk1p25 /data nosuid nodev noatime nodiratime
+    mount ext3 /dev/block/mmcblk1p22 /cache nosuid nodev noatime nodiratime
+
 on post-fs-data
 
-# prepare generic keypad name
+    # to prevent errors on aosp init.rc
+    #insmod /system/lib/modules/android_usb.ko
+
+    # prepare generic keypad name
     exec /init_prep_keypad.sh
+
     mount ext3 /dev/block/mmcblk1p23 /system ro noatime nodiratime remount
     mount rootfs rootfs / rw remount
 
@@ -20,8 +32,7 @@ on post-fs-data
 
     symlink /dev/ttyGS0 /dev/acm0
 
-# Create mountpoints and mount tmpfs
-
+    # Create mountpoints and mount tmpfs
     mkdir /mnt 0775 root system
     mkdir /osh 0755 root root
     mkdir /preinstall 0755 system system
@@ -61,14 +72,14 @@ on post-fs-data
     chmod 0220 /proc/sysrq-trigger
 
 #Set the default value for bluedroid_ref
-#    write /data/tmp/bluedroid_ref 0
-#    chown system system /data/tmp/bluedroid_ref
+    #    write /data/tmp/bluedroid_ref 0
+    #    chown system system /data/tmp/bluedroid_ref
 
 # Configure kernel options
 
-    # Disable automatic power control for OHCI USB IPC Temporarily
-
+# Disable automatic power control for OHCI USB IPC Temporarily
     write /sys/devices/platform/ohci-omap3/usb1/1-1/power/control auto
+
 # NFC configuration
     # Reset system time
     write /sys/class/rtc/rtc0/unsecured_rtc on
@@ -92,14 +103,17 @@ on post-fs-data
     write /sys/power/sr_vdd2_autocomp 1
     write /sys/power/enable_abb_mode 1
     write /sys/devices/w1\ bus\ master/w1_master_search 2
+
 # Change ownership for vibrators
     chown system system /sys/class/timed_output/lvibrator/enable
     chown system system /sys/class/timed_output/vibrator/enable
     chown system system /sys/class/timed_output/vibrator/sweep
+
 # Change permission of vibrators
     chmod 0660 /sys/class/timed_output/lvibrator/enable
     chmod 0660 /sys/class/timed_output/vibrator/enable
     chmod 0660 /sys/class/timed_output/vibrator/sweep
+
 # Mount Points for External Storage Devices
     mkdir /mnt/usbdisk_1.1 0755 system system
     mkdir /mnt/usbdisk_1.2 0755 system system
@@ -108,6 +122,7 @@ on post-fs-data
     mkdir /mnt/usbdisk_1.5 0755 system system
     mkdir /mnt/usbdisk_1.6 0755 system system
     mkdir /mnt/usbdisk_1.7 0755 system system
+
 # Mount mtd partitions
     # mount /pds as r/w
     # We chown/chmod /pds again so because mount is run as root + defaults
@@ -178,10 +193,10 @@ on post-fs-data
     chown root root /cache/lost+found
     chmod 0770 /cache/lost+found
 
-    chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
-    chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
-    chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
-    chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
+#    chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
+#    chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
+#    chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
+#    chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
     # allow net_raw to have access to /dev/socket directory
 #    chown root net_raw /dev/socket
@@ -269,6 +284,7 @@ on post-fs-data
     mkdir /pds/wmdrm 0775 mot_drm mot_drm
     # Temp workaround for HP library cleanup
     symlink /dev/hp3a-omap /dev/hp3A-omap
+
 # Permissions for video
     chmod 0770 /dev/hp3a-omap
     chmod 0770 /dev/hplens-omap
@@ -292,7 +308,6 @@ on post-fs-data
 #    insmod /system/lib/modules/xt_qtaguid.ko
     insmod /system/lib/modules/xt_owner2.ko
     insmod /system/lib/modules/xt_quota2.ko
-#    insmod /system/lib/modules/android_usb.ko
 
 # Install product specific kernel modules
     exec /system/bin/load_modules.sh
@@ -314,6 +329,9 @@ on early-boot
     class_start media_early_init
 
 on boot
+
+# Enable ADB
+   write /dev/usb_device_mode charge_adb
 
 # Define Motorola DBVC ATVC Property defaults (failsafe properties)
     setprop ro.sys.atvc_allow_netmon_usb 0
@@ -654,6 +672,9 @@ on property:sys.chargeonly.mode=1
     start chargeonly
     stop zygote
 
+on property:persist.service.adb.enable=1
+    start adbd
+
 # Power up to normal
 on property:tcmd.suspend=0
     class_start core
@@ -716,9 +737,9 @@ service battd /system/bin/battd
     group mot_accy mot_pwric
     oneshot
 
-#service catcommands /system/bin/catcommands
-#    class core
-#    group radio
+service catcommands /system/bin/catcommands
+    class core
+    group radio
 
 service whisperd /system/bin/whisperd /dev/ttyO1
     class late_start
@@ -860,34 +881,34 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/mi
     oneshot
 
 service dhcpcd_tiwlan0 /system/bin/dhcpcd -ABKL
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service dhcpcd_p2p /system/bin/dhcpcd -aABKL
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service iprenew_tiwlan0 /system/bin/dhcpcd -n
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service iprenew_p2p /system/bin/dhcpcd -n
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service iprenew_bnep0 /system/bin/dhcpcd -n
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service bugtogo /system/bin/bugtogo.sh
     class late_start
@@ -903,15 +924,15 @@ service baseimage /system/bin/dspexec -v -T /system/lib/dsp/baseimage.dof
     oneshot
 
 service pvrsrv /system/bin/pvrsrvinit
-	class core
-	user root
-	oneshot
+    class core
+    user root
+    oneshot
 
 service pppd-ril /system/bin/pppd-ril /dev/ttyUSB0 call pppd-ril.options plugin /system/lib/libpppd_plugin-ril.so
-	class late_start
-	user root
-	disabled
-	oneshot
+    class late_start
+    user root
+    disabled
+    oneshot
 
 service smc /system/bin/startup_smc.sh
     class core

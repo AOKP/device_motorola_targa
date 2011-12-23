@@ -8,11 +8,10 @@ on early-init
     mkdir /mnt 0775 root system
 
 on init
-    exec /sbin/fixboot.sh
 
 sysclktz 0
 
-loglevel 3
+loglevel 8
 
 # setup the global environment
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
@@ -44,22 +43,22 @@ loglevel 3
     mkdir /config 0500 root root
 
     # Directory for putting things only root should see.
-    mkdir /mnt/secure 0700 root root
+#    mkdir /mnt/secure 0700 root root
 
     # Directory for staging bindmounts
-    mkdir /mnt/secure/staging 0700 root root
+#    mkdir /mnt/secure/staging 0700 root root
 
     # Directory-target for where the secure container
     # imagefile directory will be bind-mounted
-    mkdir /mnt/secure/asec  0700 root root
+#    mkdir /mnt/secure/asec  0700 root root
 
     # Secure container public mount points.
-    mkdir /mnt/asec  0700 root system
-    mount tmpfs tmpfs /mnt/asec mode=0755,gid=1000
+#    mkdir /mnt/asec  0700 root system
+#    mount tmpfs tmpfs /mnt/asec mode=0755,gid=1000
 
     # Filesystem image public mount points.
-    mkdir /mnt/obb 0700 root system
-    mount tmpfs tmpfs /mnt/obb mode=0755,gid=1000
+#    mkdir /mnt/obb 0700 root system
+#    mount tmpfs tmpfs /mnt/obb mode=0755,gid=1000
 
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/kernel/hung_task_timeout_secs 0
@@ -89,9 +88,13 @@ loglevel 3
     write /dev/cpuctl/bg_non_interactive/cpu.shares 52
 
 on fs
-    mount ext3 /dev/block/mmcblk1p23 /system wait noatime nodiratime barrier=1
-    mount ext3 /dev/block/mmcblk1p25 /data nosuid nodev noatime nodiratime
-    mount ext3 /dev/block/mmcblk1p22 /cache nosuid nodev noatime nodiratime
+
+# mount mtd partitions
+    # Mount /system rw first to give the filesystem a chance to save a checkpoint
+#    mount yaffs2 mtd@system /system
+#    mount yaffs2 mtd@system /system ro remount
+#    mount yaffs2 mtd@userdata /data nosuid nodev
+#    mount yaffs2 mtd@cache /cache nosuid nodev
 
 on post-fs
 
@@ -178,8 +181,6 @@ on post-fs-data
     # Set indication (checked by vold) that we have finished this action
     #setprop vold.post_fs_data_done 1
 
-    chown system system /sys/devices/platform/usb_mass_storage/lun/file
-    chmod 0660 /sys/devices/platform/usb_mass_storage/lun/file
     chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
     chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
     chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
@@ -187,7 +188,6 @@ on post-fs-data
 
 on boot
 
-    setprop persist.service.adb.enable 1
 
 # Allow everybody to read the xt_qtaguid resource tracking misc dev.
 # This is needed by any process that uses socket tagging.
@@ -296,11 +296,48 @@ on property:vold.decrypt=trigger_shutdown_framework
     class_reset late_start
     class_reset main
 
-on property:persist.service.adb.enable=1
-    start adbd
-
-on property:persist.service.adb.enable=0
+# Used to disable USB when switching states
+on property:sys.usb.config=none
     stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/bDeviceClass 0
+    setprop sys.usb.state $sys.usb.config
+
+# adb only USB configuration
+# This should only be used during device bringup
+# and as a fallback if the USB manager fails to set a standard configuration
+on property:sys.usb.config=adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct D002
+    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state $sys.usb.config
+
+# USB accessory configuration
+on property:sys.usb.config=accessory
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct 2d00
+    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state $sys.usb.config
+
+# USB accessory configuration, with adb
+on property:sys.usb.config=accessory,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct 2d01
+    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state $sys.usb.config
+
+# Used to set USB configuration at boot and to switch the configuration
+# when changing the default configuration
+on property:persist.sys.usb.config=*
+    setprop sys.usb.config $persist.sys.usb.config
 
 ## Daemon processes to be run by init.
 ##
