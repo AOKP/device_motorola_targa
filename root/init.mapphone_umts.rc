@@ -1,6 +1,8 @@
 import init.targa.usb.rc
 
 on init
+    exec /sbin/fixboot.sh
+
     export ANDROID_CACHE /cache
     export DOWNLOAD_CACHE /cache/download
     export SD_EXT_DIRECTORY /sd-ext
@@ -976,6 +978,7 @@ service syslinkdaemon /system/bin/syslink_daemon.out -f /system/lib/ducati/Notif
 
 on property:ro.bootmode=bp-tools
     start tcmd
+
 #Check available storage space to execute device encryption or decryprion
 on property:sys.mot.encrypt.test=1
     exec /system/bin/encryption_test

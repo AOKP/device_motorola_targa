@@ -690,10 +690,6 @@ on property:tcmd.suspend=1
 on property:tcmd.suspend=2
     class_stop main
 
-#start console for userdebug and eng builds
-on property:ro.debuggable=1
-    start console
-
 # Moto safe power down
 on property:sys.reboot=1
     exec /system/bin/sleep 10
@@ -737,10 +733,6 @@ service battd /system/bin/battd
     group mot_accy mot_pwric
     oneshot
 
-service catcommands /system/bin/catcommands
-    class core
-    group radio
-
 service whisperd /system/bin/whisperd /dev/ttyO1
     class late_start
     user mot_whisper
@@ -753,11 +745,11 @@ service uim /system/bin/uim-sysfs
     group media bluetooth
     oneshot
 
-#service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
-#    class late_start
-#    socket hostapd_tiap0 dgram 660 wifi wifi
-#    disabled
-#    oneshot
+service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
+    class late_start
+    socket hostapd_tiap0 dgram 660 wifi wifi
+    disabled
+    oneshot
 
 service hciattach /system/bin/hciattach -l
     class late_start
@@ -872,10 +864,6 @@ service ap_fmloader_rfmd /system/bin/logwrapper /system/bin/tiap_loader -f /syst
 
 service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
     class late_start
-# we will start as root and wpa_supplicant will switch to user wifi
-# after setting up the capabilities required for WEXT
-#   user wifi
-#   group wifi inet keystore
     socket wpa_tiwlan0 dgram 660 wifi wifi
     disabled
     oneshot
@@ -1073,15 +1061,6 @@ service pbap  /system/bin/sdptool add --channel=19 PBAP
     group bluetooth net_bt_admin
     disabled
     oneshot
-
-#service flash_recovery /system/etc/install-recovery.sh
-#    class main
-#    oneshot
-
-# Copy 12M/batch files
-#service 12m_files_copy /system/etc/12m_files_copy.sh
-#     class core
-#     oneshot
 
 service dnsmasq /system/bin/logwrapper /system/bin/dnsmasq -C/data/misc/wifi/dns.conf -k
     class late_start

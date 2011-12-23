@@ -190,6 +190,7 @@ on post-fs-data
     mkdir /data/panicreports
     chown root radio /data/panicreports
     chmod 0775 /data/panicreports
+
     # Backup ramconsole on abnormal reboot.
     copy /proc/last_kmsg /data/dontpanic/last_kmsg
     chown root log /data/dontpanic/last_kmsg
@@ -672,9 +673,9 @@ service battd /system/bin/battd
     group mot_accy mot_pwric
     oneshot
 
-service catcommands /system/bin/catcommands
-    class core
-    group radio
+#service catcommands /system/bin/catcommands
+#    class core
+#    group radio
 
 service whisperd /system/bin/whisperd /dev/ttyO1
     class late_start
@@ -973,14 +974,9 @@ service syslinkdaemon /system/bin/syslink_daemon.out -f /system/lib/ducati/Notif
     user media
     group video
 
-#IKCBS-229 start RescueStarter for MobileRescue
-service RescueStarter /system/bin/RescueStarter
-    user nobody
-    group input graphics
-    class late_start
-
 on property:ro.bootmode=bp-tools
     start tcmd
+
 #Check available storage space to execute device encryption or decryprion
 on property:sys.mot.encrypt.test=1
     exec /system/bin/encryption_test

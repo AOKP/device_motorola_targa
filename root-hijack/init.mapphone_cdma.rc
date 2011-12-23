@@ -1,6 +1,7 @@
 import init.targa.usb.rc
 
 on init
+
     exec /sbin/fixboot.sh
 
     export ANDROID_CACHE /cache
@@ -22,6 +23,7 @@ on post-fs-data
 
     # prepare generic keypad name
     exec /init_prep_keypad.sh
+
     mount ext3 /dev/block/mmcblk1p21 /system ro noatime nodiratime remount
     mount rootfs rootfs / rw remount
 
@@ -75,8 +77,7 @@ on post-fs-data
 
 # Configure kernel options
 
-    # Disable automatic power control for OHCI USB IPC Temporarily
-
+# Disable automatic power control for OHCI USB IPC Temporarily
     write /sys/devices/platform/ohci-omap3/usb1/1-1/power/control auto
 
 # NFC configuration
@@ -102,14 +103,17 @@ on post-fs-data
     write /sys/power/sr_vdd2_autocomp 1
     write /sys/power/enable_abb_mode 1
     write /sys/devices/w1\ bus\ master/w1_master_search 2
+
 # Change ownership for vibrators
     chown system system /sys/class/timed_output/lvibrator/enable
     chown system system /sys/class/timed_output/vibrator/enable
     chown system system /sys/class/timed_output/vibrator/sweep
+
 # Change permission of vibrators
     chmod 0660 /sys/class/timed_output/lvibrator/enable
     chmod 0660 /sys/class/timed_output/vibrator/enable
     chmod 0660 /sys/class/timed_output/vibrator/sweep
+
 # Mount Points for External Storage Devices
     mkdir /mnt/usbdisk_1.1 0755 system system
     mkdir /mnt/usbdisk_1.2 0755 system system
@@ -118,6 +122,7 @@ on post-fs-data
     mkdir /mnt/usbdisk_1.5 0755 system system
     mkdir /mnt/usbdisk_1.6 0755 system system
     mkdir /mnt/usbdisk_1.7 0755 system system
+
 # Mount mtd partitions
     # mount /pds as r/w
     # We chown/chmod /pds again so because mount is run as root + defaults
@@ -685,10 +690,6 @@ on property:tcmd.suspend=1
 on property:tcmd.suspend=2
     class_stop main
 
-#start console for userdebug and eng builds
-on property:ro.debuggable=1
-    start console
-
 # Moto safe power down
 on property:sys.reboot=1
     exec /system/bin/sleep 10
@@ -732,10 +733,6 @@ service battd /system/bin/battd
     group mot_accy mot_pwric
     oneshot
 
-service catcommands /system/bin/catcommands
-    class core
-    group radio
-
 service whisperd /system/bin/whisperd /dev/ttyO1
     class late_start
     user mot_whisper
@@ -748,11 +745,11 @@ service uim /system/bin/uim-sysfs
     group media bluetooth
     oneshot
 
-#service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
-#    class late_start
-#    socket hostapd_tiap0 dgram 660 wifi wifi
-#    disabled
-#    oneshot
+service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
+    class late_start
+    socket hostapd_tiap0 dgram 660 wifi wifi
+    disabled
+    oneshot
 
 service hciattach /system/bin/hciattach -l
     class late_start
