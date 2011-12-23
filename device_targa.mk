@@ -187,7 +187,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     device/motorola/targa/prebuilt/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
     device/motorola/targa/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
-    device/motorola/targa/prebuilt/usr/keylayout/usb_keyboard_102_en_us.kl:system/usr/keylayout/usb_keyboard_102_en_us.kl \
     device/motorola/targa/prebuilt/usr/keylayout/qtouch-touchscreen.kl:system/usr/keylayout/qtouch-touchscreen.kl \
     device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip 
 
