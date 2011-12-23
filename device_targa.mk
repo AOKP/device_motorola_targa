@@ -120,7 +120,7 @@ PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory \
     FileManager \
-    UserDictionaryProvider
+    CMSettings
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
