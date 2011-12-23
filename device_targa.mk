@@ -118,9 +118,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory \
-    libjni_pinyinime 
-
-PRODUCT_PACKAGES += \
     FileManager \
     UserDictionaryProvider
 
@@ -130,6 +127,7 @@ PRODUCT_COPY_FILES += \
     out/target/product/targa/root/sbin/adbd:system/etc/rootfs/sbin/adbd \
     device/motorola/targa/root/default.prop:system/etc/rootfs/default.prop \
     device/motorola/targa/root/init.rc:system/etc/rootfs/init.rc \
+    device/motorola/targa/root/init.targa.usb.rc:system/etc/rootfs/init.targaa.usb.rc \
     device/motorola/targa/root/init.mapphone_cdma.rc:system/etc/rootfs/init.mapphone_cdma.rc \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
     device/motorola/targa/root/usbcheck.sh:system/etc/rootfs/usbcheck.sh \
@@ -139,6 +137,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/motorola/targa/root/default.prop:root/default.prop \
     device/motorola/targa/root-hijack/init.rc:root/init.rc \
+    device/motorola/targa/root/init.targa.usb.rc:system/etc/root/init.targaa.usb.rc \
     device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
     device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
     device/motorola/targa/root/usbcheck.sh:root/usbcheck.sh \
@@ -164,29 +163,39 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 
-
+#    device/motorola/targa/prebuilt/bin/hijack:system/bin/hijack \
+#    device/motorola/targa/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
 # Prebuilts
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/battd:system/bin/battd \
-    device/motorola/targa/prebuilt/bin/hijack:system/bin/hijack \
-    device/motorola/targa/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
     device/motorola/targa/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
     device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
-    device/motorola/targa/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
     device/motorola/targa/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/motorola/targa/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/targa/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/motorola/targa/prebuilt/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
     device/motorola/targa/prebuilt/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
+    device/motorola/targa/prebuilt/usr/idc/cpcap-key.idc:system/usr/idc/cpcap-key.idc \
+    device/motorola/targa/prebuilt/usr/idc/light-prox.idc:system/usr/idc/light-prox.idc \
+    device/motorola/targa/prebuilt/usr/idc/omap-keypad.idc:system/usr/idc/omap-keypad.idc \
     device/motorola/targa/prebuilt/usr/idc/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
+    device/motorola/targa/prebuilt/usr/keychars/cpcap-key.kcm:system/usr/keychars/cpcap-key.kcm \
+    device/motorola/targa/prebuilt/usr/keychars/light-prox.kcm:system/usr/keychars/light-prox.kcm \
     device/motorola/targa/prebuilt/usr/keychars/omap-keypad.kcm:system/usr/keychars/omap-keypad.kcm \
+    device/motorola/targa/prebuilt/usr/keychars/qtouch-touchscreen.kcm:system/usr/keychars/qtouch-touchscreen.kcm \
     device/motorola/targa/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     device/motorola/targa/prebuilt/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
     device/motorola/targa/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
     device/motorola/targa/prebuilt/usr/keylayout/usb_keyboard_102_en_us.kl:system/usr/keylayout/usb_keyboard_102_en_us.kl \
     device/motorola/targa/prebuilt/usr/keylayout/qtouch-touchscreen.kl:system/usr/keylayout/qtouch-touchscreen.kl \
     device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip 
+
+# Phone settings
+PRODUCT_COPY_FILES += \
+    device/sample/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml \
+    vendor/cm/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml \
+
 
 # Graphics
 PRODUCT_COPY_FILES += \
