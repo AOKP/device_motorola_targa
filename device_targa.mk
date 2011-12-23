@@ -50,7 +50,8 @@ PRODUCT_PACKAGES += \
     libreference-cdma-sms \
     rild \
     radiooptions \
-    sh 
+    sh \
+    whisperd
 
 # Syslink and Tiler
 PRODUCT_PACKAGES += \
