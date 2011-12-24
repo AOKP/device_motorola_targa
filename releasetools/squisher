@@ -143,7 +143,7 @@ echo
 
 if [ -f ~/upload.sh ] && echo "Running upload script" || echo "You're not dhacker29 we're done"; then
 	upload=~/dhacker29/upload.sh
-	./$upload
+	. $upload
 fi
 
 exit 0
