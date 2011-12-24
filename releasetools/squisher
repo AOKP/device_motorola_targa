@@ -111,7 +111,7 @@ rm -rf $REPACK/ota/recovery
 	find $REPACK/ota/system/lib/modules -name "*.ko" -print0 | xargs -0 arm-eabi-strip --strip-unneeded
 
 # Determine what to name the new signed package
-REALDATE=`date +%F`
+REALDATE=`date +%F-%R`
 
 OUTFILE=$OUT/ICS-4.0.3_r1-$TARGET_PRODUCT-$REALDATE.zip
 
@@ -140,5 +140,10 @@ echo "Package complete: $OUTFILE"
 cat $img.md5sum
 echo
 )
+
+if [ -f ~/upload.sh ] && echo "Running upload script" || echo "You're not dhacker29 we're done"; then
+	upload=~/dhacker29/upload.sh
+	./$upload
+fi
 
 exit 0
