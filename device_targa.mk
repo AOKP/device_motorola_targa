@@ -124,7 +124,7 @@ PRODUCT_PACKAGES += \
 # WirelessTether Lib
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
-    device/motorola/targa/prebuilt/apps/wifi_tether_v3_1-pre110.apkp:system/apps/wifi_tether_v3_1-pre110.apk \
+    device/motorola/targa/prebuilt/apps/wifi_tether_v3_1-pre110.apk:system/apps/wifi_tether_v3_1-pre110.apk \
     device/motorola/targa/prebuilt/apps/xabber.apk:system/apps/xabber.apk
 
 # Rootfs files
