@@ -134,11 +134,9 @@ endif
 
 
 # Media / Radio
-BUILD_FM_RADIO := true
-BUILD_TI_FM_APPS := true
-FM_CHR_DEV_ST := true
-BOARD_HAS_MAPPHONE_SWITCH := true
-
+#BUILD_FM_RADIO := true
+#BUILD_TI_FM_APPS := true
+#FM_CHR_DEV_ST := true
 
 # OTA Packaging
 TARGET_PROVIDES_RELEASETOOLS := true

@@ -153,12 +153,12 @@
     </string-array>
     
     <!-- Array of ConnectivityManager.TYPE_xxxx constants for networks that may only
-         be controlled by systemOrSignature apps.  -->
+         be controlled by systemOrSignature apps.
     <integer-array translatable="false" name="config_protectedNetworks">
         <item>10</item>
         <item>11</item>
         <item>12</item>
-    </integer-array>
+    </integer-array>  -->
 
     <!-- An Array of "[ConnectivityManager connectionType],
          [# simultaneous connection types]"  -->
@@ -250,6 +250,9 @@
 
     <!-- IP address of the dns server to use if nobody else suggests one -->
     <string name="config_default_dns_server">8.8.8.8</string>
+
+    <!-- Use legacy USB device manager. -->
+    <bool name="config_usesLegacyUsbDeviceManager">true</bool>
 
 </resources>
 

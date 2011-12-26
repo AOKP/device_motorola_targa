@@ -18,8 +18,8 @@ on fs
 
 on post-fs-data
 
-    # to prevent errors on aosp init.rc
-    #insmod /system/lib/modules/android_usb.ko
+# Enable ADB
+    write /dev/usb_device_mode msc_adb
 
     # prepare generic keypad name
     exec /init_prep_keypad.sh
@@ -329,9 +329,6 @@ on early-boot
     class_start media_early_init
 
 on boot
-
-# Enable ADB
-   write /dev/usb_device_mode charge_adb
 
 # Define Motorola DBVC ATVC Property defaults (failsafe properties)
     setprop ro.sys.atvc_allow_netmon_usb 0

@@ -86,12 +86,12 @@ PRODUCT_PACKAGES += \
     uim-sysfs 
 
 # FM Radio
-PRODUCT_PACKAGES += \
-    com.ti.fm.fmradioif.xml \
-    fmradioif \
-    FmRxApp \
-    FmTxApp \
-    FmService 
+#PRODUCT_PACKAGES += \
+#    com.ti.fm.fmradioif.xml \
+#    fmradioif \
+#    FmRxApp \
+#    FmTxApp \
+#    FmService 
 
 # Release utilities
 PRODUCT_PACKAGES += \
@@ -120,6 +120,10 @@ PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     FileManager \
     CMSettings
+
+# WirelessTether Lib
+PRODUCT_COPY_FILES += \
+    device/motorola/solana/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
@@ -186,6 +190,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/usr/keychars/qtouch-touchscreen.kcm:system/usr/keychars/qtouch-touchscreen.kcm \
     device/motorola/targa/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     device/motorola/targa/prebuilt/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
+    device/motorola/targa/prebuilt/usr/keylayout/light-prox.kl:system/usr/keylayout/light-prox.kl \
     device/motorola/targa/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
     device/motorola/targa/prebuilt/usr/keylayout/qtouch-touchscreen.kl:system/usr/keylayout/qtouch-touchscreen.kl \
     device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip 
