@@ -123,7 +123,7 @@ PRODUCT_PACKAGES += \
 
 # WirelessTether Lib
 PRODUCT_COPY_FILES += \
-    device/motorola/solana/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
+    device/motorola/targa/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
