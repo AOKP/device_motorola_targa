@@ -114,7 +114,7 @@ rm -rf $REPACK/ota/recovery
 cp -f $ANDROID_BUILD_TOP/vendor/google/prebuilt/lib/libvoicesearch.so $REPACK/ota/system/lib/libvoicesearch.so
 
 # Determine what to name the new signed package
-REALDATE=`date +%F-%R`
+REALDATE=`date +%F-%H_%M`
 
 OUTFILE=$OUT/ICS-4.0.3_r1-$TARGET_PRODUCT-$REALDATE.zip
 
@@ -144,7 +144,7 @@ cat $img.md5sum
 echo
 )
 
-if [ -f ~/upload.sh ] && echo "Running upload script" || echo "You're not dhacker29 we're done"; then
+if [ -f ~/upload.sh ] && echo "Running upload script" || exit; then
 	upload=~/upload.sh
 	. $upload
 fi
