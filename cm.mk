@@ -22,13 +22,14 @@ PRODUCT_RELEASE_NAME := DROID_BIONIC
 
 UTC_DATE := $(shell date +%s)
 DATE := $(shell date +%Y%m%d)
+ACT_DATE := $(shell date +%F/%R)
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
    BUILD_ID=5.5.1_84_D3G-55 \
    PRODUCT_NAME=${PRODUCT_DEVICE}_${PRODUCT_SFX} \
    BUILD_NUMBER=${DATE} \
    TARGET_DEVICE=cdma_targa \
-   BUILD_DISPLAY_ID=5.5.1_84_DBN-62_MR-11 \
+   BUILD_DISPLAY_ID=Alpha_${ACT_DATE} \
    BUILD_FINGERPRINT=verizon/targa_vzw/cdma_targa:4.0.3/5.5.1_84_DBN-62_MR-11/${BUILD_NUMBER}:user/release-keys \
    PRIVATE_BUILD_DESC="cdma_targa-user 4.0.3 5.5.1_84_DBN-62_MR-11 111028 "${BUILD_NUMBER}" release-keys" \
    PRODUCT_BRAND=verizon \
