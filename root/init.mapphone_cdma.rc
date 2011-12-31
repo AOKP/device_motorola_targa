@@ -7,8 +7,8 @@ on init
     export ANDROID_CACHE /cache
     export DOWNLOAD_CACHE /cache/download
     export SD_EXT_DIRECTORY /sd-ext
-    export EXTERNAL_STORAGE /mnt/sdcard
-    export PHONE_STORAGE /mnt/emmc
+    export EXTERNAL_STORAGE /mnt/sdcard-ext
+    export PHONE_STORAGE /mnt/sdcard
 
 on fs
 
@@ -41,12 +41,12 @@ on post-fs-data
     mkdir /misc 0770 system misc
     mkdir /sd-ext 0771 system system
 
-    mkdir /mnt/emmc 0000 system system
     mkdir /mnt/sdcard 0000 system system
+    mkdir /mnt/sdcard-ext 0000 system system
 
     symlink /data/tmp /tmp
     symlink /mnt/sdcard /sdcard
-    symlink /mnt/emmc /emmc
+    symlink /mnt/sdcard-ext /sdcard-ext
 
     mount tmpfs tmpfs /tmp
 
@@ -742,12 +742,6 @@ service uim /system/bin/uim-sysfs
     group media bluetooth
     oneshot
 
-service hostapd /system/bin/logwrapper /system/bin/Hostapd /data/misc/wifi/hostapd.conf
-    class late_start
-    socket hostapd_tiap0 dgram 660 wifi wifi
-    disabled
-    oneshot
-
 service hciattach /system/bin/hciattach -l
     class late_start
     user bluetooth
@@ -943,13 +937,6 @@ service qbplogd /system/bin/qbplogd
     oneshot
     disabled
 
-#service dlnasrv /system/bin/dlnasrv
-#    class late_start
-#    user mot_dlna
-#    group system net_admin sdcard_rw new_raw inet mount misc
-#    oneshot
-#    disabled
-
 service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
     class late_start
     group net_bt net_bt_admin
@@ -962,11 +949,6 @@ on property:dev.bootcomplete=1
 service mdm_panicd /system/bin/mdm_panicd
     class late_start
     oneshot
-
-#get BP version and save to misc
-#service savebpver /system/bin/SaveBPVer
-#    class late_start
-#    oneshot
 
 service secclkd /system/bin/secclkd
     class late_start

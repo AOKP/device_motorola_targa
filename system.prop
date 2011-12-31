@@ -76,8 +76,7 @@ ro.HorizontalVVM=true
 ro.opengles.version = 131072
 
 # This is a high density device with more memory, so larger vm heaps for it.
-dalvik.vm.heapstartsize=5m
-dalvik.vm.heapsize=64m
+dalvik.vm.heapsize=76m
 
 # our HTML browser (not WAP browser ) does not need to specify UAProf URL
 ro.mot.hw.uaprof=http://uaprof.vtext.com/mot/xt875/xt875.xml

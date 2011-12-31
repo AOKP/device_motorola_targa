@@ -113,18 +113,22 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     Camera \
-    Usb 
+    Superuser \
+    su \
+    Usb \
+
 
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory \
     FileManager \
-    CMSettings
+    CMSettings \
+    libjni_pinyinime \
 
 # WirelessTether Lib
 PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
     device/motorola/targa/prebuilt/app/wifi_tether_v3_1-pre110.apk:system/app/wifi_tether_v3_1-pre110.apk \
+    device/motorola/targa/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
     device/motorola/targa/prebuilt/app/xabber.apk:system/app/xabber.apk
 
 # Rootfs files
@@ -142,8 +146,8 @@ PRODUCT_COPY_FILES += \
 # Hijack files
 PRODUCT_COPY_FILES += \
     device/motorola/targa/root/default.prop:root/default.prop \
-    device/motorola/targa/root-hijack/init.rc:root/init.rc \
-    device/motorola/targa/root/init.targa.usb.rc:system/etc/root/init.targaa.usb.rc \
+    device/motorola/targa/root/init.rc:root/init.rc \
+    device/motorola/targa/root/init.targa.usb.rc:system/etc/rootfs/init.targaa.usb.rc \
     device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
     device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
     device/motorola/targa/root/usbcheck.sh:root/usbcheck.sh \
@@ -166,14 +170,14 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:/system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/handheld_core_hardware.xml:/system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 
-#    device/motorola/targa/prebuilt/bin/hijack:system/bin/hijack \
-#    device/motorola/targa/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
+
 # Prebuilts
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/battd:system/bin/battd \
+    device/motorola/targa/prebuilt/bin/hijack:system/bin/hijack \
+    device/motorola/targa/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
     device/motorola/targa/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
     device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
@@ -182,6 +186,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/motorola/targa/prebuilt/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
     device/motorola/targa/prebuilt/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
+    device/motorola/targa/prebuilt/etc/hijack-boot.zip:system/etc/hijack-boot.zip \
     device/motorola/targa/prebuilt/usr/idc/cpcap-key.idc:system/usr/idc/cpcap-key.idc \
     device/motorola/targa/prebuilt/usr/idc/light-prox.idc:system/usr/idc/light-prox.idc \
     device/motorola/targa/prebuilt/usr/idc/omap-keypad.idc:system/usr/idc/omap-keypad.idc \
