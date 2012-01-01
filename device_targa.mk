@@ -147,7 +147,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/motorola/targa/root/default.prop:root/default.prop \
     device/motorola/targa/root/init.rc:root/init.rc \
-    device/motorola/targa/root/init.targa.usb.rc:system/etc/rootfs/init.targaa.usb.rc \
+    device/motorola/targa/root/init.targa.usb.rc:root/init.targa.usb.rc \
     device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
     device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
     device/motorola/targa/root/usbcheck.sh:root/usbcheck.sh \
