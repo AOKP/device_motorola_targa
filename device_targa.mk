@@ -137,7 +137,6 @@ PRODUCT_COPY_FILES += \
     out/target/product/targa/root/sbin/adbd:system/etc/rootfs/sbin/adbd \
     device/motorola/targa/root/default.prop:system/etc/rootfs/default.prop \
     device/motorola/targa/root/init.rc:system/etc/rootfs/init.rc \
-    device/motorola/targa/root/init.targa.usb.rc:system/etc/rootfs/init.targa.usb.rc \
     device/motorola/targa/root/init.mapphone_cdma.rc:system/etc/rootfs/init.mapphone_cdma.rc \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
     device/motorola/targa/root/usbcheck.sh:system/etc/rootfs/usbcheck.sh \
@@ -147,7 +146,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/motorola/targa/root/default.prop:root/default.prop \
     device/motorola/targa/root/init.rc:root/init.rc \
-    device/motorola/targa/root/init.targa.usb.rc:root/init.targa.usb.rc \
     device/motorola/targa/root-hijack/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
     device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
     device/motorola/targa/root/usbcheck.sh:root/usbcheck.sh \
