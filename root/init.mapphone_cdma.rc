@@ -141,7 +141,9 @@ on post-fs-data
     chmod 0775 /pds/camera/module1
 
 # usbd permissions
-    mkdir /data/usbd 0777 system system# Create basic filesystem structure
+    mkdir /data/usbd 0777 system system
+    
+# Create basic filesystem structure
 
     # create moto specific dirs for mystuff
     mkdir /data/download 0775 system system
