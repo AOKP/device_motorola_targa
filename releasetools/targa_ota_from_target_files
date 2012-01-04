@@ -371,9 +371,9 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("*                                              *")
   script.Print("************************************************")
   script.Print(" ")
-  ui_print("Wiping cache...");
-  mount("ext3", "EMMC", "/dev/block/mmcblk1p22", "/cache");
-  delete_recursive("/cache");
+  script.Print("Wiping cache...");
+  script.Mount("/cache");
+  script.DeleteRecursive("/cache");
   script.Print("Wiping dalvik-cache...")
   script.Mount("/data")  
   script.DeleteRecursive("/data/dalvik-cache")
