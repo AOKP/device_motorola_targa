@@ -222,9 +222,8 @@ class EdifyGenerator(object):
     fstab = self.info.get("fstab", None)
     if fstab:
       p = fstab[partition]
-      self.script.append('format("%s", "%s", "%s", "%s");' %
-                         (p.fs_type, common.PARTITION_TYPES[p.fs_type],
-                          p.device, p.length))
+      self.script.append('format("%s", "%s", "%s");' %
+                         (p.fs_type, common.PARTITION_TYPES[p.fs_type], p.device))
     else:
       # older target-files without per-partition types
       partition = self.info.get("partition_path", "") + partition
@@ -240,7 +239,7 @@ class EdifyGenerator(object):
 
   def DeleteRecursive(self, startdir):
     """Delete recursively."""
-    cmd = 'delete_recursive("%s");'
+    cmd = 'delete_recursive("%s");'	
     self.script.append(self._WordWrap(cmd) % (startdir))
 
   def ApplyPatch(self, srcfile, tgtfile, tgtsize, tgtsha1, *patchpairs):

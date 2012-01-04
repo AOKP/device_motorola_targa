@@ -63,6 +63,7 @@ import copy
 import errno
 import os
 import re
+import sha
 import subprocess
 import tempfile
 import time
@@ -70,14 +71,6 @@ import zipfile
 
 import targa_common as common
 import targa_edify_generator as edify_generator
-
-try:
-  from hashlib import sha1 as sha1
-except ImportError:
-  from sha import sha as sha1
-
-import common
-import edify_generator
 
 OPTIONS = common.OPTIONS
 OPTIONS.package_key = "build/target/product/security/testkey"
