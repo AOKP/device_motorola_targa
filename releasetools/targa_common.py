@@ -18,8 +18,8 @@ import getopt
 import getpass
 import imp
 import os
+import platform
 import re
-import sha
 import shutil
 import subprocess
 import sys
@@ -27,6 +27,11 @@ import tempfile
 import threading
 import time
 import zipfile
+
+try:
+  from hashlib import sha1 as sha1
+except ImportError:
+  from sha import sha as sha1
 
 # missing in Python 2.4 and before
 if not hasattr(os, "SEEK_SET"):
@@ -55,6 +60,22 @@ def Run(args, **kwargs):
   if OPTIONS.verbose:
     print "  running: ", " ".join(args)
   return subprocess.Popen(args, **kwargs)
+
+
+def CloseInheritedPipes():
+  """ Gmake in MAC OS has file descriptor (PIPE) leak. We close those fds
+  before doing other work."""
+  if platform.system() != "Darwin":
+    return
+  for d in range(3, 1025):
+    try:
+      stat = os.fstat(d)
+      if stat is not None:
+        pipebit = stat[0] & 0x1000
+        if pipebit != 0:
+          os.close(d)
+    except OSError:
+      pass
 
 
 def LoadInfoDict(zip):
@@ -318,7 +339,7 @@ def SignFile(input_name, output_name, key, password, align=None,
   else:
     sign_name = output_name
 
-  cmd = ["java", "-Xmx768m", "-jar",
+  cmd = ["java", "-Xmx2048m", "-jar",
            os.path.join(OPTIONS.search_path, "framework", "signapk.jar")]
   if whole_file:
     cmd.append("-w")
@@ -654,7 +675,7 @@ class File(object):
     self.name = name
     self.data = data
     self.size = len(data)
-    self.sha1 = sha.sha(data).hexdigest()
+    self.sha1 = sha1(data).hexdigest()
 
   def WriteToTemp(self):
     t = tempfile.NamedTemporaryFile()
