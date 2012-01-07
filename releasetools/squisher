@@ -148,9 +148,12 @@ cat $img.md5sum
 echo
 )
 
-if [ -f ~/upload.sh ] && echo "Running upload script" || exit; then
-	upload=~/upload.sh
-	. $upload
+upload=~/upload.sh
+if [ -f $upload ]; then
+	echo "Running upload script";
+	. $upload;
+else
+	exit 1;
 fi
 
 exit 0
