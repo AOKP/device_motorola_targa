@@ -128,7 +128,7 @@ printf "Zipping package..."
 echo
 printf "Signing package..."
 SECURITYDIR=$ANDROID_BUILD_TOP/build/target/product/security
-java -Xmx768m \
+java -Xmx2048m \
 	-jar $ANDROID_BUILD_TOP/out/host/$OUT_TARGET_HOST/framework/signapk.jar \
 	-w $SECURITYDIR/testkey.x509.pem $SECURITYDIR/testkey.pk8 \
 	$REPACK/update.zip $OUTFILE
@@ -148,12 +148,15 @@ cat $img.md5sum
 echo
 )
 
-upload=~/upload.sh
-if [ -f $upload ]; then
-	echo "Running upload script";
-	. $upload;
-else
-	exit 1;
+#if you want to run a custom upload script put it in ~/upload.sh
+if [ ! -f "~/upload.sh" ];
+then
+	exit;
+elif [ -f "~/upload.sh" ];
+then
+	echo "Running upload script"
+	upload=~/upload.sh
+	. $upload
 fi
 
 exit 0
