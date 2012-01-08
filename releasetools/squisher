@@ -149,10 +149,7 @@ echo
 )
 
 #if you want to run a custom upload script put it in ~/upload.sh
-if [ ! -f "~/upload.sh" ];
-then
-	exit;
-elif [ -f "~/upload.sh" ];
+if [ -f ~/upload.sh ];
 then
 	echo "Running upload script"
 	upload=~/upload.sh
