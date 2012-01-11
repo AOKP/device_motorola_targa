@@ -15,12 +15,12 @@
 
 #include <linux/kernel.h>
 #include <linux/module.h>
-#include <linux/virtio.h>
+#include "virtio.h"
 #include <linux/slab.h>
-#include <linux/rpmsg.h>
+#include "linux-rpmsg.h"
 #include <linux/delay.h>
 #include <linux/idr.h>
-#include <linux/remoteproc.h>
+#include "linux-remoteproc.h"
 #include <linux/clk.h>
 #include <linux/regulator/consumer.h>
 #include <linux/regulator/driver.h>
@@ -29,14 +29,14 @@
 #include <linux/err.h>
 #include <linux/list.h>
 #include <linux/debugfs.h>
-#include <linux/rpmsg_resmgr.h>
+#include "rpmsg_resmgr.h"
 #include <linux/pm_runtime.h>
 #include <plat/dmtimer.h>
-#include <plat/rpres.h>
+#include "plat-rpres.h"
 #include <plat/clock.h>
 #include <plat/dma.h>
 #include <plat/i2c.h>
-#include <plat/omap_hwmod.h>
+#include "omap_hwmod.h"
 
 #define NAME_SIZE	50
 #define REGULATOR_MAX	1
@@ -136,6 +136,13 @@ static int _get_rprm_size(u32 type)
 	}
 	return 0;
 }
+
+
+/*******************************************************
+** MISSING ROUTINES
+*/
+void i2c_detect_ext_master(struct i2c_adapter *adap) { return; }
+
 
 static int rprm_gptimer_request(struct rprm_elem *e, struct rprm_gpt *obj)
 {
@@ -423,6 +430,7 @@ static void rprm_sdma_release(struct rprm_sdma *obj)
 static int rprm_i2c_request(struct rprm_elem *e, struct rprm_i2c *obj)
 {
 	struct device *i2c_dev;
+	struct i2c_adapter *adapter;
 	char i2c_name[NAME_SIZE];
 	int ret = -EINVAL;
 
@@ -433,7 +441,16 @@ static int rprm_i2c_request(struct rprm_elem *e, struct rprm_i2c *obj)
 		return ret;
 	}
 
+	adapter = i2c_get_adapter(obj->id);
+	if (!adapter) {
+		pr_err("%s: could not get i2c%d adapter\n", __func__, obj->id);
+		return -EINVAL;
+	}
+	i2c_detect_ext_master(adapter);
+	i2c_put_adapter(adapter);
+
 	ret = pm_runtime_get_sync(i2c_dev);
+	ret -= ret == 1;
 	if (!ret)
 		e->handle = i2c_dev;
 	else
