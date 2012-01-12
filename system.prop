@@ -226,6 +226,9 @@ ro.usb.use_custom_service=1
 # use charge_counter for 1% battery increments
 ro.product.use_charge_counter=1
 
+# set default usb mode as usb mass storage
+ro.default_usb_mode=2
+
 #
 # ADDITIONAL_BUILD_PROPERTIES
 #

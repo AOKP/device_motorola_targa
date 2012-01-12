@@ -42,6 +42,15 @@ PRODUCT_PACKAGES += \
     audio.primary.targa \
     audio_policy.targa 
 
+# BlueZ a2dp Audio HAL module
+PRODUCT_PACKAGES += \
+    audio.a2dp.default
+
+# BlueZ test tools
+PRODUCT_PACKAGES += \
+    hciconfig \
+    hcitool
+
 # Modem
 PRODUCT_PACKAGES += \
     nc \
@@ -202,7 +211,7 @@ PRODUCT_COPY_FILES += \
 
 # Phone settings
 PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt//etc/apns-conf.xml:system/etc/apns-conf.xml \
+    device/sample/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml \
     vendor/cm/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml \
 
 

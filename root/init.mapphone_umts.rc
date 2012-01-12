@@ -286,7 +286,6 @@ on post-fs-data
     insmod /system/lib/modules/nf_conntrack_ipv6.ko
 
 # Load Quota2 support modules
-    insmod /system/lib/modules/ip6_tables.ko
     insmod /system/lib/modules/xt_TPROXY.ko
     insmod /system/lib/modules/xt_TRACE.ko
     insmod /system/lib/modules/xt_NFQUEUE.ko
@@ -310,9 +309,6 @@ on early-boot
     class_start media_early_init
 
 on boot
-
-# Enable ADB
-    exec /usbcheck.sh
 
 # Define Motorola DBVC ATVC Property defaults (failsafe properties)
     setprop ro.sys.atvc_allow_netmon_usb 0
@@ -691,9 +687,9 @@ service battd /system/bin/battd
     group mot_accy mot_pwric
     oneshot
 
-#service catcommands /system/bin/catcommands
-#    class core
-#    group radio
+service catcommands /system/bin/catcommands
+    class core
+    group radio
 
 service whisperd /system/bin/whisperd /dev/ttyO1
     class late_start
@@ -1025,18 +1021,6 @@ service secclkd /system/bin/secclkd
 service dla /system/bin/dla
     class late_start
     oneshot
-
-on property:tcmd.ctrl_adb=1
-    setprop persist.service.adb.enable 1
-    setprop persist.factory.allow_adb 1
-    stop usbd
-    start usbd
-
-on property:tcmd.ctrl_adb=0
-    setprop persist.service.adb.enable 0
-    setprop persist.factory.allow_adb 0
-    stop usbd
-    start usbd
 
 #start Authentec VPN service
 service vpnclientpm /system/bin/vpnclientpm

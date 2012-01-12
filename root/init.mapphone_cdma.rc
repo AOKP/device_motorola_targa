@@ -16,9 +16,6 @@ on fs
 
 on post-fs-data
 
-# Enable ADB
-    write /dev/usb_device_mode msc_adb
-
     # prepare generic keypad name
     exec /init_prep_keypad.sh
 
