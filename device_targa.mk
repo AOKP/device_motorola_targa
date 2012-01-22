@@ -132,6 +132,7 @@ PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     FileManager \
     CMSettings \
+    MusicFX \
     libjni_pinyinime \
 
 # WirelessTether Lib
