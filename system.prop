@@ -315,6 +315,8 @@ ro.mot.hw.uaprof=http://uaprof.motorola.com/phoneconfig/MotoMB200/profile/MotoMB
 ro.build.version.full=ICS_Version.4.0.3_r1.XT875.Verizon.en.US
 ro.mot.hidden_keyboards=evfwd
 persist.sys.usb.config=mass_storage,adb
+ro.ril.disable.power.collaspe=1
+pm.sleep_mode=1
 
 ro.rommanager.developerid=dhacker29
 ro.modversion=ICS4BIONIC
