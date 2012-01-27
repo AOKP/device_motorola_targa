@@ -41,15 +41,14 @@
 
     <!-- Vibrator pattern for a very short but reliable vibration for soft keyboard tap -->
     <integer-array name="config_keyboardTapVibePattern">
-        <item>20</item>
+        <item>10</item>
     </integer-array>
 
     <!-- Our amoled doesn't animate well. -->
     <bool name="config_animateScreenLights">false</bool>
-    
+
     <!-- Indicate whether the SD card is accessible without removing the battery. -->
     <bool name="config_batterySdCardAccessibility">true</bool>
-
 
     <!-- If true, the direction rotation is applied to get to an application's requested
          orientation is reversed.  Normally, the model is that landscape is
@@ -120,7 +119,7 @@
         <item>255</item>
         <item>255</item>
         <item>255</item>
-        <item>0</item>
+        <item>255</item>
     </integer-array>
 
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
@@ -134,7 +133,7 @@
         <item>255</item>
         <item>255</item>
         <item>255</item>
-        <item>0</item>
+        <item>255</item>
     </integer-array>
 
     <!-- Amount of time it takes for the light sensor to warm up in milliseconds.

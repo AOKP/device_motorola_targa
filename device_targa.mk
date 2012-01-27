@@ -61,19 +61,6 @@ PRODUCT_PACKAGES += \
     radiooptions \
     sh 
 
-# Syslink and Tiler
-PRODUCT_PACKAGES += \
-    syslink_daemon.out \
-    syslink_tilertest.out \
-    syslink_trace_daemon.out \
-    libipc \
-    libipcutils \
-    librcm \
-    libsysmgr \
-    libnotify \
-    libd2cmap \
-    libtimemmgr 
-
 # Wifi
 PRODUCT_PACKAGES += \
     libCustomWifi \
@@ -116,8 +103,8 @@ PRODUCT_PACKAGES += \
     utils_test \
     tiler_ptest \
     overlay_test \
-    omx_tests 
-#    camera_test \
+    omx_tests \
+    camera_test \
 #    VideoEncTest 
 
 PRODUCT_PACKAGES += \
@@ -255,6 +242,7 @@ PRODUCT_COPY_FILES += \
 
 # stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
+#$(call inherit-product, hardware/ti/camera/camera.mk)
 $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
 $(call inherit-product-if-exists, vendor/google/google-vendor.mk)
 #$(call inherit-product, hardware/ti/wpan/tools/FM/Android.mk)
