@@ -317,6 +317,7 @@ ro.mot.hidden_keyboards=evfwd
 persist.sys.usb.config=mass_storage,adb
 ro.ril.disable.power.collaspe=1
 pm.sleep_mode=1
+ro.config.disable_hw_accel=true
 
 ro.rommanager.developerid=dhacker29
 ro.modversion=ICS4BIONIC
