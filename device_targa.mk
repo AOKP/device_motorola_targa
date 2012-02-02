@@ -36,7 +36,9 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_PACKAGES += \
 #    lights.targa \
 #    sensors.targa \
-#    IMSCServer \
+
+PRODUCT_PACKAGES += \
+    camera.omap4
 
 PRODUCT_PACKAGES += \
     audio.primary.targa \
@@ -243,7 +245,7 @@ PRODUCT_COPY_FILES += \
 
 # stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
-#$(call inherit-product, hardware/ti/camera/camera.mk)
+$(call inherit-product, hardware/ti/camera/camera.mk)
 $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
 $(call inherit-product-if-exists, vendor/google/google-vendor.mk)
 #$(call inherit-product, hardware/ti/wpan/tools/FM/Android.mk)
