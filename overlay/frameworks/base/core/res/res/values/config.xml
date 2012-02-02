@@ -172,8 +172,8 @@
     <integer-array translatable="false" name="config_protectedNetworks">
         <item>10</item>
         <item>11</item>
-        <item>12</item>  -->
-    </integer-array>
+        <item>12</item>
+    </integer-array>  -->
 
     <!-- An Array of "[ConnectivityManager connectionType],
          [# simultaneous connection types]"  -->
