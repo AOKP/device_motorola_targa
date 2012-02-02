@@ -126,9 +126,9 @@ PRODUCT_PACKAGES += \
 
 # WirelessTether Lib
 PRODUCT_COPY_FILES += \
+    device/motorola/targa/prebuilt/app/CM_Music.apk:system/app/CM_Music.apk
     device/motorola/targa/prebuilt/app/wifi_tether_v3_1-beta11.apk:system/app/wifi_tether_v3_1-beta11.apk \
     device/motorola/targa/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
-    device/motorola/targa/prebuilt/app/CM_Music.apk:system/app/CM_Music.apk
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
@@ -197,7 +197,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/usr/keylayout/light-prox.kl:system/usr/keylayout/light-prox.kl \
     device/motorola/targa/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
     device/motorola/targa/prebuilt/usr/keylayout/qtouch-touchscreen.kl:system/usr/keylayout/qtouch-touchscreen.kl \
-    device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip
 
 # Phone settings
 PRODUCT_COPY_FILES += \
