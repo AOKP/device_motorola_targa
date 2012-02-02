@@ -168,12 +168,12 @@
     </string-array>
     
     <!-- Array of ConnectivityManager.TYPE_xxxx constants for networks that may only
-         be controlled by systemOrSignature apps.  -->
+         be controlled by systemOrSignature apps.
     <integer-array translatable="false" name="config_protectedNetworks">
         <item>10</item>
         <item>11</item>
         <item>12</item>
-    </integer-array>
+    </integer-array>  -->
 
     <!-- An Array of "[ConnectivityManager connectionType],
          [# simultaneous connection types]"  -->
