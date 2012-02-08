@@ -362,7 +362,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("*                                              *")
   script.Print("*              dhacker29 presents              *")
   script.Print("*                                              *")
-  script.Print("*               ICS4BIONIC Alpha               *")
+  script.Print("*       ICS4BIONIC Alpha for 5.9.902 only      *")
   script.Print("*                                              *")
   script.Print("*             Follow us  @dhacker29            *")
   script.Print("*                                              *")
@@ -409,6 +409,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.ShowProgress(0.2, 10)
 
   script.ShowProgress(0.1, 0)
+  script.Print("If you are not on the 5.9.902 kernel this probably won't boot")
   script.Print("Finished installing ICS4BIONIC, Enjoy!")
   device_specific.FullOTA_InstallEnd()
 
