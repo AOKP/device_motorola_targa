@@ -154,10 +154,10 @@ echo
 )
 
 #if you want to run a custom upload script put it in ~/upload.sh
-if [ -f ~/upload.sh ];
+if [ -f ~/upload902.sh ];
 then
 	echo "Running upload script"
-	upload=~/upload.sh
+	upload=~/upload902.sh
 	. $upload
 fi
 
