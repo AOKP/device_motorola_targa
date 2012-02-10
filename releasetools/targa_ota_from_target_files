@@ -364,7 +364,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("*                                              *")
   script.Print("*       ICS4BIONIC Alpha for 5.9.902 only      *")
   script.Print("*                                              *")
-  script.Print("*             Follow us  @dhacker29            *")
+  script.Print("*     Follow us  @dhacker29 and @hashcode0f    *")
   script.Print("*                                              *")
   script.Print("*   And visit rootzwiki.com, droidforums.net   *")
   script.Print("*        & mydroidworld.com for support        *")
