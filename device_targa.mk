@@ -125,9 +125,11 @@ PRODUCT_PACKAGES += \
 
 # WirelessTether Lib
 PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt/app/CM_Music.apk:system/app/CM_Music.apk \
     device/motorola/targa/prebuilt/app/wifi_tether_v3_1-beta11.apk:system/app/wifi_tether_v3_1-beta11.apk \
     device/motorola/targa/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
+    device/motorola/targa/prebuilt/bin/bootsound:system/bin/bootsound \
+#    device/motorola/targa/prebuilt/media/android_audio.mp3:system/media/android_audio.mp3 \
+#    device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip \
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
