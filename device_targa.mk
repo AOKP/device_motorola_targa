@@ -114,6 +114,7 @@ PRODUCT_PACKAGES += \
     Superuser \
     su \
     Usb \
+    DockAudio \
 
 
 PRODUCT_PACKAGES += \
