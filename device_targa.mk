@@ -124,6 +124,13 @@ PRODUCT_PACKAGES += \
     MusicFX \
     libjni_pinyinime \
 
+# CameraFix
+PRODUCT_COPY_FILES += \
+    device/motorola/targa/prebuilt/camerafix/hw/camera.omap4.so:system/lib/hw/camera.omap4.so \
+    device/motorola/targa/prebuilt/camerafix/libcamera.so:system/lib/libcamera.so \
+    device/motorola/targa/prebuilt/camerafix/libomxcameraadapter.so:system/lib/libomxcameraadapter.so \
+    device/motorola/targa/prebuilt/camerafix/libtiutils.so:system/lib/libtiutils.so \
+
 # WirelessTether Lib
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/app/wifi_tether_v3_1-beta11.apk:system/app/wifi_tether_v3_1-beta11.apk \
