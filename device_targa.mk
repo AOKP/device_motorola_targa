@@ -121,8 +121,8 @@ PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory \
     FileManager \
-    MusicFX \
     libjni_pinyinime \
+#    MusicFX \
 
 # CameraFix
 PRODUCT_COPY_FILES += \
@@ -261,6 +261,7 @@ $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
 #$(call inherit-product-if-exists, vendor/google/google-vendor.mk)
 #$(call inherit-product, hardware/ti/wpan/tools/FM/Android.mk)
 $(call inherit-product-if-exists, vendor/verizon/targa-verizon-vendor.mk)
+$(call inherit-product, packages/apps/DSPManager/cyanogen-dsp/Android.mk)
 
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
 
