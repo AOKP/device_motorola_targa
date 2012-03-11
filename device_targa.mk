@@ -126,7 +126,8 @@ PRODUCT_PACKAGES += \
 
 # CameraFix
 PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt/camerafix/hw/camera.omap4.so:system/lib/hw/camera.omap4.so \
+    device/motorola/targa/prebuilt/camerafix/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
+    device/motorola/targa/prebuilt/camerafix/camera.omap4.so:system/lib/hw/camera.omap4.so \
     device/motorola/targa/prebuilt/camerafix/libcamera.so:system/lib/libcamera.so \
     device/motorola/targa/prebuilt/camerafix/libomxcameraadapter.so:system/lib/libomxcameraadapter.so \
     device/motorola/targa/prebuilt/camerafix/libtiutils.so:system/lib/libtiutils.so \
@@ -179,6 +180,8 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 
 
+# Removed for camera fix
+#    device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
 # Prebuilts
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/battd:system/bin/battd \
@@ -186,7 +189,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
     device/motorola/targa/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/targa/prebuilt/bin/strace:system/bin/strace \
-    device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
     device/motorola/targa/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/motorola/targa/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/targa/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
