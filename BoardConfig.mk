@@ -58,7 +58,7 @@ WPA_SUPPL_WITH_SIGNAL_POLL  := true
 # CM9
 WIFI_AP_DRIVER_MODULE_PATH  := "/system/lib/modules/tiap_drv.ko"
 WIFI_AP_DRIVER_MODULE_NAME  := tiap_loader
-WIFI_AP_FIRMWARE_LOADER     := ap_fmloader
+WIFI_AP_FIRMWARE_LOADER     := wlan_ap_loader
 WIFI_AP_DRIVER_MODULE_ARG   := ""
 BOARD_HOSTAPD_NO_ENTROPY    := true
 BOARD_HOSTAPD_DRIVER        := true

@@ -863,7 +863,7 @@ service wlan_loader /system/bin/wlan_loader -f /system/etc/wifi/fw_wlan1281.bin 
     disabled
     oneshot
 
-service ap_fmloader /system/bin/logwrapper /system/bin/tiap_loader -f /system/etc/wifi/fw_wlan1281_AP.bin -i /system/etc/wifi/tiwlan_ap.ini -e /pds/wifi/nvs_map.bin
+service wlan_ap_loader /system/bin/logwrapper /system/bin/tiap_loader -f /system/etc/wifi/fw_wlan1281_AP.bin -i /system/etc/wifi/tiwlan_ap.ini -e /pds/wifi/nvs_map.bin
     class late_start
     disabled
     oneshot
