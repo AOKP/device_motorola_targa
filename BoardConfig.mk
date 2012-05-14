@@ -38,26 +38,31 @@ BOARD_VOLD_MAX_PARTITIONS := 30
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun%d/file"
 BOARD_CUSTOM_USB_CONTROLLER := ../../device/motorola/targa/UsbController.cpp
+BOARD_MTP_DEVICE := "/dev/mtp"
 
 
-# Connectivity - Wi-Fi
-BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
-BOARD_HOSTAPD_DRIVER        := CUSTOM
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := libCustomWifi
-WPA_SUPPLICANT_VERSION      := VER_0_6_X
-HOSTAPD_VERSION             := VER_0_6_X
-BOARD_SOFTAP_DEVICE         := wl1283
+# Wifi related defines
 BOARD_WLAN_DEVICE           := wl1283
-#BOARD_WLAN_TI_STA_DK_ROOT   := system/wlan/ti/wilink_6_1
+WPA_SUPPLICANT_VERSION      := VER_0_6_X
+BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/tiwlan_drv.ko"
-WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
-WIFI_DRIVER_MODULE_ARG      := ""
-WIFI_FIRMWARE_LOADER        := "wlan_loader"
-WIFI_DRIVER_FW_STA_PATH     := "/system/etc/wifi/fw_wlan1283.bin"
-WIFI_DRIVER_FW_AP_PATH      := "/system/etc/wifi/fw_wlan1283_AP.bin"
+WIFI_DRIVER_MODULE_NAME     := tiwlan_drv
+WIFI_DRIVER_FW_STA_PATH     := "/system/etc/wifi/fw_wlan1281.bin"
+WIFI_FIRMWARE_LOADER        := wlan_loader
 PRODUCT_WIRELESS_TOOLS      := true
+BOARD_SOFTAP_DEVICE         := wl1283
 AP_CONFIG_DRIVER_WILINK     := true
+WIFI_DRIVER_FW_AP_PATH      := "/system/etc/wifi/fw_wlan1281_AP.bin"
 WPA_SUPPL_APPROX_USE_RSSI   := true
+WPA_SUPPL_WITH_SIGNAL_POLL  := true
+# CM9
+WIFI_AP_DRIVER_MODULE_PATH  := "/system/lib/modules/tiap_drv.ko"
+WIFI_AP_DRIVER_MODULE_NAME  := tiap_loader
+WIFI_AP_FIRMWARE_LOADER     := ap_fmloader
+WIFI_AP_DRIVER_MODULE_ARG   := ""
+BOARD_HOSTAPD_NO_ENTROPY    := true
+BOARD_HOSTAPD_DRIVER        := true
+BOARD_HOSTAPD_DRIVER_NAME   := wilink
 
 
 # Audio

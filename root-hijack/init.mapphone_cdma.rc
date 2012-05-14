@@ -763,6 +763,11 @@ service uim /system/bin/uim-sysfs
     group media bluetooth
     oneshot
 
+service hostapd /system/bin/logwrapper /system/bin/hostap /data/misc/wifi/hostapd.conf
+    class main
+    disabled
+    oneshot
+
 service hciattach /system/bin/hciattach -l
     class late_start
     user bluetooth
