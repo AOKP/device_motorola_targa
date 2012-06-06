@@ -131,8 +131,7 @@ PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory \
     FileManager \
-    libjni_pinyinime \
-#    MusicFX \
+
 
 # CameraFix
 PRODUCT_COPY_FILES += \
@@ -142,13 +141,14 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/camerafix/libomxcameraadapter.so:system/lib/libomxcameraadapter.so \
     device/motorola/targa/prebuilt/camerafix/libtiutils.so:system/lib/libtiutils.so \
 
-# WirelessTether Lib
+# WirelessTether
+PRODUCT_PACKAGES += wifi_tether_v3_1-beta14
 PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt/app/wifi_tether_v3_1-beta14.apk:system/app/wifi_tether_v3_1-beta14.apk \
     device/motorola/targa/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
     device/motorola/targa/prebuilt/bin/bootsound:system/bin/bootsound \
 #    device/motorola/targa/prebuilt/media/android_audio.mp3:system/media/android_audio.mp3 \
 #    device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip \
+
 
 # Rootfs files
 PRODUCT_COPY_FILES += \
