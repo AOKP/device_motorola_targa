@@ -270,10 +270,7 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product, hardware/ti/camera/camera.mk)
 $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
-#$(call inherit-product-if-exists, vendor/google/google-vendor.mk)
-#$(call inherit-product, hardware/ti/wpan/tools/FM/Android.mk)
 $(call inherit-product-if-exists, vendor/verizon/targa-verizon-vendor.mk)
-#$(call inherit-product, packages/apps/DSPManager/cyanogen-dsp/Android.mk)
 
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
 
