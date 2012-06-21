@@ -4,25 +4,24 @@
 # rild.libpath=/system/lib/libril-moto-umts-1.so
 rild.libpath=/system/lib/libmoto_ril.so
 rild.libargs=-d /dev/ttyO0
+telephony.lteOnCdmaDevice=1
 ro.sf.lcd_density=240
-ro.default_usb_mode=2
 ro.mot.ril.danlist=611,*611,#611
 persist.ril.ecclist=911,*911,#911
 
 # Enable ALWAYS_READ_IMSI_FROM_SIM
 persist.ril.features=800
+
 persist.ril.modem.mode =1
 
 # This defines the max event window manager can
 # handle in 1 s. We may adjust this # for performance
 # reason later
-windowsmgr.max_events_per_sec=250
+windowsmgr.max_events_per_sec=90
 
 # USB modes allowed for UI and switching
 ro.ngp_available=1
 ro.modem_available=0
-
-telephony.lteOnCdmaDevice=1
 
 # Turn on IMS by default
 persist.radio.imsregrequired=1
@@ -31,9 +30,8 @@ persist.radio.imsfwloglevel=3
 
 # Default network type.
 # 4 => CDMA/EVDO. To be used until Targa has LTE SFN
-# 7 => GLOBAL
-# 8 => LTE, CDMA and EvDo
-ro.telephony.default_network=7
+# 7 => GLOBAL.
+ro.telephony.default_network=8
 ro.com.google.clientid=android-motorola
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
@@ -41,15 +39,10 @@ ro.cdma.home.operator.numeric=310004
 ro.cdma.home.operator.alpha=Verizon
 ro.config.vc_call_vol_steps=7
 
-# Disable ims by setting imsapp.mode to all_dependency_met
-#imsapp.mode=all_dependency_met
-
-# The value of the kernel command line product_type variable for lte on cdma devices
-telephony.lteOnCdmaProductType=clw
-
 # wlan interface
-wifi.interface = tiwlan0
-softap.interface = tiap0
+wifi.interface = wlan0
+softap.interface = wlan1
+wifi.ap.interface = wlan1
 
 # Time between scans in seconds. Keep it high to minimize battery drain.
 # This only affects the case in which there are remembered access points,
@@ -60,16 +53,6 @@ wifi.supplicant_scan_interval = 90
 # refer to frameworks/base/telephony/java/com/android/
 # internal/telephony/cdma/CDMAPhone.java for the schema:
 ro.cdma.otaspnumschema=SELC,1,80,99
-
-# write cdma MIN to property for VVM use in GSM/UMTS mode
-
-persist.radio.cdma.min = 0
-
-# true  Horizontal VVM is preloaded, not allow to install standalone version of
-# VVM from Android Market
-# false Horizontal VVM is not preloaded
-
-ro.HorizontalVVM=true
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
@@ -193,45 +176,33 @@ persist.radio.ap.phonetype=2
 # Feature 32711, deep sleep mode support
 ro.mot.deep.sleep.supported=true
 
-# BEGIN Motorola, A24124, 10-June-2011,  IKTARGA-1744
+# BEGIN Motorola, A24124, 10-June-2011,IKTARGA-1744
 ro.mot.bindervm.config = 251
 # END IKTARGA-1744
-
-#BEGIN Motorola, w30471, 16-Mar-2011, IKSTABLEFIVE-1796 35691 - Set configurable parameters for Verizon products
-mot.mms.con.timeout = 30000
-mot.mms.socket.timeout = 120000
-mot.mms.tr.vc.timeout = 55000
-mot.mms.trm.timeout = 240000
-mot.mms.abort.prog.lim = 90
-mot.mms.retry.pic.size = 512000
-mot.mms.retry.default = false
-mot.mms.retry.timeout.1 = 30000
-mot.mms.retry.timeout.2 = 180000
-mot.mms.retry.timeout.3 = 300000
-mot.mms.retry.timeout.4 = 480000
-# END IKSTABLEFIVE-1796
 
 # Give extra time for LTE bug dumps
 ril.dumpstate.timeout=60
 
-#Enable hdcp support
+# make voice call, data call on targa
+telephony.lteOnCdmaDevice=1
+
+# BEGIN Motorola abp095, 4-Jan-2012, IKHSS7-2427 - Thumbnail property change
+com.motorola.cg.lowres=1
+com.motorola.cg.tnWidth=160
+com.motorola.cg.tnHeight=160
+com.motorola.cg.tndisplay=1
+# END IKHSS7-2427
+
+# BEGIN Motorola, w21549, 06/06/2012, IKHSS6UPGR-12234
 ro.hdcp.support=2
-
-# Mount the internal SD card, too
-ro.additionalmounts=/mnt/sdcard
-
-#special moto usb handling
-#ro.usb.use_custom_service=1
-
-# use charge_counter for 1% battery increments
-ro.product.use_charge_counter=1
-
-# set default usb mode as usb mass storage
-ro.default_usb_mode=2
-
+# END IKHSS6UPGR-12234
 #
 # ADDITIONAL_BUILD_PROPERTIES
 #
+dalvik.vm.heapstartsize=5m
+dalvik.vm.heapgrowthlimit=42m
+dalvik.vm.heapsize=128m
+drm.service.enabled=true
 ro.com.google.clientidbase=android-motorola
 ro.com.google.clientidbase.ms=android-verizon
 ro.com.google.clientidbase.am=android-verizon
@@ -247,29 +218,16 @@ persist.ril.features=0x90A
 persist.ril.mux.retries=500
 persist.ril.mux.sleep=2
 ril.wrigley.modem.tty=/dev/usb/tty1-2:1.10
+persist.radio.lte.mm.disable=0
 rild.libpath=/system/lib/moto-ril-multimode.so
-ro.default_usb_mode=0
+persist.sys.usb.config=mass_storage
+ro.com.google.gmsversion=4.0_r2
+ro.crypto.state=unencrypted
 ro.media.enc.aud.fileformat=qcp
 ro.media.enc.aud.codec=qcelp
 ro.media.enc.aud.bps=13300
 ro.media.enc.aud.ch=1
 ro.media.enc.aud.hz=8000
-ro.com.google.gmsversion=2.3_r9
-ro.mot.phonemode.vzw4gphone=1
-ro.mot.lte_on_cdma=1
-lte_ril.libpath=/system/lib/lib-mot-lte-ril.so
-cdma_ril.libpath=/system/lib/libmoto_ril.so
-ril.rat=LTE
-lte_ril.netcfg_to=90
-ro.mot.tmp.telephony.refactor=true
-ro.cdma.subscription=0
-ro.telephony.call_ring.multiple=false
-ro.telephony.call_ring.delay=3000
-ro.setupwizard.enable_bypass=1
-ro.cdma.homesystem=64,65,76,77,78,79,80,81,82,83
-ro.cdma.data_retry_config=default_randomization=2000,max_retries=infinite,0,0,120000,180000,540000,960000
-ro.gsm.data_retry_config=default_randomization=2000,max_retries=infinite,0,0,80000,125000,485000,905000
-ro.gsm.2nd_data_retry_config=max_retries=1,15000
 ro.media.camcorder.1080p=mp4,h264,30,15000000,aac,128000,44100,2
 ro.media.camcorder.720p=mp4,h264,30,10000000,aac,128000,44100,2
 ro.media.camcorder.d1NTSC=mp4,h264,30,6000000,aac,128000,44100,2
@@ -279,26 +237,16 @@ ro.media.camcorder.qvga=mp4,h264,15,500000,aac,64000,44100,2
 ro.media.camcorder.mms=3gp,h264,15,128000,amrnb,12200,8000,1
 ro.media.camcorder.mmsres=qvga
 ro.camcorder.zoom=true
-ro.media.capture.maxres=8m
+ro.media.capture.maxres=5m
 ro.media.capture.fast.fps=4
 ro.media.capture.slow.fps=120
 ro.media.capture.flash=led
 ro.media.capture.flashMinV=3300000
 ro.media.capture.torchIntensity=40
 ro.media.capture.flashIntensity=70
+ro.media.capture.classification=classF
 ro.media.panorama.defres=3264x1840
 ro.media.panorama.frameres=1280x720
-ro.camcorder.videoModes=false
-media.stagefright.enable-player=true
-media.stagefright.enable-meta=true
-media.stagefright.enable-scan=false
-media.stagefright.enable-http=true
-media.stagefright.enable-record=false
-ro.media.camera.focal=3451.0,3451.0
-ro.media.camera.principal=1632.0,1224.0
-ro.media.camera.skew=0.0
-ro.media.camera.distortion=0.0,0.0,0.0,0.0,0.0
-ro.media.camera.calresolution=3264,2448
 ro.mot.setuptype=2
 ro.HorizontalBUA=true
 ro.HorizontalVVM=true
@@ -308,29 +256,34 @@ ro.horizontalVMM=false
 ro.horizontalMOD=false
 ro.horizontalVOD=false
 ro.horizontalEmail=false
-ro.mot.internalsdcard=1
+ro.sf.lcd_density=240
+persist.service.aplogd.enable=1
+ro.mot.phonemode.vzw4gphone=1
+ro.mot.lte_on_cdma=1
+lte_ril.libpath=/system/lib/lib-mot-lte-ril.so
+cdma_ril.libpath=/system/lib/libmoto_ril.so
+ril.rat=LTE
+lte_ril.netcfg_to=90
+ro.mot.tmp.telephony.refactor=true
+ro.cdma.subscription=0
+ro.telephony.call_ring.multiple=false
+ro.telephony.default_network=8
+ro.cdma.homesystem=64,65,76,77,78,79,80,81,82,83
+ro.cdma.data_retry_config=max_retries=infinite,0,0,10000,10000,100000,10000,10000,10000,10000,140000,540000,960000
+ro.gsm.data_retry_config=default_randomization=2000,max_retries=infinite,0,0,80000,125000,485000,905000
+ro.gsm.2nd_data_retry_config=max_retries=infinite,default_randomization=2000,0,0,80000,125000,485000,905000
+ro.hss6upgrade.hide.motocastid=TRUE
+net.bt.name=Android
+dalvik.vm.stack-trace-file=/data/anr/traces.txt
 ro.mot.dpmext=true
 ro.com.google.clientid=android-motorola
-ro.mot.hw.uaprof=http://uaprof.motorola.com/phoneconfig/MotoMB200/profile/MotoMB200.rdf
-ro.build.version.full=ICS_Version.4.0.3_r1.XT875.Verizon.en.US
+ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
+ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
+ro.build.version.full=ICS_VERSION.4.0.4_r2.1.XT875.Verizon.en.US
 ro.mot.hidden_keyboards=evfwd
 persist.sys.usb.config=mass_storage,adb
-ro.ril.disable.power.collaspe=1
-pm.sleep_mode=1
-ro.config.disable_hw_accel=true
 
-# ril class extension for incoming forwarded calls
-#ro.telephony.ril_class=MotoWrigley3GRIL
-
-# To enable boot sounds set value to 1 and place /system/media/android_audio.mp3
-# or edit /system/bin/bootsound with the name of your audio
-ro.config.play.bootsound=0
-
-ro.rommanager.developerid=dhacker29
-ro.modversion=ICS4BIONIC
-
-#Tweaks
-ro.kernel.android.checkjni=0
-ro.media.enc.jpeg.quality=100
-debug.sf.hw=1
-
+com.ti.omap_enhancement=true
+hwui.render_dirty_regions=false
+ril.subscription.types=NV,RUIM
+ro.ril.moto.newarch=true

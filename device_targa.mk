@@ -18,35 +18,24 @@ PRODUCT_PACKAGES := \
     charger \
     charger_res_images
 
-# Audio
+# Audio - use stock ICS leak files for now
 PRODUCT_COPY_FILES += \
-    device/motorola/targa/audio/acoustics.default.so:/system/lib/hw/acoustics.targa.so \
-    device/motorola/targa/audio/alsa.omap4.so:/system/lib/hw/alsa.targa.so \
+    device/motorola/targa/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
+    device/motorola/targa/audio/audio.a2dp.default.so:/system/lib/hw/audio.a2dp.default.so \
+    device/motorola/targa/audio/audio.primary.omap4.so:/system/lib/hw/audio.primary.omap4.so \
+    device/motorola/targa/audio/audio_policy.omap4.so:/system/lib/hw/audio_policy.omap4.so \
     device/motorola/targa/audio/libasound.so:/system/lib/libasound.so \
-    device/motorola/targa/audio/libaudio.so:/system/lib/libaudio.so \
-    device/motorola/targa/audio/libaudio_ext.so:/system/lib/libaudio_ext.so \
-    device/motorola/targa/audio/libaudiopolicy.so:/system/lib/libaudiopolicy.so \
-    device/motorola/targa/audio/liba2dp.so:/system/lib/liba2dp.so 
-
-# Hardware HALs
-PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt/imgtec/gralloc.omap4.so:system/lib/hw/gralloc.omap4.so \
-
-# Hardware HALs
-#PRODUCT_PACKAGES += \
-#    lights.targa \
-#    sensors.targa \
+    device/motorola/targa/audio/libaudio_ext.so:/system/lib/libaudio_ext.so
 
 PRODUCT_PACKAGES += \
-    camera.omap4
+    camera.omap4 \
+    libinvensense_mpl \
+    hwcomposer.omap4 \
+    hwcomposer.default \
 
 PRODUCT_PACKAGES += \
-    audio.primary.targa \
-    audio_policy.targa 
-
-# BlueZ a2dp Audio HAL module
-PRODUCT_PACKAGES += \
-    audio.a2dp.default
+    libaudioutils \
+    libaudiohw_legacy \
 
 # BlueZ test tools
 PRODUCT_PACKAGES += \
@@ -65,41 +54,21 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
-    libCustomWifi \
-    iwmulticall \
-    libwpa_client \
-    wlan_loader \
-    wlan_cu \
-    libtiOsLib \
+    lib_driver_cmd_wl12xx \
     dhcpcd.conf \
-    tiwlan.ini \
-    wpa_supplicant \
-    wpa_suplicant.conf
+    hostapd.conf \
+    wifical.sh \
+    wpa_supplicant.conf \
+    TQS_D_1.7.ini \
+    crda \
+    regulatory.bin \
+    calibrator
 
-# HotSpot
-PRODUCT_PACKAGES += \
-    libhostapdcli \
-    libtiOsLibAP \
-    tiap_loader \
-    tiap_cu \
-    ndc \
-    tiwlan_ap.ini \
-    dhcpcd.conf \
-    hostap \
-    hostapd.conf 
 
 # Bluetooth
 PRODUCT_PACKAGES += \
     bt_sco_app \
     uim-sysfs 
-
-# FM Radio
-#PRODUCT_PACKAGES += \
-#    com.ti.fm.fmradioif.xml \
-#    fmradioif \
-#    FmRxApp \
-#    FmTxApp \
-#    FmService 
 
 # Release utilities
 PRODUCT_PACKAGES += \
@@ -108,46 +77,24 @@ PRODUCT_PACKAGES += \
     targa_releaseutils-mke2fs \
     targa_releaseutils-tune2fs
 
-# Tests -- Can remove later
 PRODUCT_PACKAGES += \
-    d2c_test \
-    memmgr_test \
-    utils_test \
-    tiler_ptest \
-    overlay_test \
-    omx_tests \
     camera_test \
-#    VideoEncTest 
-
-PRODUCT_PACKAGES += \
-    Camera \
     Superuser \
     su \
-    Usb \
     DockAudio \
-
+    safestrapmenu \
 
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory \
     FileManager \
-
-
-# CameraFix
-PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt/camerafix/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
-    device/motorola/targa/prebuilt/camerafix/camera.omap4.so:system/lib/hw/camera.omap4.so \
-    device/motorola/targa/prebuilt/camerafix/libcamera.so:system/lib/libcamera.so \
-    device/motorola/targa/prebuilt/camerafix/libomxcameraadapter.so:system/lib/libomxcameraadapter.so \
-    device/motorola/targa/prebuilt/camerafix/libtiutils.so:system/lib/libtiutils.so \
+    MusicFX \
+    Apollo \
 
 # WirelessTether
 PRODUCT_PACKAGES += wifi_tether_v3_1-beta14
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
-    device/motorola/targa/prebuilt/bin/bootsound:system/bin/bootsound \
-#    device/motorola/targa/prebuilt/media/android_audio.mp3:system/media/android_audio.mp3 \
-#    device/motorola/targa/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip \
 
 
 # Rootfs files
@@ -160,6 +107,8 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root/init.mapphone_umts.rc:system/etc/rootfs/init.mapphone_umts.rc \
     device/motorola/targa/root/usbcheck.sh:system/etc/rootfs/usbcheck.sh \
     device/motorola/targa/root/ueventd.rc:system/etc/rootfs/ueventd.rc \
+    device/motorola/targa/root/ueventd.mapphone_cdma.rc:system/etc/rootfs/ueventd.mapphone_cdma.rc \
+    device/motorola/targa/root/ueventd.mapphone_umts.rc:system/etc/rootfs/ueventd.mapphone_umts.rc \
 
 # Hijack files
 PRODUCT_COPY_FILES += \
@@ -169,6 +118,8 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/root-hijack/init.mapphone_umts.rc:root/init.mapphone_umts.rc \
     device/motorola/targa/root/usbcheck.sh:root/usbcheck.sh \
     device/motorola/targa/root/ueventd.rc:root/ueventd.rc \
+    device/motorola/targa/root/ueventd.mapphone_cdma.rc:root/ueventd.mapphone_cdma.rc \
+    device/motorola/targa/root/ueventd.mapphone_umts.rc:root/ueventd.mapphone_umts.rc \
 
 
 # Permissions files
@@ -186,12 +137,12 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:/system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:/system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/base/data/etc/android.hardware.wifi.direct.xml:/system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/base/data/etc/handheld_core_hardware.xml:/system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 
 
-# Removed for camera fix
-#    device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
 # Prebuilts
 PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/battd:system/bin/battd \
@@ -203,46 +154,13 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/targa/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/motorola/targa/prebuilt/etc/hijack-boot.zip:system/etc/hijack-boot.zip \
-    device/motorola/targa/prebuilt/usr/idc/cpcap-key.idc:system/usr/idc/cpcap-key.idc \
-    device/motorola/targa/prebuilt/usr/idc/light-prox.idc:system/usr/idc/light-prox.idc \
-    device/motorola/targa/prebuilt/usr/idc/mapphone-switch.idc:system/usr/idc/mapphone-switch.idc \
-    device/motorola/targa/prebuilt/usr/idc/omap-keypad.idc:system/usr/idc/omap-keypad.idc \
-    device/motorola/targa/prebuilt/usr/idc/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
-    device/motorola/targa/prebuilt/usr/keychars/cpcap-key.kcm:system/usr/keychars/cpcap-key.kcm \
-    device/motorola/targa/prebuilt/usr/keychars/light-prox.kcm:system/usr/keychars/light-prox.kcm \
-    device/motorola/targa/prebuilt/usr/keychars/mapphone-switch.kcm:system/usr/keychars/mapphone-switch.kcm \
-    device/motorola/targa/prebuilt/usr/keychars/omap-keypad.kcm:system/usr/keychars/omap-keypad.kcm \
-    device/motorola/targa/prebuilt/usr/keychars/qtouch-touchscreen.kcm:system/usr/keychars/qtouch-touchscreen.kcm \
-    device/motorola/targa/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    device/motorola/targa/prebuilt/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
-    device/motorola/targa/prebuilt/usr/keylayout/light-prox.kl:system/usr/keylayout/light-prox.kl \
-    device/motorola/targa/prebuilt/usr/keylayout/mapphone-switch.kl:system/usr/keylayout/mapphone-switch.kl \
-    device/motorola/targa/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
-    device/motorola/targa/prebuilt/usr/keylayout/qtouch-touchscreen.kl:system/usr/keylayout/qtouch-touchscreen.kl \
-    device/motorola/targa/prebuilt/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
+    device/motorola/targa/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
 
-#    device/motorola/targa/prebuilt/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
+
 # Phone settings
 PRODUCT_COPY_FILES += \
     device/sample/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml \
     vendor/cm/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml \
-
-
-# Graphics
-PRODUCT_COPY_FILES += \
-    device/motorola/targa/prebuilt/imgtec/pvrsrvinit:system/bin/pvrsrvinit \
-    device/motorola/targa/prebuilt/imgtec/libEGL_POWERVR_SGX540_120.so:system/lib/egl/libEGL_POWERVR_SGX540_120.so \
-    device/motorola/targa/prebuilt/imgtec/libGLESv1_CM_POWERVR_SGX540_120.so:system/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so \
-    device/motorola/targa/prebuilt/imgtec/libGLESv2_POWERVR_SGX540_120.so:system/lib/egl/libGLESv2_POWERVR_SGX540_120.so \
-    device/motorola/targa/prebuilt/imgtec/libglslcompiler.so:system/lib/libglslcompiler.so \
-    device/motorola/targa/prebuilt/imgtec/libIMGegl.so:system/lib/libIMGegl.so \
-    device/motorola/targa/prebuilt/imgtec/libpvr2d.so:system/lib/libpvr2d.so \
-    device/motorola/targa/prebuilt/imgtec/libpvrANDROID_WSEGL.so:system/lib/libpvrANDROID_WSEGL.so \
-    device/motorola/targa/prebuilt/imgtec/libPVRScopeServices.so:system/lib/libPVRScopeServices.so \
-    device/motorola/targa/prebuilt/imgtec/libsrv_init.so:system/lib/libsrv_init.so \
-    device/motorola/targa/prebuilt/imgtec/libsrv_um.so:system/lib/libsrv_um.so \
-    device/motorola/targa/prebuilt/imgtec/libusc.so:system/lib/libusc.so \
-    device/motorola/targa/prebuilt/imgtec/libdrm.so:system/lib/libdrm.so \
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -268,9 +186,8 @@ PRODUCT_COPY_FILES += \
 
 # stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
-$(call inherit-product, hardware/ti/camera/camera.mk)
 $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
-$(call inherit-product-if-exists, vendor/verizon/targa-verizon-vendor.mk)
+$(call inherit-product-if-exists, vendor/verizon/verizon-ics.mk)
 
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
 

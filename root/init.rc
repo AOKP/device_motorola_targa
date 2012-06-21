@@ -39,7 +39,7 @@ loglevel 8
 
     mkdir /system
     mkdir /data 0771 system system
-    mkdir /cache 0771 system cache
+    mkdir /cache 0770 system cache
     mkdir /config 0500 root root
 
     # Directory for putting things only root should see.
@@ -60,13 +60,14 @@ loglevel 8
 #    mkdir /mnt/obb 0700 root system
 #    mount tmpfs tmpfs /mnt/obb mode=0755,gid=1000
 
-    write /proc/sys/kernel/panic_on_oops 1
-    write /proc/sys/kernel/hung_task_timeout_secs 0
-    write /proc/cpu/alignment 4
-    write /proc/sys/kernel/sched_latency_ns 10000000
-    write /proc/sys/kernel/sched_wakeup_granularity_ns 2000000
-    write /proc/sys/kernel/sched_compat_yield 1
-    write /proc/sys/kernel/sched_child_runs_first 0
+#    write /proc/sys/kernel/panic_on_oops 1
+#    write /proc/sys/kernel/hung_task_timeout_secs 0
+#    write /proc/cpu/alignment 4
+#    write /proc/sys/kernel/sched_latency_ns 10000000
+#    write /proc/sys/kernel/sched_wakeup_granularity_ns 2000000
+#    write /proc/sys/kernel/sched_compat_yield 1
+#    write /proc/sys/kernel/sched_child_runs_first 0
+#    write /proc/sys/kernel/randomize_va_space 2
 
 # Create cgroup mount points for process groups
 #    mkdir /dev/cpuctl
@@ -74,21 +75,24 @@ loglevel 8
 #    chown system system /dev/cpuctl
 #    chown system system /dev/cpuctl/tasks
 #    chmod 0777 /dev/cpuctl/tasks
-    write /dev/cpuctl/cpu.shares 1024
+#    write /dev/cpuctl/cpu.shares 1024
 
     mkdir /dev/cpuctl/fg_boost
     chown system system /dev/cpuctl/fg_boost/tasks
     chmod 0777 /dev/cpuctl/fg_boost/tasks
-    write /dev/cpuctl/fg_boost/cpu.shares 1024
+#    write /dev/cpuctl/fg_boost/cpu.shares 1024
 
     mkdir /dev/cpuctl/bg_non_interactive
     chown system system /dev/cpuctl/bg_non_interactive/tasks
     chmod 0777 /dev/cpuctl/bg_non_interactive/tasks
     # 5.0 %
-    write /dev/cpuctl/bg_non_interactive/cpu.shares 52
+#    write /dev/cpuctl/bg_non_interactive/cpu.shares 52
+
+# Allow everybody to read the xt_qtaguid resource tracking misc dev.
+# This is needed by any process that uses socket tagging.
+    chmod 0644 /dev/xt_qtaguid
 
 on fs
-
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
 #    mount yaffs2 mtd@system /system
@@ -97,13 +101,12 @@ on fs
 #    mount yaffs2 mtd@cache /cache nosuid nodev
 
 on post-fs
-
     # once everything is setup, no need to modify /
     mount rootfs rootfs / ro remount
 
     # We chown/chmod /cache again so because mount is run as root + defaults
     chown system cache /cache
-    chmod 0771 /cache
+    chmod 0770 /cache
 
     # This may have been created by the recovery system with odd permissions
     chown system cache /cache/recovery
@@ -130,20 +133,23 @@ on post-fs-data
     # Create dump dir and collect dumps.
     # Do this before we mount cache so eventually we can use cache for
     # storing dumps on platforms which do not have a dedicated dump partition.
-    mkdir /data/dontpanic 0750 root log
+    mkdir /data/dontpanic 0770 root log
 
     # Collect apanic data, free resources and re-arm trigger
     copy /proc/apanic_console /data/dontpanic/apanic_console
     chown root log /data/dontpanic/apanic_console
-    chmod 0640 /data/dontpanic/apanic_console
+    chmod 0664 /data/dontpanic/apanic_console
 
     copy /proc/apanic_threads /data/dontpanic/apanic_threads
     chown root log /data/dontpanic/apanic_threads
-    chmod 0640 /data/dontpanic/apanic_threads
+    chmod 0664 /data/dontpanic/apanic_threads
 
-    write /proc/apanic_console 1
+    # If there is no apanic handle action in the init.<device>.rc file, you
+    # must uncomment this line, otherwise apanic proc entry
+    # won't be removed.
+    # write /proc/apanic_console 1
 
-# create basic filesystem structure
+    # create basic filesystem structure
     mkdir /data/misc 01771 system misc
     mkdir /data/misc/bluetoothd 0770 bluetooth bluetooth
     mkdir /data/misc/bluetooth 0770 system system
@@ -154,8 +160,8 @@ on post-fs-data
     # give system access to wpa_supplicant.conf for backup and restore
     mkdir /data/misc/wifi 0770 wifi wifi
     chmod 0660 /data/misc/wifi/wpa_supplicant.conf
-    mkdir /data/local 0771 mot_tcmd shell
-    mkdir /data/local/tmp 0771 mot_tcmd shell
+    mkdir /data/local 0771 shell shell
+    mkdir /data/local/tmp 0771 shell shell
     mkdir /data/data 0771 system system
     mkdir /data/app-private 0771 system system
     mkdir /data/app 0771 system system
@@ -163,6 +169,12 @@ on post-fs-data
 
     # create dalvik-cache, so as to enforce our permissions
     mkdir /data/dalvik-cache 0771 system system
+    chown system system /data/dalvik-cache
+    chmod 0771 /data/dalvik-cache
+
+    mkdir /cache/dalvik-cache 0771 system system
+    chown system system /cache/dalvik-cache
+    chmod 0771 /cache/dalvik-cache
 
     # create resource-cache and double-check the perms
     mkdir /data/resource-cache 0771 system system
@@ -172,8 +184,9 @@ on post-fs-data
     # create the lost+found directories, so as to enforce our permissions
     mkdir /data/lost+found 0770 root root
 
-    # create directory for DRM plug-ins
-    mkdir /data/drm 0774 drm drm
+    # create directory for DRM plug-ins - give drm the read/write access to
+    # the following directory.
+    mkdir /data/drm 0770 drm drm
 
     # If there is no fs-post-data action in the init.<device>.rc file, you
     # must uncomment this line, otherwise encrypted filesystems
@@ -187,12 +200,6 @@ on post-fs-data
     chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
 on boot
-
-
-# Allow everybody to read the xt_qtaguid resource tracking misc dev.
-# This is needed by any process that uses socket tagging.
-    chmod 0644 /dev/xt_qtaguid
-
 # basic network init
     ifup lo
     hostname localhost
@@ -256,7 +263,7 @@ on boot
 
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
+    setprop net.tcp.buffersize.default 65536,131072,262144,65536,131072,262144
     setprop net.tcp.buffersize.wifi    524288,1048576,2097152,262144,524288,1048576
     setprop net.tcp.buffersize.lte     524288,1048576,2097152,262144,524288,1048576
     setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
@@ -266,6 +273,10 @@ on boot
 
 # Set this property so surfaceflinger is not started by system_init
     setprop system_init.startsurfaceflinger 0
+
+    # Setup trace files
+    mkdir /data/trace 0666 system system
+    chown system system /data/trace
 
     class_start core
     class_start main
@@ -364,6 +375,18 @@ service adbd /sbin/adbd
 on property:ro.kernel.qemu=1
     start adbd
 
+# This property trigger has added to imitiate the previous behavior of "adb root".
+# The adb gadget driver used to reset the USB bus when the adbd daemon exited,
+# and the host side adb relied on this behavior to force it to reconnect with the
+# new adbd instance after init relaunches it. So now we force the USB bus to reset
+# here when adbd sets the service.adb.root property to 1.  We also restart adbd here
+# rather than waiting for init to notice its death and restarting it so the timing
+# of USB resetting and adb restarting more closely matches the previous behavior.
+on property:service.adb.root=1
+    write /sys/class/android_usb/android0/enable 0
+    restart adbd
+    write /sys/class/android_usb/android0/enable 1
+
 service servicemanager /system/bin/servicemanager
     class core
     user system
@@ -371,6 +394,7 @@ service servicemanager /system/bin/servicemanager
     critical
     onrestart restart zygote
     onrestart restart media
+    onrestart restart surfaceflinger
     onrestart restart drm
 
 service vold /system/bin/vold
@@ -387,7 +411,7 @@ service debuggerd /system/bin/debuggerd
     class main
 
 service ril-daemon /system/bin/rild
-    class core
+    class main
     socket rild stream 660 root radio
     socket rild-debug stream 660 radio system
     user root
@@ -396,12 +420,12 @@ service ril-daemon /system/bin/rild
 service surfaceflinger /system/bin/surfaceflinger
     class main
     user system
-    group graphics
+    group graphics mot_tpapi
     onrestart restart zygote
 
 service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
     class main
-    socket zygote stream 666
+    socket zygote stream 660 root system
     onrestart write /sys/android_power/request_state wake
     onrestart write /sys/power/state on
     onrestart restart media
@@ -410,13 +434,14 @@ service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-sys
 service drm /system/bin/drmserver
     class main
     user drm
-    group system inet drmrpc
+    group inet drmrpc mot_tpapi mot_drm mot_secclkd
 
 service media /system/bin/mediaserver
     class main
     user media
-    group system audio camera graphics inet net_bt net_bt_admin net_raw mot_drm input mot_tpapi mot_secclkd mot_pwric mot_caif net_bw_acct drmrpc
+    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mot_drm input mot_tpapi mot_secclkd mot_pwric mot_caif media
     ioprio rt 4
+    allowrtprio
 
 service bootanim /system/bin/bootanimation
     class main
@@ -424,22 +449,6 @@ service bootanim /system/bin/bootanimation
     group graphics
     disabled
     oneshot
-
-###Bootsound - Safe to Delete: Start ###
-
-service bootsound /system/bin/bootsound
-    user media
-    group audio
-    disabled
-    oneshot
-
-on property:init.svc.bootanim=running   # to correct timin
-    start bootsound
-
-on property:dev.bootcomplete=1
-    stop bootsound
-
-### Bootsound - Safe to Delete: End ###
 
 service dbus /system/bin/dbus-daemon --system --nofork
     class main
