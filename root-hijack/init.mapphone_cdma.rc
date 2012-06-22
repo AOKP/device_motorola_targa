@@ -905,8 +905,6 @@ on property:dev.bootcomplete=1
 #service cdromversion /system/bin/logwrapper /system/bin/mount_cdrom.sh /dev/block/cdrom
 #    class core
 #    oneshot
-
-
 # Backup/Restore Feature
 on property:mot.backup_restore.status="Finished"
     start zygote
