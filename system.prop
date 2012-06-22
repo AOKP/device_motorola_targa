@@ -31,7 +31,7 @@ persist.radio.imsfwloglevel=3
 # Default network type.
 # 4 => CDMA/EVDO. To be used until Targa has LTE SFN
 # 7 => GLOBAL.
-ro.telephony.default_network=8
+ro.telephony.default_network=10
 ro.com.google.clientid=android-motorola
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
@@ -267,7 +267,6 @@ lte_ril.netcfg_to=90
 ro.mot.tmp.telephony.refactor=true
 ro.cdma.subscription=0
 ro.telephony.call_ring.multiple=false
-ro.telephony.default_network=8
 ro.cdma.homesystem=64,65,76,77,78,79,80,81,82,83
 ro.cdma.data_retry_config=max_retries=infinite,0,0,10000,10000,100000,10000,10000,10000,10000,140000,540000,960000
 ro.gsm.data_retry_config=default_randomization=2000,max_retries=infinite,0,0,80000,125000,485000,905000
