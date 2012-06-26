@@ -7,7 +7,7 @@ TI_CAMERAHAL_DEBUG_ENABLED := true
 BOARD_OVERRIDE_FB0_WIDTH := 540
 BOARD_OVERRIDE_FB0_HEIGHT := 960
 
-
+ENABLE_WEBGL := true
 
 # inherit from the proprietary version
 -include vendor/motorola/targa/BoardConfigVendor.mk
