@@ -802,7 +802,7 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dnl80211 -iwlan0 -c/data/misc
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
-service dhcpcd_wlan0 /system/bin/dhcpcd
+service dhcpcd_wlan0 /system/bin/dhcpcd -G
     class main
     disabled
     oneshot
@@ -818,11 +818,11 @@ service iprenew_p2p /system/bin/dhcpcd -nBK
     class main
     disabled
     oneshot
-service dhcpcd_bnep0 /system/bin/dhcpcd
+service dhcpcd_bnep0 /system/bin/dhcpcd -G
     class main
     disabled
     oneshot
-service dhcpcd_usbeth0 /system/bin/dhcpcd
+service dhcpcd_usbeth0 /system/bin/dhcpcd -G
     class main
     disabled
     oneshot
@@ -1087,6 +1087,10 @@ on property:sys.usb.config=rndis,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
     setprop sys.usb.state $sys.usb.config
+# Enable Hotplug governor only for OMAP ES2.2 Silicon
+#on property:ro.revision=34
+#    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor hotplug
+# Add any hotplug tuning parameters here.
 # service for transfer the certificates installed by CertificateManager to ICS
 service upgrade_certs /system/bin/upgrade_certs
     disabled
