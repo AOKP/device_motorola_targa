@@ -7,8 +7,6 @@ TI_CAMERAHAL_DEBUG_ENABLED := true
 BOARD_OVERRIDE_FB0_WIDTH := 540
 BOARD_OVERRIDE_FB0_HEIGHT := 960
 
-ENABLE_WEBGL := true
-
 # inherit from the proprietary version
 -include vendor/motorola/targa/BoardConfigVendor.mk
 
@@ -150,9 +148,17 @@ TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/motorola/targa/releasetools/
 TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/motorola/targa/releasetools/targa_img_from_target_files
 TARGET_CUSTOM_RELEASETOOL := ./device/motorola/targa/releasetools/squisher
 
-# Hijack
-#TARGET_NEEDS_MOTOROLA_HIJACK := true
-#BOARD_HIJACK_LOG_ENABLE := true
+# CodeAurora Optimizations: msm8960: Improve performance of memmove, bcopy, and memmove_words
+# added by twa_priv
+TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
+TARGET_USE_KRAIT_PLD_SET := true
+TARGET_KRAIT_BIONIC_PLDOFFS := 10
+TARGET_KRAIT_BIONIC_PLDTHRESH := 10
+TARGET_KRAIT_BIONIC_BBTHRESH := 64
+TARGET_KRAIT_BIONIC_PLDSIZE := 64
+
+# Bootanimation
+TARGET_BOOTANIMATION_PRELOAD := true
 
 
 # Misc.
