@@ -29,11 +29,28 @@ TARGET_GLOBAL_CFLAGS += -DNEEDS_ARM_ERRATA_754319_754320
 
 
 # Kernel
-TARGET_PREBUILT_KERNEL := device/motorola/targa/kernel
 BOARD_KERNEL_CMDLINE := omap_wdt.timer_margin=60 oops=panic console=/dev/null rw mem=1048572K@0x80000000 vram=10300K omapfb.vram=0:8256K,1:4K,2:2040K init=/init ip=off mmcparts=mmcblk1:p7(pds),p15(boot),p16(recovery),p17(cdrom),p18(misc),p19(cid),p20(kpanic),p21(system),p22(cache),p23(preinstall),p24(webtop),p25(userdata),p26(emstorage) androidboot.bootloader=0x0A72
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_PAGE_SIZE := 0x4096
 
+# Kernel Build
+TARGET_KERNEL_SOURCE := kernel/motorola/omap4_xt910s
+TARGET_KERNEL_CONFIG := mapphone_defconfig
+TARGET_PREBUILT_KERNEL := device/motorola/targa/kernel
+
+
+KERNEL_EXTERNAL_MODULES:
+	make -C kernel/motorola/omap4_xt910s/external/wlan/mac80211/compat_wl12xx KERNEL_DIR=$(KERNEL_OUT) KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) ARCH=arm CROSS_COMPILE="arm-eabi-"
+	mv kernel/motorola/omap4_xt910s/external/wlan/mac80211/compat_wl12xx/compat/compat.ko $(KERNEL_MODULES_OUT)
+	mv kernel/motorola/omap4_xt910s/external/wlan/mac80211/compat_wl12xx/net/mac80211/mac80211.ko $(KERNEL_MODULES_OUT)
+	mv kernel/motorola/omap4_xt910s/external/wlan/mac80211/compat_wl12xx/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)
+	mv kernel/motorola/omap4_xt910s/external/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx.ko $(KERNEL_MODULES_OUT)
+	mv kernel/motorola/omap4_xt910s/external/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_spi.ko $(KERNEL_MODULES_OUT)
+	mv kernel/motorola/omap4_xt910s/external/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_sdio.ko $(KERNEL_MODULES_OUT)
+
+#$(KERNEL_OUT)
+
+TARGET_KERNEL_MODULES := KERNEL_EXTERNAL_MODULES
 
 # Storage / Sharing
 BOARD_VOLD_MAX_PARTITIONS := 100
