@@ -200,9 +200,9 @@ PRODUCT_COPY_FILES += \
     device/motorola/targa/prebuilt/bin/50-backup.sh:system/addon.d/50-backup.sh
 
 # prebuilt hwc
-#PRODUCT_COPY_FILES += \
-#    device/motorola/targa/hwc/hwcomposer.targa.so:system/vendor/lib/hw/hwcomposer.targa.so
-#    device/motorola/targa/hwc/libedid.so:syste/lib/libedid.so
+PRODUCT_COPY_FILES += \
+    device/motorola/targa/hwc/hwcomposer.targa.so:system/vendor/lib/hw/hwcomposer.targa.so
+    device/motorola/targa/hwc/libedid.so:syste/lib/libedid.so
 
 # Phone settings
 PRODUCT_COPY_FILES += \
