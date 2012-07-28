@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device_targa.mk
+    $(LOCAL_DIR)/full_targa.mk

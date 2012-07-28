@@ -3,7 +3,7 @@ USE_CAMERA_STUB := false
 BOARD_USES_TI_CAMERA_HAL := true
 TI_CAMERAHAL_DEBUG_ENABLED := true
 
-# ICS Leak Hacks
+# ICS Kernel Hacks
 BOARD_OVERRIDE_FB0_WIDTH := 540
 BOARD_OVERRIDE_FB0_HEIGHT := 960
 
@@ -36,7 +36,6 @@ TARGET_KERNEL_SOURCE := kernel/motorola/omap4_xt912
 TARGET_KERNEL_CONFIG := mapphone_defconfig
 TARGET_PREBUILT_KERNEL := device/motorola/targa/kernel
 
-
 KERNEL_EXTERNAL_MODULES:
 	make -C kernel/motorola/omap4_xt912/external/wlan/mac80211/compat_wl12xx KERNEL_DIR=$(KERNEL_OUT) KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) ARCH=arm CROSS_COMPILE="arm-eabi-"
 	mv kernel/motorola/omap4_xt912/external/wlan/mac80211/compat_wl12xx/compat/compat.ko $(KERNEL_MODULES_OUT)
@@ -45,6 +44,8 @@ KERNEL_EXTERNAL_MODULES:
 	mv kernel/motorola/omap4_xt912/external/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx.ko $(KERNEL_MODULES_OUT)
 	mv kernel/motorola/omap4_xt912/external/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_spi.ko $(KERNEL_MODULES_OUT)
 	mv kernel/motorola/omap4_xt912/external/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_sdio.ko $(KERNEL_MODULES_OUT)
+#	make -C kernel/motorola/omap4_xt912/external/vpndriver KERNEL_DIR=$(KERNEL_OUT) KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) ARCH=arm CROSS_COMPILE="arm-eabi-"
+#	mv kernel/motorola/omap4_xt912/external/vpndriver/vpnclient.ko $(KERNEL_MODULES_OUT)
 
 #$(KERNEL_OUT)
 
@@ -77,7 +78,7 @@ BUILD_WITH_ALSA_UTILS := true
 HAVE_2_3_DSP := 1
 TARGET_PROVIDES_LIBAUDIO := true
 BOARD_USE_MOTO_DOCK_HACK := true
-
+COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -115,6 +116,7 @@ BOARD_SYSTEM_FILESYSTEM := ext3
 BOARD_EGL_CFG := device/motorola/targa/prebuilt/etc/egl.cfg
 USE_OPENGL_RENDERER := true
 COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
+
 
 # OMAP
 OMAP_ENHANCEMENT := true
@@ -159,6 +161,7 @@ TARGET_KRAIT_BIONIC_PLDSIZE := 64
 
 # Bootanimation
 TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 
 # Misc.
