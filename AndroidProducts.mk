@@ -1,2 +1,1 @@
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_targa.mk
+PRODUCT_MAKEFILES := $(LOCAL_DIR)/full_targa.mk
