@@ -175,6 +175,7 @@ BOARD_NEEDS_CUTILS_LOG := true
 BOARD_USES_SECURE_SERVICES := true
 BOARD_HAS_MAPPHONE_SWITCH := true
 USE_IPV6_ROUTE := true
+LEGACY_RIL := true
 
 # Common device independent definitions
 include device/ti/common-open/BoardConfig.mk
