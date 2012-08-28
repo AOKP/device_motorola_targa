@@ -37,7 +37,7 @@ if [ ! -f "$OTAPACKAGE" ]; then
 	exit 1
 fi
 
-OPTICHARGER=$ANDROID_BUILD_TOP/vendor/cm/tools/opticharger
+OPTICHARGER=$ANDROID_BUILD_TOP/device/motorola/targa/releasetools/opticharger
 QUIET=-q
 DELETE_BINS="applypatch applypatch_static check_prereq recovery updater"
 
@@ -114,6 +114,12 @@ then
 MODVERSION=`sed -n -e'/ro\.cm\.version/s/^.*=//p' $REPACK/ota/system/build.prop`
 OUTFILE=$OUT/KEXEC-cm-$MODVERSION.zip
 echo MODVERSION: $MODVERSION
+elif [ -f $ANDROID_BUILD_TOP/vendor/aokp/vendorsetup.sh ];
+then
+#MODVERSION=`sed -n -e'/ro\.modversion/s/^.*=//p' $REPACK/ota/system/build.prop`
+VERSION=`cat "vendor/aokp/configs/common_versions.mk" | grep ro.aokp.version | head -1 | cut -f2 -d '=' | cut -f3 -d '_'`
+MODVERSION="$TARGET_PRODUCT"_"$VERSION"
+OUTFILE=$OUT/KEXEC-$MODVERSION.zip
 else
 OUTFILE=$OUT/$TARGET_PRODUCT-JB-$REALDATE.zip
 fi
