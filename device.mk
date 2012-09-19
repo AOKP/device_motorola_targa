@@ -90,4 +90,5 @@ ifneq ($(BOARD_USES_KEXEC),true)
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor-pvr.mk)
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor-stock-camera.mk)
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor-stock-ducati.mk)
+$(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor-stock-omx.mk)
 endif
