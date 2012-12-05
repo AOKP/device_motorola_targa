@@ -268,11 +268,11 @@ ro.mot.dpmext=true
 ro.com.google.clientid=android-motorola
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
-ro.build.version.full=JB_VERSION.4.1.1_r6.XT875.Verizon.en.US
 ro.mot.hidden_keyboards=evfwd
 ro.setupwizard.enable_bypass=1
 persist.sys.usb.config=mass_storage,adb
 
+# Additions
 com.ti.omap_enhancement=true
 hwui.render_dirty_regions=false
 persist.sys.root_access=3
@@ -280,7 +280,5 @@ ro.hwc.legacy_api=true
 ro.product.use_charge_counter=1
 ril.subscription.types=NV,RUIM
 ro.cdma.subscribe_on_ruim_ready=true
-persist.sys.moto_oem_telephony=true
-persist.sys.moto_imsi_fix=true
-persist.sys.gsm_signalstrength=false
-ro.config.not_world_phone=false
+debug.sf.no_hw_vsync=1
+ro.telephony.ril.v3=writeaidonly
