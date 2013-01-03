@@ -10,9 +10,9 @@ DEVICE_FOLDER := device/motorola/targa
 
 # Hardware HALs
 PRODUCT_PACKAGES += \
-    camera.spyder \
+    camera.targa \
 
-#    hwcomposer.spyder \
+#    hwcomposer.targa \
 
 # Audio
 PRODUCT_COPY_FILES += \
