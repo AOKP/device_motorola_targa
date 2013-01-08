@@ -5,7 +5,7 @@ $(call inherit-product, device/motorola/targa/full_targa.mk)
 $(call inherit-product-if-exists, vendor/nos/killrom/config/common.mk)
 $(call inherit-product-if-exists, vendor/google/killrom/config/common.mk)
 
-#DEVICE_PACKAGE_OVERLAYS += device/motorola/targa/overlay/killrom
+DEVICE_PACKAGE_OVERLAYS += device/motorola/targa/overlay/killrom
 
 #
 # Setup device specific product configuration.
