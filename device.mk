@@ -11,6 +11,7 @@ DEVICE_FOLDER := device/motorola/targa
 # Hardware HALs
 PRODUCT_PACKAGES += \
     camera.targa \
+    lights.targa \
 
 #    hwcomposer.targa \
 
