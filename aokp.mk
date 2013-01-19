@@ -2,7 +2,7 @@
 $(call inherit-product, device/motorola/targa/full_targa.mk)
 
 # Inherit common product files.
-$(call inherit-product, vendor/aokp/configs/common_phone.mk)
+$(call inherit-product, vendor/aokp/configs/common.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/motorola/targa/overlay/aokp
 
