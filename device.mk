@@ -46,7 +46,7 @@ PRODUCT_COPY_FILES += \
 ifneq ($(BOARD_USES_KEXEC),true)
 PRODUCT_COPY_FILES += $(shell \
     find device/motorola/targa/modules -name '*.ko' \
-    | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
+    | $(SED_EXTENDED) 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
     | tr '\n' ' ')
 endif
 
