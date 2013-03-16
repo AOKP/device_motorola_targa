@@ -24,10 +24,10 @@ DEVICE_FOLDER := device/motorola/targa
 
 # Hardware HALs
 PRODUCT_PACKAGES += \
+    power.targa \
     camera.targa \
-    lights.targa
-
-#    hwcomposer.targa
+    lights.targa \
+    hwcomposer.targa
 
 # Modem
 PRODUCT_PACKAGES += \
@@ -48,5 +48,5 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/vold.fstab:system/etc/vold.fstab
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-$(call inherit-product-if-exists, vendor/motorola/omap4-common/proprietary/vzw/verizon.mk)
 $(call inherit-product-if-exists, vendor/motorola/targa/targa-vendor.mk)
+$(call inherit-product-if-exists, vendor/motorola/omap4-common/common-vendor-pvr.mk)
