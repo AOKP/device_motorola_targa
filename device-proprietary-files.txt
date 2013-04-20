@@ -1,178 +1,20 @@
-# system/bin
+# system/bin (from targa JB 98.72.22)
 bin/akmd8975
 bin/ap_gain.bin
 bin/ap_gain_mmul.bin
-bin/batch
-bin/battd
-bin/chat-ril
-bin/crda
-bin/dbvc_atvc_property_set
-bin/dumpe2fs
-bin/dund
-bin/ecckeyd
-bin/enc_mgt_tool
-bin/ftmipcd
-bin/logcatd
-bin/logcatd-blan
-bin/mount_cdrom.sh
-bin/mount_ext3.sh
-bin/secclkd
-bin/startup_smc.sh
-bin/tcmd
-bin/tcmdhelp
-bin/testpppd
-bin/tty2ttyd
-bin/whisperd
 
-# system/etc
-etc/btpan.conf
-etc/ecryptfs.tab
-etc/encrypt.tab
-etc/excluded-input-devices.xml
-etc/opl.dat.enc
-etc/smc_android_cfg.ini
-etc/smc_pa.ift
-etc/smc_pa_pk_4_8Mb_ipa.bin
-etc/smc_pa_pk_4_ipa.bin
-etc/firmware/ap_bt_data.bin
-etc/ppp/peers/pppd-ril.options
-etc/wifi/wlan_fem.ini
+# system/etc (from targa JB 98.72.22)
+etc/firmware/ducati-m3.bin
+etc/firmware/TIInit_10.6.15.bts
 
-# system/usr
-usr/bin/gki_pd_notifier
-usr/bin/panic_daemon
-usr/idc/Motorola_Mobility_Motorola_HD_Dock.idc
-usr/keychars/omap4-keypad.kcm
+# system/lib/hw (from targa JB 98.72.22 rename audio.primary.targa.so)
+lib/hw/audio.primary.omap4.so
+
+# system/usr (from targa JB 98.72.22)
 usr/keylayout/atmxt-i2c.kl
-usr/keylayout/cpcap-key.kl
-usr/keylayout/omap4-keypad.kl
 
-# system/lib
-lib/crda/regulatory.bin
-lib/libadkutils.so
-lib/libamcm.so
-lib/libbattd.so
-lib/libbcbmsg.so
-lib/libbt-aptx-4.0.3.so
-lib/libcaps.so
-lib/libcapsjava.so
-lib/libdataencrypt.so
-lib/libdataencrypt_tpa.so
-lib/libdataencrypt_utils.so
-lib/libdevicestats.so
-lib/libdlnahttpjni.so
-lib/libdlnajni.so
-lib/libdlnaprofileparser.so
-lib/libdlnasysjni.so
-lib/libdmengine.so
-lib/libdmjavaplugin.so
-lib/libdockcommjni.so
-lib/libevbridge.so
-lib/libexempi.so
-lib/libextdispjni.so
-lib/libhdcp.so
-lib/libhdmi.so
-lib/libimage_jni.so
-lib/libjni_nwp.so
-lib/libmetainfo.so
-lib/libmot_atcmd.so
-lib/libmotodbgutils.so
-lib/libmoto_netutil.so
-lib/libmss.so
-lib/libmss.so.sig
-lib/libnmea.so
-lib/libpanorama.so
-lib/libpanorama_jni.so
-lib/libPhotoEditor.so
-lib/libphotoflow.so
-lib/libpkip.so
-lib/libpppd_plugin-ril.so
-lib/libprovlib.so
-lib/libquicksec.so
-lib/libscalado.so
-lib/libsensorhub_jni.so
-lib/libsmapi.so
-lib/libtpa.so
-lib/libtpa_core.so
-lib/libui3d.so
-lib/libvideoeditorlite.so
-lib/libwbxmlparser.so
-lib/libWifiAPHardware.so
-lib/libxmpcore.so
-lib/libXmp_jni.so
-
-# RIL files
-bin/base64
-bin/extract-embedded-files
-bin/mm-wrigley-qc-dump.sh
-bin/oem-iptables-init.sh
-bin/pppd-ril
-bin/vril-dump
-bin/wrigley-diag.sh
-bin/wrigley-dump.sh
-bin/wrigley-fetch-mpr.sh
-bin/wrigley-iptables.sh
-lib/libb64.so
-lib/libbabysit.so
-lib/libmotdb.so
-lib/lib-mot-lte-ril.so
-lib/libmoto_mdmctrl.so
-lib/libmoto_nwif_ril.so
-lib/libmoto_qmi_ril.so
-lib/libmoto_ril.so
-lib/librds_util.so
-lib/libril_rds.so
-lib/moto-ril-multimode.so
-lib/libims_client_jni.so
-
-# system/lib/hw
-lib/hw/gps.targa.so
+# system/lib/hw (from targa JB 98.72.22)
 lib/hw/sensors.targa.so
 
-# TCMD libs
-lib/libaudiotcmd.so
-lib/libfmchr.so
-lib/libfm_stack.so
-lib/libmcphal.so
-lib/libtcmdcameraservice.so
-
-# system/vendor PVR
-vendor/bin/pvrsrvinit
-vendor/lib/egl/libeglinfo.so
-vendor/lib/egl/libEGL_POWERVR_SGX540_120.so
-vendor/lib/egl/libGLESv1_CM_POWERVR_SGX540_120.so
-vendor/lib/egl/libGLESv2_POWERVR_SGX540_120.so
-vendor/lib/libglslcompiler_SGX540_120.so
-vendor/lib/libIMGegl_SGX540_120.so
-vendor/lib/libpvr2d_SGX540_120.so
-vendor/lib/libpvrANDROID_WSEGL_SGX540_120.so
-vendor/lib/libPVRScopeServices.so
-vendor/lib/libsrv_init_SGX540_120.so
-vendor/lib/libsrv_um_SGX540_120.so
-vendor/lib/libusc_SGX540_120.so
-vendor/lib/hw/gralloc.omap4.so
-etc/powervr.ini
-vendor/lib/libnbgm_8.0.1.so
-
-# system/etc/omapcam
-etc/omapcam/SEN2.cfg
-etc/omapcam/SEN2_EE.cfg
-etc/omapcam/R8_MVEN002_LD2_ND0_IR0_SH0_FL1_SVEN002_DCCID1039.cfg
-etc/omapcam/R8_MVEN002_LD2_ND0_IR0_SH0_FL1_SVEN002_DCCID1039_CAL.cfg
-etc/omapcam/R8_MVEN002_LD2_ND0_IR0_SH0_FL1_SVEN002_DCCID1039_EE.cfg
-
-# system/etc/omapcam/module1_cal
-etc/omapcam/module1_cal/cid1039_ov8820_alg_3a_ae_supp3_dcc.bin
-etc/omapcam/module1_cal/cid1039_ov8820_isif_clamp_dcc.bin
-etc/omapcam/module1_cal/cid1039_ov8820_lsc_interp.bin
-
-# system/etc/omapcam/module1_ee
-etc/omapcam/module1_ee/cid1039_ov8820_ducati_gamma.bin
-etc/omapcam/module1_ee/cid1039_ov8820_ipipe_ee_dcc.bin
-etc/omapcam/module1_ee/cid1039_ov8820_ducati_nsf_ldc.bin
-
-# system/etc/omapcam/module2
+# system/etc/omapcam/module2 (from targa JB 98.72.22)
 etc/omapcam/module2/cid1040_ov7739_sensor_config_dcc.bin
-
-# system/etc Ducati firmware
-etc/firmware/ducati-m3.bin
