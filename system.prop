@@ -183,3 +183,11 @@ ro.cdma.subscribe_on_ruim_ready=true
 # Vold switchability uncomment second line to swap
 ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1
 #persist.sys.vold.switchexternal=1
+
+# hardware info
+ro.device.chipset=TI OMAP 4430
+ro.device.cpu=1 GHz dual-core Cortex-A9
+ro.device.gpu=PowerVR SGX540
+ro.device.rear_cam=8 MP
+ro.device.front_cam=VGA
+ro.device.screen_res=540x960
