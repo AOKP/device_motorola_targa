@@ -1,20 +1,12 @@
-# system/bin (from targa JB 98.72.22)
-bin/akmd8975
-bin/ap_gain.bin
-bin/ap_gain_mmul.bin
-
-# system/etc (from targa JB 98.72.22)
-etc/firmware/ducati-m3.bin
-etc/firmware/TIInit_10.6.15.bts
-
-# system/lib/hw (from targa JB 98.72.22 rename audio.primary.targa.so)
-lib/hw/audio.primary.omap4.so
-
-# system/usr (from targa JB 98.72.22)
+# system/usr
 usr/keylayout/atmxt-i2c.kl
 
-# system/lib/hw (from targa JB 98.72.22)
+# system/lib/hw
+lib/hw/gps.targa.so
 lib/hw/sensors.targa.so
 
-# system/etc/omapcam/module2 (from targa JB 98.72.22)
+# system/lib
+lib/libnbgm_9.0.1.so
+
+# system/etc/omapcam/module2
 etc/omapcam/module2/cid1040_ov7739_sensor_config_dcc.bin
