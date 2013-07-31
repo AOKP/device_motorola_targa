@@ -44,8 +44,9 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilts
 PRODUCT_COPY_FILES += \
-    $(DEVICE_FOLDER)/media_profiles.xml:system/etc/media_profiles.xml \
-    $(DEVICE_FOLDER)/vold.fstab:system/etc/vold.fstab
+    $(DEVICE_FOLDER)/media_profiles.xml:system/etc/media_profiles.xml
+
+PRODUCT_PACKAGES += fstab.mapphone_cdma
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 $(call inherit-product, vendor/motorola/targa/targa-vendor.mk)
