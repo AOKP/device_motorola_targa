@@ -36,3 +36,6 @@ BOARD_PAGE_SIZE := 0x4096
 
 # Kernel Build
 TARGET_KERNEL_VARIANT_CONFIG := mapphone_targa_defconfig
+
+# Specific recovery settings
+TARGET_RECOVERY_FSTAB = $(DEVICE_FOLDER)/fstab.mapphone_cdma
