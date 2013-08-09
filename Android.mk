@@ -14,7 +14,7 @@
 
 ifeq ($(TARGET_DEVICE),targa)
 
-LOCAL_PATH:= $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE       := fstab.mapphone_cdma
@@ -24,6 +24,6 @@ LOCAL_SRC_FILES    := fstab.mapphone_cdma
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
-include $(all-subdir-makefiles)
-
 endif
+
+include $(call all-makefiles-under,$(LOCAL_PATH))
