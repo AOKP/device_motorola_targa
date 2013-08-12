@@ -13,9 +13,9 @@
 # limitations under the License.
 
 ifeq ($(TARGET_DEVICE),targa)
-    include $(all-subdir-makefiles)
 
-LOCAL_PATH := $(call my-dir)
+DEVICE_PATH := $(call my-dir)
+LOCAL_PATH := $(DEVICE_PATH)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE       := fstab.mapphone_cdma
@@ -24,5 +24,7 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := fstab.mapphone_cdma
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
+
+include $(call first-makefiles-under,$(DEVICE_PATH))
 
 endif
