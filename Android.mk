@@ -13,6 +13,7 @@
 # limitations under the License.
 
 ifeq ($(TARGET_DEVICE),targa)
+    include $(all-subdir-makefiles)
 
 LOCAL_PATH := $(call my-dir)
 
@@ -25,5 +26,3 @@ LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 endif
-
-include $(call all-makefiles-under,$(LOCAL_PATH))
